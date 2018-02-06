@@ -1,0 +1,205 @@
+<!-- 菜品分类 -->
+<meta charset="UTF-8">
+<style type="text/css">
+	.manage_title .mt_left{
+		float: left;
+	}
+	.manage_title .mt_right{
+		float: right;
+	}
+	section{
+		margin-left: 30px;
+	}
+</style>
+
+<!-- 标题区   start -->
+	<div id="manage_title" class="manage_title">
+		<div class="mt_left">
+			<b>|</b>
+			<span>菜品分类</span>
+		</div>
+		<div class="mt_right">
+			<span>分类层级</span>
+			<select>
+				<option>一级</option>
+				<option>二级</option>
+			</select>
+			<button id="add_listing_btn">添加分类</button>
+			<button id="takeUp">收起全部</button>
+		</div>
+	</div>
+<!-- end	标题区-->
+
+<!-- 内容区   start -->
+	<div id="manage_main" class="manage_main">
+	<!-- 具体菜品	start -->
+		<div class="class_line">
+			<span>-</span>
+			<span>川菜[排序1]</span>
+			<img src="" alt="图片">
+			<span>分区描述</span>
+			<span>复制链接</span>
+			<span>显示</span>
+			<span>图标</span>
+			<button id="add_listing">添加</button>
+			<button id="change_listing">修改</button>
+			<button id="delete_listing">删除</button>
+			<section>
+				<span>热菜[排序2]</span>
+				<img src="" alt="图片">
+				<span>分区描述</span>
+				<span>复制链接</span>
+				<span>显示</span>
+				<span>图标</span>
+				<button id="add_listing">添加</button>
+				<button id="change_listing">修改</button>
+				<button id="delete_listing">删除</button>
+			</section>
+			<section>
+				<span>凉菜[排序3]</span>
+				<img src="" alt="图片">
+				<span>分区描述</span>
+				<span>复制链接</span>
+				<span>显示</span>
+				<span>图标</span>
+				<button id="add_listing">添加</button>
+				<button id="change_listing">修改</button>
+				<button id="delete_listing">删除</button>
+			</section>
+		</div>
+		<div class="class_line">
+			<span>+</span>
+			<span>粤菜[排序4]</span>
+			<img src="" alt="图片">
+			<span>分区描述</span>
+			<span>复制链接</span>
+			<span>显示</span>
+			<span>图标</span>
+			<button id="add_listing">添加</button>
+			<button id="change_listing">修改</button>
+			<button id="delete_listing">删除</button>
+		</div>
+	<!-- end	具体菜品 -->
+
+	<!-- 添加菜品分类的模板		start -->
+		<div class="add_listing_model">
+			<div>基本属性</div>
+			<div  id="alm_name" >
+				<label>分类名称</label>
+				<input type="text"placeholder="请输入名称">
+			</div>
+			<div  id="alm_hierarchy">
+				<label>所属层级</label>
+
+				<!-- 不能有一级的目录，每次添加都要访问一级目录的菜品 -->
+				<select>
+					<option>根目录</option>
+					<option>川菜</option>
+					<option>粤菜</option>
+				</select>
+
+			</div>
+			<div>
+				<label for="inputfile">分类图片</label>
+				<input type="file" id="inputfile">
+			</div>
+			<div id="alm_des">
+				<label>分类描述</label>
+				<textarea></textarea>
+			</div>
+			<div id="alm_sort">
+				<label>排序</label>
+				<input type="number"></input>
+				<span>这是说明文字</span>
+			</div>
+			<div id="alm_time">
+				<label>供应时段</label>
+				<select>
+					<option>早市</option>
+					<option>午市</option>
+					<option>晚市</option>
+				</select>
+			</div>
+			<div id="alm_state">
+				<label>显示状态</label>
+				<select>
+					<option>显示</option>
+					<option>隐藏</option>
+				</select>
+			</div>
+			<button id="submit_listing">确认添加</button>
+			<button id="return_listing">返回</button>
+		</div>
+	<!-- end	添加菜品分类的模板-->
+	</div>
+<!-- end	内容区-->
+
+<script type="text/javascript">
+// 点击添加分类==>显示分类模板，隐藏具体菜品,改变title
+	$("#add_listing_btn").click(function(){
+		var titleL=$("#manage_title .mt_left span");//获取title左边
+		var titleR=$("#manage_title .mt_right");//获取title右边
+		var classLine=$("#manage_main .class_line");//获取具体菜品
+		var addLM =$("#manage_main .add_listing_model");//获取添加菜品的模板
+		var submitL =$("#submit_listing");//获取添加菜品的模板的 确认添加 按钮
+		var returnL =$("#return_listing");//获取添加菜品的模板的 返回 按钮
+
+		classLine.css("display","none");//隐藏具体菜品
+		addLM.css("display","block");//显示添加菜品的模板
+		titleL.html("添加菜品分类");//改变title左边
+		titleR.css("display","none");//隐藏title右边
+
+
+
+
+
+		//访问二级菜品填入所属层级
+		// var aH= $("#alm_hierarchy select");
+		// $.post("index.php",{},function(data,status){
+		// 	var Data = eval(data);
+		// 	var text = "<option>根目录</option>";
+		// 	aH.html("");
+		// 	for (var i = 0; i <Data.length; i++) {
+		// 		text+="<option>"+Data[i]+"</option>"
+		// 	}
+		// 	aH.html(text);
+		// });
+		//点击确认添加按钮提交数据
+		submitL.click(function(){
+			//获取传入数据库的数据
+			var aName = $("#alm_name input").val();
+			var aHierarchy = $("#alm_hierarchy select").val();
+			var aDes = $("#alm_des textarea").val();
+			var aSort = $("#alm_sort input").val();
+			var aTime = $("#alm_time select").val();
+			var aState = $("#alm_state select").val();
+			var manageTitle = $("#manage_title select").val();
+
+			console.log(aDes);
+
+
+			//通过ajax将数据传入数据库
+			// $.post(
+			// 	'index.php',
+			// 	{	$aName:aName,
+			// 		$aHierarchy:aHierarchy,
+			// 		$aDes:aDes;
+			// 		$aSort:aSort,
+			// 		$aTime:aTime,
+			// 		$aState:aState
+			// 	},
+			// 	function(data,status){
+			// 		alert("添加成功！");
+			// 		$('#manage_content').load('manage/dish_divide_listing.html');
+			// })
+		});
+		//点击返回按钮你
+		returnL.click(function(){
+			classLine.css("display","block");//显示具体菜品
+			addLM.css("display","none");//隐藏添加菜品的模板
+			titleL.html("菜品分类");//改变title左边
+			titleR.css("display","block");//隐藏title右边
+			$("#alm_name input").val("");
+		})
+	})
+</script>

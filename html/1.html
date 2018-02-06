@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/manage.css">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script src="../js/index.js"></script>
+	<style>
+	.ul_style li:nth-child(1)>dl{
+		display: block;
+	}
+
+	.dropdown_menu dt{
+	    background-color: #333333;
+	    opacity: 0.8;
+	    opacity: 1;
+	}
+	
+	.dropdown_menu dt a {
+    	color: white;
+    	font-size: 0.2rem;
+    	display: block;
+    }
+    .dropdown_menu dt:hover{
+		background-color: #ff6c0e;
+	}
+	.dropdown_menu dt.hover{
+		background-color: #ff6c0e;
+	}
+	.dropdown_menu dt span{
+		position: absolute;
+		left: 0px;
+		color: #fff;
+	}
+	</style>
+<script>
+	$(window).resize(function ()// 绑定到窗口的这个事件中
+	{
+	  var whdef = 100/1920;// 表示1920的设计图,使用100PX的默认值
+	  var wH = window.innerHeight;// 当前窗口的高度
+	  var wW = window.innerWidth;// 当前窗口的宽度
+	  var rem = wW * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
+	  $('html').css('font-size', rem + "px");
+
+	});
+	$(window).resize();
+</script>
+</head>
+<body>
+<div class="wrap">
+<nav id="nav" class="nav">
+	<div class="nav_logo">
+		<span class="hotel_name">卡拉曼达涪城万达店</span>
+		<img src="../imgs/logo.png" alt="">
+
+	</div>
+	<div class="nav_menu">
+	  	<ul>
+	  		<li><a href="../index.html">餐台</a></li>
+	  		<li><a href="">订单</a></li>
+	  		<li><a href="">报表</a></li>
+	  		<li><a href="member.html">会员</a></li>
+	  		<li><a href="">营销</a></li>
+	  		<li><a href="manage.html">管理</a></li>
+	  		<li><a class="active"  href="#">库存</a></li>
+	  		<li><a href="">其它</a></li>
+	  	</ul>
+	</div>
+	<div class="nav_user">
+		<span class="user_info">
+			<i class="online_user">萧经滕</i>
+			<br>
+			<i class="online_time">已在线2小时30分</i>
+		</span>
+		<img class="user_head" src="../imgs/touxiang.png" alt="">
+
+	</div>
+</nav>
+<div id="manage">
+<!-- 左边导航栏 -->
+	<div id="manage_menu" class="manage_menu">
+		<ul class="ul_style">
+			<li class="dropdown drop" id="dropdown1">
+               <svg class='ul_logo' xmlns="http://www.w3.org/2000/svg" viewBox="2249 5714 17.745 16">
+                 <defs>
+                   <style>
+                     .cls-1 {
+                       fill: #fff;
+                     }
+                   </style>
+                 </defs>
+                 <g id="主页餐厅" transform="translate(2246.865 5662.8)">
+                   <path id="Path_140" data-name="Path 140" class="cls-1" d="M-418.013-4474.8v-7.469a3.011,3.011,0,0,1-.808-1.427,8.141,8.141,0,0,1,1.211-4.619.891.891,0,0,1-.4-.744v-.853a.89.89,0,0,1,.888-.889h14.185a.89.89,0,0,1,.889.889v.853a.886.886,0,0,1-.279.646,6.5,6.5,0,0,1,1.085,5.063l-.026.083c-.53,1.265-1.207,1.907-2.013,1.907-.936,0-1.752-.9-2.361-1.872-.625,1.244-1.324,1.851-2.128,1.851-1.007,0-1.765-.991-2.205-1.768-.608,1.2-1.266,1.786-2,1.786s-1.429-.614-2.03-1.787c-.77,1.389-1.631,1.709-2.263,1.709a2.068,2.068,0,0,1-.853-.191v5.943h14.26v-5.334h.889v6.222Zm12.714-9.62c.7,1.36,1.455,2.171,2.015,2.171.4,0,.813-.468,1.177-1.32a5.546,5.546,0,0,0-1.166-4.6h-13.393c-.386.65-1.524,2.735-1.279,4.324a2.115,2.115,0,0,0,1.673,1.517c.682,0,1.324-.709,1.86-2.052l.408-1.022.438,1.073c.6,1.534,1.217,2.079,1.587,2.079.22,0,.813-.207,1.573-2.12l.444-1.118.389,1.139c.2.592,1.035,2.082,1.8,2.082.534,0,1.125-.75,1.666-2.111l.36-.907Zm2.36-4.639v-.853h-14.185v.853h.209s12.474-.019,13.849,0Z" transform="translate(421 4542)"/>
+                 </g>
+               </svg>
+
+				<span>采购管理</span>
+				<svg class="triangle" xmlns="http://www.w3.org/2000/svg" viewBox="2363 5718 12.417 6.208"><defs><style>.cls-1 {fill: #fff;}</style></defs><path id="Path_157" data-name="Path 157" class="cls-1" d="M365.7,4492l6.208,6.208,6.208-6.208Z" transform="translate(1997.3 1226)"/></svg>
+
+				<dl class="dropdown_menu">
+					<dt class="hover">
+						<span>|</span>
+						<a href="javacript:;" id="mem_list">物品管理</a>
+						
+					</dt>
+					<dt>
+						<a href="javacript:;" id="mem_rank">申请购单</a>
+					</dt>
+				</dl>
+			</li>
+						<li class="dropdown" id="dropdown1">
+			               <svg class='ul_logo' xmlns="http://www.w3.org/2000/svg" viewBox="2249 5714 17.745 16">
+			                 <defs>
+			                   <style>
+			                     .cls-1 {
+			                       fill: #fff;
+			                     }
+			                   </style>
+			                 </defs>
+			                 <g id="主页餐厅" transform="translate(2246.865 5662.8)">
+			                   <path id="Path_140" data-name="Path 140" class="cls-1" d="M-418.013-4474.8v-7.469a3.011,3.011,0,0,1-.808-1.427,8.141,8.141,0,0,1,1.211-4.619.891.891,0,0,1-.4-.744v-.853a.89.89,0,0,1,.888-.889h14.185a.89.89,0,0,1,.889.889v.853a.886.886,0,0,1-.279.646,6.5,6.5,0,0,1,1.085,5.063l-.026.083c-.53,1.265-1.207,1.907-2.013,1.907-.936,0-1.752-.9-2.361-1.872-.625,1.244-1.324,1.851-2.128,1.851-1.007,0-1.765-.991-2.205-1.768-.608,1.2-1.266,1.786-2,1.786s-1.429-.614-2.03-1.787c-.77,1.389-1.631,1.709-2.263,1.709a2.068,2.068,0,0,1-.853-.191v5.943h14.26v-5.334h.889v6.222Zm12.714-9.62c.7,1.36,1.455,2.171,2.015,2.171.4,0,.813-.468,1.177-1.32a5.546,5.546,0,0,0-1.166-4.6h-13.393c-.386.65-1.524,2.735-1.279,4.324a2.115,2.115,0,0,0,1.673,1.517c.682,0,1.324-.709,1.86-2.052l.408-1.022.438,1.073c.6,1.534,1.217,2.079,1.587,2.079.22,0,.813-.207,1.573-2.12l.444-1.118.389,1.139c.2.592,1.035,2.082,1.8,2.082.534,0,1.125-.75,1.666-2.111l.36-.907Zm2.36-4.639v-.853h-14.185v.853h.209s12.474-.019,13.849,0Z" transform="translate(421 4542)"/>
+			                 </g>
+			               </svg>
+
+							<span>采购管理</span>
+							<svg class='triangle' xmlns="http://www.w3.org/2000/svg" viewBox="2366 6153.896 6.208 12.417">
+							  <defs>
+							    <style>
+							      .cls-1 {
+							        fill: #fff;
+							      }
+							    </style>
+							  </defs>
+							  <path id="Path_158" data-name="Path 158" class="cls-1" d="M365.7,4492l6.208,6.208,6.208-6.208Z" transform="translate(-2126 6532.013) rotate(-90)"/>
+							</svg>
+
+							<dl class="dropdown_menu" id="dropdown_menu1">
+								<dt><a href="javacript:;" id="mem_list">物品管理</a></dt>
+								<dt><a href="javacript:;" id="mem_list">物品管理</a></dt>
+								<dt><a href="javacript:;" id="mem_list">物品管理</a></dt>
+								<dt><a href="javacript:;" id="mem_list">物品管理</a></dt>
+								<dt><a href="javacript:;" id="mem_rank">申请购单</a></dt>
+								<dt><a href="javacript:;" id="mem_list">物品管理</a></dt>
+							</dl>
+						</li>
+
+			<li class="dropdown" id="people_setting">库存管理</li>
+		</ul>
+	</div>
+<!-- 右边内容区 -->
+	<div id="member_content" class="manage_content">
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+
+	
+
+
+	var maMeLi = $("#manage_menu li");
+	maMeLi.click(function(){
+
+		// alert($(this).index())
+		var triangle='<svg class="triangle" xmlns="http://www.w3.org/2000/svg" viewBox="2363 5718 12.417 6.208"><defs><style>.cls-1 {fill: #fff;}</style></defs><path id="Path_157" data-name="Path 157" class="cls-1" d="M365.7,4492l6.208,6.208,6.208-6.208Z" transform="translate(1997.3 1226)"/></svg>',triangle2='<svg class="triangle" xmlns="http://www.w3.org/2000/svg" viewBox="2366 6153.896 6.208 12.417"><defs><style>.cls-1 {fill: #fff;}</style></defs><path id="Path_158" data-name="Path 158" class="cls-1" d="M365.7,4492l6.208,6.208,6.208-6.208Z" transform="translate(-2126 6532.013) rotate(-90)"/></svg>';
+
+		//通过为 li 增加 Class 来判断它现在的展开状态
+		if ($(this).hasClass("drop")) {
+			// 改变 li 的class值
+			$(this).removeClass("drop");
+
+			// 改变下拉菜单的状态
+			$(this).find('dl').css('display','none');
+
+			// 改变右边三角形的状态
+			$(this).children('.triangle').replaceWith(triangle2)
+		}else{
+			$(this).siblings().removeClass("drop");
+			$(this).addClass("drop");
+
+			$(this).siblings().find('dl').css('display','none');//隐藏所有的下拉
+			$(this).find('dl').css('display','block');
+
+			
+			$(this).siblings().children('.triangle').replaceWith(triangle2);
+			$(this).children('.triangle').replaceWith(triangle);
+		}
+
+		
+	})
+	
+	//点击下拉的dt 改变其样式
+		$(".dropdown_menu dt").click(function(){
+			event.stopPropagation();
+			$(".dropdown_menu dt").removeClass("hover");//影藏所有dt的背景
+			$(this).addClass("hover");
+			
+			//增加竖条
+			var str = "<span>|</span>";
+			$(".dropdown_menu dt span").remove();
+			$(this).find('a').before(str);
+		});
+
+	
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vip</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+	<script src="../js/index.js"></script>
+	<script>
+		$(window).resize(function ()// 绑定到窗口的这个事件中
+		{
+		  var whdef = 100/1920;// 表示1920的设计图,使用100PX的默认值
+		  var wH = window.innerHeight;// 当前窗口的高度
+		  var wW = window.innerWidth;// 当前窗口的宽度
+		  var rem = wW * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
+		  $('html').css('font-size', rem + "px");
+		  
+		});
+		$(window).resize()
+
+
+		window.onload=function () {
+
+			
+			
+			
+
+		}
+	</script>
+</head>
+<body>
+	<nav id="nav" class="nav">
+			<div class="nav_logo">
+				<span class="hotel_name">卡拉曼达涪城万达店</span>
+				<img src="imgs/logo.png" alt="">
+
+			</div>
+			<div class="nav_menu">
+			  	<ul>
+			  		<li><a class="active" href="">餐台</a></li>
+			  		<li><a href="">订单</a></li>
+			  		<li><a href="">报表</a></li>
+			  		<li><a href="">会员</a></li>
+			  		<li><a href="">营销</a></li>
+			  		<li><a  href="html/manage.html">管理</a></li>
+			  		<li><a href="">库存</a></li>
+			  		<li><a href="">其它</a></li>
+			  	</ul>	
+			</div>
+			<div class="nav_user">
+				<span class="user_info">
+					<i class="online_user">萧经滕</i>
+					<br>
+					<i class="online_time">已在线2小时30分</i>
+				</span>
+				<img class="user_head" src="imgs/touxiang.png" alt="">
+				
+			</div>
+		</nav>
+</body>
+</html>

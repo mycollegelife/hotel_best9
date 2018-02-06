@@ -1,0 +1,38 @@
+$bgcolor:#95989A;
+$bgopcity:0.8;
+
+#manage_menu{
+	margin: 0rem  0.3rem 0.2rem 0.3rem;
+	background-color: $bgcolor;
+	opacity: $bgopcity;
+	height: 100%;
+}
+#manage_content{
+	margin: 0rem  0.3rem 0rem 0.3rem;
+
+}
+#manage_title{
+	margin-bottom: 0.3rem;
+	background-color: $bgcolor;
+	opacity: $bgopcity;
+}
+
+#manage_main{
+	background-color: $bgcolor;
+	opacity: $bgopcity;
+	position: relative;
+	height: 600px;
+	
+}
+// 增加分类
+#add_listing{
+	display: none;
+	background-color: $bgcolor;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 3;
+
+}

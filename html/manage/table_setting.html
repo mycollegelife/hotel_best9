@@ -1,0 +1,119 @@
+<div id="manage_content" class="manage_content">
+	<div id="manage_title" class="manage_title">
+		<span>桌台设置</span>
+		<select >
+			<option>1号楼</option>
+			<option>2号楼</option>
+		</select>
+
+		<button>下载所有二维码	</button>
+		<button id="add_table_num_lot">批量添加</button>
+		<button id="add_table_num">添加餐桌</button>
+	</div>
+	<div id="manage_main" class="manage_main">
+      <div class="table_setting_submenu"></div>
+      <div class="table_setting_content">
+      	<table>
+      		<tr>
+
+      			<th><input type="checkbox"></th>
+      			<th>序号</th>
+      			<th>台位名称</th>
+      			<th>所属分类</th>
+      			<th>就餐人数</th>
+      			<th>包间费</th>
+      			<th>最低消费</th>
+      			<th>排号规则</th>
+      			<th>二维码下载</th>
+      			<th>预订开关</th>
+      			<th>状态</th>
+      			<th>操作</th>
+      		</tr>
+      		<tr>
+      			<td><input type="checkbox"></td>
+      			<td>2</td>
+      			<td>3</td>
+      			<td>4</td>
+      			<td>5</td>
+      			<td>6</td>
+      			<td>7</td>
+      			<td>8</td>
+      			<td>9</td>
+      			<td>10</td>
+      			<td>11</td>
+      			<td>12</td>
+      		</tr>
+      		<tr>
+      			<td><input type="checkbox"></td>
+      			<td>2</td>
+      			<td>3</td>
+      			<td>4</td>
+      			<td>5</td>
+      			<td>6</td>
+      			<td>7</td>
+      			<td>8</td>
+      			<td>9</td>
+      			<td>10</td>
+      			<td>11</td>
+      			<td>12</td>
+      		</tr>
+      	</table>
+      </div>
+		
+
+
+
+		<!-- 增加弹出框内容弹出框 -->
+		<div id="add_table_model" class="table_model">
+
+			<form role="form">
+				<div class="form-group">
+					<label for="name">分区名称</label>
+					<input type="text" class="form-control" id="name" placeholder="请输入名称">
+				</div>
+
+				<div class="form-group">
+					<label for="inputfile">分区图片</label>
+					<input type="file" id="inputfile">
+				</div>
+
+				<div class="form-group">
+					<label for="name">分区描述</label>
+					<textarea class="form-control" rows="3" id="textarea"></textarea>
+				</div>
+
+				<div class="form-group">
+						<label for="name">排序</label>
+						<select class="form-control">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+				</div>
+
+				<div class="form-group">
+						<label for="name">默认状态</label>
+						<select class="form-control">
+							<option>显示</option>
+							<option>隐藏</option>
+						</select>
+				</div>
+
+
+				<div class="form-group">
+						<label for="name">是否推荐</label>
+						<select class="form-control">
+							<option>是</option>
+							<option>否</option>
+						</select>
+				</div>
+
+				<button  class="btn btn-default" id="submit_listing">提交</button>
+				<button  class="btn btn-default" id="return_table">返回</button>
+			</form>
+
+		</div>
+	</div>
+</div>

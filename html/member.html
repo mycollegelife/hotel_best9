@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<!-- <link rel="stylesheet" href="../css/common.css"> -->
+	<link rel="stylesheet" href="../css/public.css">
+	<link rel="stylesheet" href="../css/manage.css">
+	<link rel="stylesheet" href="../css/memberStock.css">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script src="../js/index.js"></script>
+	<script src="../js/memberStockTop.js"></script>
+	<style>
+
+		
+		.manage_main{
+ 			background-color: rgba(242,242,242,.95);
+ 		}
+	/*会员设置的表格*/
+		.mem_table{
+			width: 100%;
+			font-size: 0.16rem;
+		}
+		.mem_table thead{
+			background-color: #F2F2F2;
+			box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
+		}
+		.mem_table tbody tr{
+			border-bottom: 1px solid #CCCCCC;
+			padding-right: 0.3rem;
+
+		}
+		.mem_table td{
+			padding: 0.1rem 0rem 0.1rem 0rem;
+			text-align: center;
+		}
+		.mem_table img{
+			margin: 0px;
+			margin-left: 0.1rem;
+		}
+	/*会员分组表格的  单独样式*/
+		.memGroup_table td:nth-child(1){
+			width: 20%;
+			padding-left: 0.1rem;
+			text-align: left;
+		}
+		.memGroup_table td:nth-child(2){
+			width: 20%;
+		}
+		
+		.memGroup_table td:last-child{
+			width: 20%;
+			padding-right: 0.3rem;
+			text-align: right;
+		}
+		
+	</style>
+<script>
+</script>
+</head>
+<body>
+<div class="wrap">
+<nav id="nav" class="nav">
+	<div class="nav_logo">
+		<span class="hotel_name">卡拉曼达涪城万达店</span>
+		<img src="../imgs/logo.png" alt="">
+
+	</div>
+	<div class="nav_menu">
+	  	<ul>
+	  		<li><a href="../index.html">餐台</a></li>
+	  		<li><a href="">订单</a></li>
+	  		<li><a href="">报表</a></li>
+	  		<li><a class="active"  href="#">会员</a></li>
+	  		<li><a href="">营销</a></li>
+	  		<li><a href="manage.html">管理</a></li>
+	  		<li><a href="stock.html">库存</a></li>
+	  		<li><a href="">其它</a></li>
+	  	</ul>
+	</div>
+	<div class="nav_user">
+		<span class="user_info">
+			<i class="online_user">萧经滕</i>
+			<br>
+			<i class="online_time">已在线2小时30分</i>
+		</span>
+		<img class="user_head" src="../imgs/touxiang.png" alt="">
+
+	</div>
+</nav>
+<div id="manage">
+<!-- 左边导航栏 -->
+	
+	<div id="manage_menu" class="manage_menu">
+		<ul class="ul_style">
+			<li class="dropdown drop">
+	          	<img src="../imgs/manage/member_logo.svg" alt=""  class="ul_logo" >
+				<span>会员管理</span>
+	          	<img src="../imgs/manage/arrow-right.svg" alt="" class="triangle">
+				<dl class="dropdown_menu">
+					<dt class="hover">
+						<span>|</span>
+						<a href="javacript:;" id="mem_list">会员列表</a>
+					</dt>
+					<dt>
+						<a href="javacript:;" id="mem_rank">会员等级</a>
+					</dt>
+					<dt>
+						<a href="javacript:;" id="mem_group">会员分组</a>
+					</dt>
+				</dl>
+			</li>
+			<li class="dropdown" >
+			   	<img src="../imgs/manage/agreenment_logo.svg" alt="" class="ul_logo">
+				<span>协议单位</span>
+			   	<img src="../imgs/manage/arrow_bottom.svg" alt="" class="triangle">
+				<dl class="dropdown_menu" >
+					<dt><a href="javacript:;" id="inventory_info">库存信息</a></dt>
+				</dl>
+			</li>
+			<li class="dropdown" >
+			   	<img src="../imgs/manage/info_logo.svg" alt="" class="ul_logo">
+				<span>消息群发</span>
+			   	<img src="../imgs/manage/arrow_bottom.svg" alt="" class="triangle">
+				<dl class="dropdown_menu" >
+					<dt><a href="javacript:;" id="scrap_center">报损中心</a></dt>
+				</dl>
+			</li>
+		</ul>
+	</div>
+
+
+<!-- 右边内容区 -->
+	<div id="member_content" class="manage_content"></div>
+</div>
+</div>
+<script src="../js/memberStockBottom.js"></script>
+<script src="../js/member.js"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

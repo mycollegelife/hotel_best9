@@ -1,0 +1,710 @@
+ html {
+ 	font-size: 100px;
+ }
+ 
+ body {
+ 	font-size: 0.24rem;
+ }
+ 
+ html,
+ body,
+ .wrap {
+ 	width: 19.2rem;
+ 	height: 100%;
+ 	overflow: hidden;
+ 	background-image: url('../imgs/background.png');
+ 	background-size: 100% 100%;
+
+ }
+ 
+/*~~~~~~~~~~~~~~~~~~~~导航条 start ~~~~~~~~~~~~~~~~~*/
+ .nav,
+ .nav_logo,
+ .nav_menu,
+ .nav_user {
+ 	float: left;
+ }
+ 
+ .nav {
+ 	width: 19.2rem;
+ 	height: 0.85rem;
+ 	background-color: #fafafa;
+ 	opacity: 0.9;
+ }
+ 
+ .nav_logo {
+ 	width: 5rem;
+ 	height: 0.65rem;
+ 	margin: 0.1rem 0rem 0rem 0.2rem;
+ }
+ 
+ .nav_logo img {
+ 	width: 0.65rem;
+ 	height: 0.65rem;
+ }
+ 
+ .hotel_name {
+ 	position: absolute;
+ 	margin-top: 0.25rem;
+ 	margin-left: 0.7rem;
+ }
+ 
+ .nav_menu {
+ 	width: 9.24rem;
+ }
+ 
+ .nav_menu ul li {
+ 	list-style: none;
+ 	float: left;
+ }
+ 
+ .nav_menu ul li a {
+ 	display: block;
+ 	height: 0.85rem;
+ 	float: left;
+ 	line-height: 0.44rem;
+ 	text-align: center;
+ 	padding-top: 0.2rem;
+ 	border-top: 0.02rem solid transparent;
+ 	text-decoration: none;
+ 	color: black;
+ }
+ 
+ .nav_menu ul li a:hover {
+ 	cursor: pointer;
+ 	color: #ff761a;
+ }
+ 
+ .active {
+ 	border-top: 0.02rem solid #FF761A !important;
+ 	color: #ff761a !important;
+ }
+ 
+ .nav_user {
+ 	margin: 0.13rem -0.2rem 0rem 0rem;
+ 	height: 0.85rem;
+ 	width: 4.65rem;
+ 	position: absolute;
+ 	right: 0;
+ }
+ 
+ .user_head {
+ 	float: left;
+ 	height: 0.6rem;
+ 	width: 0.6rem;
+ 	border-radius: 0.6rem;
+ 	margin-left: 2.0rem;
+ }
+ 
+ .user_info {
+ 	position: absolute;
+ 	margin-left: 2.7rem;
+ 	margin-top: 0.07rem;
+ } 
+ .online_user {
+ 	font-size: 0.24rem;
+ }
+ 
+ .online_time {
+ 	font-size: 0.16rem;
+ 	line-height: 0.4rem;
+ }
+ 
+/*~~~~~~~~~~~~~~~~~~~~导航条 end ~~~~~~~~~~~~~~~~~*/
+ 
+/*~~~~~~~~~~~~~~~~~~~~表单基础设置 start ~~~~~~~~~~~~~~~~~*/
+ .form_item {
+ 	margin-bottom: 0.3rem;
+ 	font-size: 0.2rem;
+ }
+ 
+/*~~~~~~~~~~~~~~~~~~~~表单基础设置 end ~~~~~~~~~~~~~~~~~*/
+ 
+/*~~~~~~~~~~~~~~~~~~~~按钮 start ~~~~~~~~~~~~~~~~~*/
+ .button {
+ 	border-radius: 2px;
+ 	width: 1.2rem;
+ 	height: 0.4rem;
+  background: linear-gradient(to bottom,#ff761a,#dc6719);
+ 	opacity: 1;
+ 	color: white;
+ 	white-space: nowrap;
+ 	border: 0;
+ 	box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.16);
+ }
+ 
+ .btn_long {
+ 	width: auto;
+ }
+ 
+ .border-button {
+ }
+ 
+ .button:focus {
+ 	outline: none;
+ 	border-color: #ff761a;
+ }
+ 
+ .button:hover {
+ 	box-shadow: 0px 0px 10px 0px rgba(255, 118, 26, 1);
+ 	cursor: pointer;
+ }
+ 
+ .button:focus,
+ .button.is-focused,
+ .button:active,
+ .button.is-active {
+ 	outline: none;
+ }
+ 
+ .button:hover,
+ .button.is-hovered {
+ 	border-color: #ff761a;
+ }
+ 
+ .button:focus,
+ .button.is-focused {
+ 	border-color: #ff761a;
+ 	color: white;
+ }
+ .button_gray{
+  background:linear-gradient(to bottom,#999897,#757575);
+ }
+ 
+ /*按钮尺寸    默认 120x40*/
+ 
+/*~~~~~~~~~~~~~~~~~~~~按钮 end ~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~标签start~~~~~~~~~~~~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~标签end~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~textarea start~~~~~~~~~~~~~~~~*/
+.textarea{
+    display: inline-block;
+    width: 2.7rem;
+    height: 0.9rem;
+    background-color: #d9d9d9;
+    border:1px solid transparent;
+    border-radius: 2px;
+}
+.textarea:hover{
+	border: 1px solid #ff761a;
+	box-shadow: 0px 0px 6px 0px rgba(255, 118, 26, 0.3);
+}
+.textarea:focus,
+.textarea.is-focused,
+.textarea:active,
+.textarea.is-active {
+	outline: none;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~textarea end~~~~~~~~~~~~~~~~*/
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~input   start ~~~~~~~~~~~~~~~~~*/
+ .input {
+ 	border: 1px solid transparent;
+ 	border-color: #dbdbdb;
+ 	background-color: #e6e6e6;
+ 	border-radius: 2px;
+ 	opacity: 1;
+ }
+ 
+ .input:hover {
+ 	border-color: #ff761a;
+ 	box-shadow: 0px 0px 6px 0px rgba(255, 118, 26, 0.3);
+ }
+ 
+ .input:focus {
+ 	outline: none;
+ 	border-color: #ff761a;
+ }
+ 
+ .input:active {
+ 	border-color: #DC6719;
+ }
+ 
+ .input_lg {
+ 	width: 2.7rem;
+ 	height: 0.4rem;
+ }
+ 
+ .input_sm {
+ 	width: 1.1rem;
+ 	height: 0.4rem;
+ }
+ 
+/*~~~~~~~~~~~~~~~~~~~~input end ~~~~~~~~~~~~~~~~~*/
+ 
+/*~~~~~~~~~~~~~~~~~~~~下拉列表select start ~~~~~~~~~~~~~~~~~*/
+ .select_parent {
+ 	position: relative;
+ 	display: inline-block;
+ }
+ 
+ .select {
+ 	width: 1.49rem;
+ 	height: 0.4rem;
+ 	background: #fff;
+ 	border: none;
+ 	border: 1px solid transparent;
+ 	border-color: #dbdbdb;
+ 	-webkit-appearance: none;
+ 	position: relative;
+ 	padding-left: 0.2rem;
+ }
+ 
+ select:focus {
+ 	outline: none;
+ }
+ 
+ .select:focus,
+ .select.is-focused,
+ .select:active,
+ .select.is-active {
+ 	outline: none;
+ }
+ 
+ .select:hover,
+ .select.is-hovered {
+ 	border-color: #ff761a;
+ 	box-shadow: 0px 0px 6px 0px rgba(255, 118, 26, 0.3);
+ }
+ 
+ .select:focus,
+ .select.is-focused,
+ .select:active,
+ .select.is-active {
+ 	border-color: #ff761a;
+ 	box-shadow: 0px 0px 6px 0px rgba(255, 118, 26, 0.3);
+ }
+ 
+ .select:hover::after {
+ 	border-color: #ff761a;
+ }
+ 
+ /*小图标*/
+ .select_logo {
+ 	width: 0.2rem;
+ 	height: 0.2rem;
+ 	position: absolute;
+ 	z-index: 1;
+ 	right: 0.06rem;
+ 	top: 0.1rem;
+ }
+ 
+ .select_lg {
+ 	width: 2.7rem;
+ }
+ 
+/*~~~~~~~~~~~~~~~~~~~~下拉列表 select end ~~~~~~~~~~~~~~~~~*/
+ 
+/*~~~~~~~~~~~~~~~~~~~~房间 start ~~~~~~~~~~~~~~~~~*/
+ .table {
+ 	width: 1.5rem;
+ 	height: 0.8rem;
+ 	border-radius: 0.1rem;
+ 	float: left;
+ 	margin: 0 0.3rem 0.2rem 0rem;
+ 	color: white;
+ 	position: relative;
+ 	font-size: 0.18rem;
+ }
+ 
+ .table:hover {
+ 	cursor: pointer;
+ }
+ 
+ .empty {
+ 	background: linear-gradient(to right, #FF761A, #DC6719);
+ }
+ 
+ .dirty {
+ 	background: linear-gradient(to right, #999897, #757575);
+ }
+ 
+ .use {
+ 	background: linear-gradient(to right, #FFC61A, #DBAA18);
+ }
+ 
+ .order {
+ 	background: linear-gradient(to right, #8ACC15, #75AD13);
+ }
+ 
+ .join {
+ 	background: linear-gradient(to right, #FFC61A, #DBAA18);
+ }
+ 
+ .checkout {
+ 	background: linear-gradient(to right, #FFC61A, #89CB15);
+ }
+ 
+/*~~~~~~~~~~~~~~~~~~~~房间 end ~~~~~~~~~~~~~~~~~*/
+ 
+/*~~~~~~~~~~~~~~~~~~~~checkbox start~~~~~~~~~~~~~~~~~~~~*/
+ .mui-switch {
+ 	width: 52px;
+ 	height: 31px;
+ 	position: relative;
+ 	border: 1px solid #dfdfdf;
+ 	background-color: #fdfdfd;
+ 	box-shadow: #dfdfdf 0 0 0 0 inset;
+ 	border-radius: 20px;
+ 	border-top-left-radius: 20px;
+ 	border-top-right-radius: 20px;
+ 	border-bottom-left-radius: 20px;
+ 	border-bottom-right-radius: 20px;
+ 	background-clip: content-box;
+ 	display: inline-block;
+ 	-webkit-appearance: none;
+ 	user-select: none;
+ 	outline: none;
+ }
+ 
+ .mui-switch:before {
+ 	content: '';
+ 	width: 29px;
+ 	height: 29px;
+ 	position: absolute;
+ 	top: 0px;
+ 	left: 0;
+ 	border-radius: 20px;
+ 	border-top-left-radius: 20px;
+ 	border-top-right-radius: 20px;
+ 	border-bottom-left-radius: 20px;
+ 	border-bottom-right-radius: 20px;
+ 	background-color: #fff;
+ 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+ }
+ 
+ .mui-switch:checked {
+ 	border-color: #FF761A;
+ 	box-shadow: #FF761A 0 0 0 16px inset;
+ 	background-color: #FF761A;
+ }
+ 
+ .mui-switch:checked:before {
+ 	left: 21px;
+ }
+ 
+ .mui-switch.mui-switch-animbg {
+ 	transition: background-color ease 0.4s;
+ }
+ 
+ .mui-switch.mui-switch-animbg:before {
+ 	transition: left 0.3s;
+ }
+ 
+ .mui-switch.mui-switch-animbg:checked {
+ 
+ 	/*box-shadow: #dfdfdf 0 0 0 0 inset;
+ 	background-color: #FF761A;*/
+ 	transition: border-color 0.4s, background-color ease 0.4s;
+ }
+ 
+ .mui-switch.mui-switch-animbg:checked:before {
+ 	transition: left 0.3s;
+ }
+ 
+ .checkbox_shin {
+ 	margin-top: -0.1rem;
+ 	margin-bottom: -0.1rem;
+ }
+ 
+ .checkbox_black:checked {
+ 	border-color: #333333;
+ 	box-shadow: #333333 0 0 0 16px inset;
+ 	background-color: #333333;
+ }
+ 
+ /*nav_check 导航的checkbox*/
+ .nav_check {
+ 	width: 20px;
+ 	height: 20px;
+ 	background-color: red;
+ 	border-radius: 100%;	/*box-sizing: border-box;
+ 		border-left: 1px solid #333333;*/
+ 	position: relative;
+ }
+ 
+ .nav_check label {
+ 	width: 16px;
+ 	height: 16px;
+ 	background-color: yellow;
+ 	display: block;
+ 	transition: all .5s ease;
+ 	cursor: pointer;
+ 	position: absolute;
+ 	top: 2.5px;
+ 	left: 2.5px;
+ 	border-radius: 100%;
+ 	z-index: 1;
+ 	background: #333;
+ 	box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .nav_check input[type=checkbox] {
+ 	display: none;
+ }
+ 
+ .nav_check input[type=checkbox]:checked+label {
+ 	background-color: yellow;
+ }
+ 
+/*~~~~~~~~~~~~~~~~~~~~checkbox end~~~~~~~~~~~~~~~~~~~~*/
+ 
+ /*~~~~~~~~~~~~~~~~~checkbox nav start~~~~~~~~~~~~~~~~~~~*/
+  .check{
+    display: none;
+
+  }
+  .check+label{
+    background-color: #fff;
+    
+    display: inline-block;
+    height: 0.2rem;width: 0.2rem;
+    border-radius: 0.02rem;
+    box-shadow: 0 0 0 rgba(0,0,0,0.16);
+    border: 0.02rem solid #333;
+    padding: 0.03rem;
+    background-clip: content-box;
+    background-color: transparent;
+
+  }
+  .check+label:hover{
+    cursor: pointer;
+  }
+  .check:checked+label{
+                 background-color: #333;
+  }
+  .check_round+label{
+    border-radius: 0.2rem;
+  }
+/*~~~~~~~~~~~~~~~~~~~~checkbox nav end~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~file start~~~~~~~~~~~~~~~~~~~~*/
+
+ .file_input {
+ 	display: none;
+ }
+ 
+ .file_btn {
+ 	display: inline-block;
+ 	text-align: center;
+ 	line-height: 0.4rem;
+ 	cursor: pointer;
+ }
+
+ 
+/*~~~~~~~~~~~~~~~~~~~~file end~~~~~~~~~~~~~~~~~~~~*/
+ 
+/*~~~~~~~~~~~~~~~~~~~~下拉菜单 start~~~~~~~~~~~~~~~~~~~~*/
+ 
+ /*父级元素ul*/
+ .ul_style li {
+ 	background-color: #1A1919;
+ 	color: white;
+ 	text-align: center;
+ 	cursor: pointer;
+ 	line-height: 0.6rem;
+ 	position: relative;
+ 	font-size: 0.2rem;
+ 	opacity: 1;
+ }
+ 
+ .ul_style li:hover {
+ }
+ 
+ /*ul的图标 左侧*/
+ .ul_logo {
+ 	position: relative;
+ 	width: 0.16rem;
+ 	height: 0.16rem;
+ }
+ 
+ /*ul的图标 右侧*/
+ .triangle {
+ 	position: absolute;
+ 	width: 0.16rem;
+ 	height: 0.16rem;
+ 	margin-top: 0.2rem;
+ 	margin-left: 0.05rem;
+ }
+ 
+ /*下拉菜单元素ul*/
+ .dropdown_menu {
+ 	display: none;
+ 	overflow: hidden;
+ }
+ 
+ .dropdown_menu li {
+ 	background-color: rgb(51,51,51,0.8);
+ 	margin-left: -0.2rem;
+ }
+ 
+ .dropdown_menu li a {
+ 	color: white;
+ 	font-size: 0.2rem;
+ 	display: block;
+ }
+ 
+ .dropdown_menu li:hover {
+ 	background-color: #ff6c0e;
+ 	opacity: 1;
+ }
+.dropdown_tag{
+    position: absolute;
+    width: 0.1rem;
+    height: 0.2rem;
+    background-color: white;
+    margin-top: 0.2rem;
+    margin-left: -0.8rem;
+}
+ 
+/*~~~~~~~~~~~~~~~~~~~~下拉菜单 end~~~~~~~~~~~~~~~~~~~~*/
+
+ 
+/*~~~~~~~~~~~~~~~~~table start~~~~~~~~~~~~~~~*/
+ .table_sheet {
+ 	border-spacing: 0;
+ 	border-collapse: collapse;
+ 	width: 100%;
+ 	background-color: #fff;
+ }
+ 
+ thead {
+ 	display: table-header-group;
+ 	vertical-align: middle;
+ 	border-color: inherit;
+ 	box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
+ 	top: 0;
+ }
+ 
+ tbody {
+ 	display: table-row-group;
+ 	vertical-align: middle;
+ 	border-color: inherit;
+ }
+ 
+ .table_sheet>tbody>tr>th,
+ .table_sheet>tbody>tr>td {
+ 	padding: 8px;
+ 	line-height: 1.42857143;
+ 	vertical-align: top;
+ 	border-top: 1px solid #ddd;
+ 	border-bottom: 1px solid #ddd;
+ }
+ 
+ .table_sheet>thead>tr>th {
+ 	vertical-align: bottom;
+ 	border-bottom: 2px solid #ddd;
+ }
+ 
+ th {
+ 	text-align: left;
+ }
+ 
+ td {
+ 	text-align: left;
+ }
+ 
+ thead tr th {
+ 	padding-top: 0.1rem;
+ 	padding-bottom: 0.1rem;
+ 	padding-left: 0.1rem;
+ }
+ 
+ /*表头设置阴影*/
+ .table_sheet_title {
+ }
+/*~~~~~~~~~~~~~~~~~table end~~~~~~~~~~~~~~~*/
+
+
+
+/*~~~~~~~~~~~~~~~~~svg start~~~~~~~~~~~~~~~*/
+ .svg_style {
+ 	width: 0.3rem;
+ 	height: 0.3rem;
+ 	margin-right: 0.1rem;
+ 	fill:#ff761a;
+ }
+ .svg_danger{
+ 	fill:#ff1a1a;
+ }
+ 
+/*~~~~~~~~~~~~~~~~~svg end~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~tag 鱼头标签*/
+ .tag{
+    background-color:#ff761a;
+  color:white;
+  text-shadow:0 -1px 0 rgba(0,0,0,.2);
+  position:relative;
+  border-radius: 0.02rem;
+  margin:0 10px;
+ padding:0 8px;
+ display:inline-block;*display:inline;*zoom:1;
+ line-height:24px;
+ box-shadow: 
+}
+ .tag:before{
+  content:'';
+  width:0;
+  height:0;
+  position:absolute;
+  left:-10px;
+  top:0;
+  border-right:10px solid #ff761a;
+  border-top:12px solid transparent;
+  border-bottom:12px solid transparent; 
+  border-radius: 2px; 
+}
+ .tag:after{
+    content:'';
+  width:4px;
+  height:4px;
+  position:absolute;
+  left:-4px;
+  top:10px;
+  background-color:#fff;
+  border-radius:4px;
+}
+/*~~~~~~~~~~~~~~~~tag 鱼头标签*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~弹出框~~~~~~~~~~~~~~~~~~~~~~~~~*/
+              /*弹出框高度未设，自动填充*/
+            .alert_model{
+              width: 3.6rem;
+              background-color: #fff;
+              margin: 0 auto;
+              border-radius: 0.05rem;
+              box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
+
+                        
+            }
+            /*头*/
+            .alert_model_title{
+              text-align: center;
+              background-color: #ff761a;
+              height: 0.4rem;
+              border-top-right-radius: 0.05rem;
+              border-top-left-radius: 0.05rem;
+              font-size: 0.16rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+
+            }
+            /*body*/
+            .alert_model_content{
+              box-sizing: border-box;
+              padding: 0.2rem 0.1rem;
+            }
+            .alert_model_item{
+                
+            }
+            .alert_model_item>button:first-child{
+               margin-right: 0.2rem
+            }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~弹出框~~~~~~~~~~~~~~~~~~~~~~~~~*/

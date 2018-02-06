@@ -1,0 +1,372 @@
+	
+	li{
+		list-style: none;
+	}
+/*字体透明*/
+	.my_opacity{
+		opacity: 0;
+	}
+/*设置  token值   为隐藏 */
+	.myDisplay{
+		display: none;
+	}
+/*鱼头标签的样式*/
+	.tag{
+		margin-bottom: 0px;
+	}
+
+/*内容区的背景颜色*/
+ 	.manage_main{
+ 		background-color: rgba(255,255,255,.9);
+ 	}
+/*input 的设置*/
+	.input{
+		box-sizing: border-box;
+		padding: 0px;
+		padding-left: 0.1rem;
+		height: 0.4rem;
+	}
+ 	
+/*侧边栏的对齐*/
+ 	.dropdown_menu  dt a{
+	    margin-left: 0.38rem;
+	}
+
+/*蓝色  红色  灰色按钮*/
+	.btn_blue{
+		background: linear-gradient(to bottom,#1AA3FF,#176CA5) !important;
+		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.16);
+		
+	}
+	.btn_blue:hover{
+		box-shadow: 0px 0px 10px 0px rgba(26,163,255, 1);
+		border-color: #1AA3FF;
+	}
+	.btn_red{
+		background: linear-gradient(to bottom,#FF1A1A,#DC1919) !important;
+		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.16);
+		
+	}
+	.btn_red:hover{
+		box-shadow: 0px 0px 10px 0px rgba(220,25,25, 1);
+		border-color: #1AA3FF;
+	}
+	.btn_grey{
+		background: linear-gradient(to bottom,#999897,#757575) !important;
+		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.16);
+	}
+	.btn_grey:hover{
+		box-shadow: 0px 0px 10px 0px rgba(153,152,151, 1);
+		border-color: #1AA3FF;
+	}
+
+/*右边内容区标题*/
+	.my_title .manage_title button{
+		margin-left: 0px;
+		margin-right: 0.3rem ;
+	}
+	/*  右边title 的搜索框*/
+	.my_title .select_parent{
+		width: auto;
+		margin-left: 0.2rem;
+	}
+	.my_title .select_parent img{
+		width: 0.15rem;
+		height: 0.20rem;
+		display: inline-block;
+		position: relative;
+		left: 0.3rem;
+		top: 0.05rem;
+	}
+	.my_title .select_parent input{
+		padding: 0px;
+		padding-left: 0.3rem;
+		width: 1.6rem;
+		height: 0.3rem;
+		outline: none;
+		border: 0px;
+		border:1px solid #333333;
+		border-radius: 0.3rem;
+		background-color: transparent;
+		font-size: 0.12rem;
+	}
+
+/*滚动条样式*/
+	.my_inner{
+        /*height: 200px;*/
+        /*overflow-y: scroll;*/
+	}
+	
+	.my_innerbox{
+		height: auto;
+        overflow-x: hidden;
+        /*overflow-y: auto;*/
+    }
+    /*滚动条样式*/
+    ::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 0.06rem;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 3.72rem;
+    }
+    ::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    	border: 1px solid #95989A;
+    	border-radius: 10px;  
+   		background-color: #333333;  
+    }
+    ::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    	border: 1px solid #95989A;
+        border-radius: 10px;  
+    	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.5);  
+    	background-color: rgba(255,255,255,.9);  
+    }
+
+/*库存的  表格基本样式*/
+	.myTable{
+		width: 100%;
+	}
+	.myTable tbody tr:hover{
+		background-color: #F2F2F2;
+	}
+	.myTable tr td{
+		border-bottom: 1px solid #E6E6E6;
+	}
+	.myTable tr td{
+		text-align: center;
+	}
+	.myTable tr td:nth-child(1){
+		text-align: left;
+	}
+	.myTable tr  td:last-child{
+		text-align: right;
+	}
+	.myTable thead tr  td:last-child span{
+		float: right;
+		margin-right: 0.2rem;
+	}
+	.myTable tbody tr  td:last-child span{
+		color: #ff761A;
+		cursor: pointer;
+	}
+	.myTable thead{
+		box-shadow: none;
+	}
+	.myTable thead tr td{
+		font-size: 0.2rem;
+		padding: 0.2rem 0rem 0.12rem 0rem;
+	}
+	.myTable tbody tr td{
+		font-size: 0.16rem;
+		padding: 0.1rem 0rem;
+	}
+	.myTable thead tr.hover{
+		background: #fafafa;
+		border-bottom: 1px solid #000;
+	}
+	/*表格下的hr*/
+	.my_inner hr{
+		display: none;
+		margin: 0px;
+		position: relative;
+		height: 1px;
+		background-color: #E6E6E6 !important;
+		border: none;
+	}
+	.my_inner hr.hover{
+		display: block;
+	}
+
+	/*物品管理    表格  单独样式*/
+		
+
+	/*申购清单的  表格的单独样式*/
+		.apliPurchase_main .myTable tbody tr  td:first-child,.outStorage_main .myTable tbody tr  td:first-child{
+			padding-left: 0.15rem;
+		}
+
+/*弹出框公共样式 需要自定义  label 和 input 的长度 */
+	/*弹出框的背景  使得用户不能执行其他动作*/
+	.alert_bg{
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		z-index: 100;
+		user-select: none;
+		/*background-color: rgba(0,0,0,.5);*/
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+	.alert_model{
+		width: 3.6rem;
+		background-color: #333333;
+		margin: 0rem auto;
+		border-radius: 0.05rem;
+		box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
+	}
+	/*头*/
+	.alert_model_title{
+		text-align: center;
+		background-color: #ff761a;
+		height: 0.4rem;
+		border-top-right-radius: 0.05rem;
+		border-top-left-radius: 0.05rem;
+		font-size: 0.2rem;
+		color: white;
+
+	}
+	/*body*/
+	.alert_model_content{
+		padding: 0.2rem 0.3rem 0rem;
+	}
+	.alert_model_content label{
+		font-size: 0.16rem;
+		margin-right: 0.1rem;
+		color: #fff;
+	}
+	.alert_model_content .input{
+		height: 0.3rem;
+		background-color: #FFF;
+	}
+	/*底部按钮*/
+	.alert_model_item{
+		text-align: center;
+		padding: 0.3rem 0rem;
+	}
+
+
+/*添加分类 弹出框  的单独样式*/
+	.my_al_content div:nth-child(1){
+		padding-bottom: 0.2rem;
+	}
+	.my_al_content label{
+		width: 0.6rem;
+	}
+	.my_al_content .input{
+		width: 2rem;
+	}
+
+
+
+/*会员   列表样式*/
+	.mem_main{
+		padding: 0.3rem 0.2rem 0rem 0.2rem;
+	}
+
+/*会员管理的新建等级 and 分组  和  采购管理的 添加分类and 添加物品 公共样式*/
+	.tm_main{
+		width: 100%;
+		overflow-y: auto;
+		padding-top: 0.3rem;
+
+		display: flex;
+		justify-content: space-around;
+	}
+	.tem_main div{
+		padding-bottom: 0.2rem;
+		font-size: 0px;
+	}
+	.tem_main div b{
+		font-size: 0.16rem;
+		color:#FF761A;
+	}
+	.tem_main label{
+		font-size: 0.2rem;
+		margin-right: 0.1rem;
+		display: inline-block;
+	}
+	.tem_main .select{
+		padding-left: 0.1rem;
+		background-color: #e6e6e6;
+	}
+	.tem_main img{
+		width: 0.14rem;
+		height: 0.2rem;
+		display: inline-block;
+		position: relative;
+		top: 0.05rem;
+		right: 0.24rem;
+	}
+	.tem_main .input{
+		width: 2.7rem;
+	}
+	.tem_main span{
+		width: 2.7rem;
+		display: inline-block;
+		font-size: 0.12rem;
+		color: #9A9A9A;
+		line-height: 16px;
+	}
+	.tem_main p{
+		font-size: 0.12px;
+		color: #9A9A9A;
+		display: inline-block;
+	}
+	.tem_line{
+		width: 12.4rem;
+		color: #CCCCCC;
+	}
+	.tem_btn{
+		width: 7rem;
+		height: 0.4rem;
+		margin: 0.3rem auto;
+
+		display: flex;
+		justify-content: space-around;
+	}
+
+/*会员等级  新建等级的专有样式*/
+	.rank_main label, .group_main label{
+		margin-right: 0.3rem;
+	}
+	.rank_main div input,.group_main div input{
+		background-color: #fff;
+	}
+	.rank_main div:nth-child(2),.rank_main div:nth-child(5),.rank_main div:nth-child(7){
+		padding-bottom : 0.1rem;
+	}
+	.rank_main div:nth-child(9) .input{
+		width: 0.48rem;
+		margin: auto 0.1rem;
+	}
+	.rank_main div:nth-child(9)  .input:nth-child(3){
+		width: 0.86rem;
+	}
+	.rank_main div:nth-child(10)>p,.rank_main div:nth-child(11)>p{
+		width: 0.2rem;
+		padding-left: 0.1rem;
+	}
+	.rank_main div:nth-child(10)>.input,.rank_main div:nth-child(11)>.input{
+		width: 2.4rem;
+		padding-left: 0.1rem;
+	}
+
+/*会员分组  新建分组的专有样式*/
+	.group_main div:nth-child(3),.group_main div:nth-child(5){
+		padding-bottom : 0.1rem;
+	}
+
+/*物品管理 添加物品的专有样式*/
+	.addGoodsMo_main{
+		box-sizing: border-box;
+		padding: 0.3rem 1.68rem 0rem 1.68rem; 
+	}
+	.addGoodsMo_main .select{
+		background-color: #D9D9D9;
+	}
+	.addGoodsMo_main .tem_main:nth-child(3) div:nth-child(2) .input{
+		width: 2.6rem;
+		margin-right: 0px;
+	}
+	.addGoodsMo_main .tem_main:nth-child(3) .input{
+		width: 1.1rem;
+		margin-right: 0.1rem;
+		display: inline-block;
+	}
+	.addGoodsMo_main .tem_main:nth-child(3) .select{
+		width: 1.4rem;
+		display: inline-block;
+	}
+

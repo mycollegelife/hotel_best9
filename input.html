@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vip</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/common.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+	<script src="js/index.js"></script>
+	<script>
+		$(window).resize(function ()// 绑定到窗口的这个事件中
+		{
+		  var whdef = 100/1920;// 表示1920的设计图,使用100PX的默认值
+		  var wH = window.innerHeight;// 当前窗口的高度
+		  var wW = window.innerWidth;// 当前窗口的宽度
+		  var rem = wW * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
+		  $('html').css('font-size', rem + "px");
+		  
+		});
+		$(window).resize()
+
+
+		window.onload=function () {
+
+			
+			
+			
+
+		}
+	</script>
+	<style>
+	body{}
+		#div1{
+			text-align: center;
+			background-color: #f5f5d5;
+			position: absolute;
+			top: 0;bottom: 0;left: 0;right: 0;
+			padding-top: 50px;
+
+		}
+		.icon-dot {
+		    display: inline-block;
+		    width: 100px; height: 100px;
+		    padding: 10px;
+		    color: white;
+		    border: 10px solid yellow;    
+		    border-radius: 50%;
+		    background-color: currentColor;
+		    background-clip: content-box;
+		}
+	</style>
+</head>
+<body>
+	<nav id="nav" class="nav">
+			<div class="nav_logo">
+				<span class="hotel_name">卡拉曼达涪城万达店</span>
+				<img src="imgs/logo.png" alt="">
+
+			</div>
+			<div class="nav_menu">
+			  	<ul>
+			  		<li><a class="active" href="">餐台</a></li>
+			  		<li><a href="">订单</a></li>
+			  		<li><a href="">报表</a></li>
+			  		<li><a href="">会员</a></li>
+			  		<li><a href="">营销</a></li>
+			  		<li><a  href="html/manage.html">管理</a></li>
+			  		<li><a href="">库存</a></li>
+			  		<li><a href="">其它</a></li>
+			  	</ul>	
+			</div>
+			<div class="nav_user">
+				<span class="user_info">
+					<i class="online_user">萧经滕</i>
+					<br>
+					<i class="online_time">已在线2小时30分</i>
+				</span>
+				<img class="user_head" src="imgs/touxiang.png" alt="">
+				
+			</div>
+		</nav>
+		<div>
+
+			<h2 style="text-align: center;">表单基本样式 引用自common.css</h2>
+
+			<div id="div1">
+                <!-- input -->
+				<div class="form_item">
+				  <lable for="table_name">input</lable>
+				  <input type="text" id="table_name" class="input input_lg">
+				</div>
+
+				<!-- select -->
+				<div class="form_item select_parent">
+					<svg class="select_logo" xmlns="http://www.w3.org/2000/svg" viewBox="5735 4461 14 20">
+						<defs>
+						<style>
+						.cls-1 {
+						fill: #ff761a;
+						}
+						</style>
+						</defs>
+						<path id="Union_45" data-name="Union 45" class="cls-1" d="M0,12.979H14L7,20ZM0,7.021,7,0l7,7.021Z" transform="translate(5735 4461)"/>
+					</svg>
+					<label for="zone_sort">所属分类</label>
+					<select class="select select_lg">
+						<option>一级</option>
+						<option>二级</option>
+					</select>
+				</div>
+				<br>
+
+				<!-- button -->
+				<div class="form_item">
+					<button class="button">按钮</button>
+				</div>
+                <!-- checkbox -->
+				<div class="form_item">
+					<label for="">checkbox</label>
+					<input type="checkbox" checked class="mui-switch mui-switch-animbg">
+				</div>
+				<!-- checkbox2 -->
+				<div class="form_item nav_check">
+					<label for="nav_check"></label>
+					<input type="checkbox" id="nav_check">
+				</div>
+
+				<div class="form_item">
+					<a href="javascript:;" class="tag">hahah</a>
+				</div>
+				
+
+				<div class="form_item">
+					<input type="checkbox" name="" id="check" class="check">
+					<label for="check"></label>
+				</div>
+
+
+				<div class="form_item">
+					<input type="checkbox" class="check check_round" name="" id="check_round">
+					<label for="check_round"></label>
+				</div>
+
+			    <div class="form_item">
+			    	<div class="alert_model">
+			    		<div class="alert_model_title">
+			    			<span>添加标签</span>
+			    		</div>
+			    		<div class="alert_model_content">
+			    			<div class="form_item">
+			    			  <lable for="table_name">标签名字</lable>
+			    			  <input type="text" id="table_name" class="input input_lg" style="width:2.28rem">
+			    			</div>
+			    			<div class="alert_model_item form_item">
+			    				<button class="button">确认</button>
+			    				<button class="button button_gray">返回</button>
+			    			</div>
+			    		</div>
+			    	</div>
+			    </div>
+
+			    <!-- checkbox -->
+
+
+
+				
+
+
+            </div>
+			
+		</div>
+</body>
+</html>

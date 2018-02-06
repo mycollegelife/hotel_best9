@@ -1,0 +1,443 @@
+
+
+<!-- 库存信息页面 -->
+
+<!-- 库存信息  主界面 -->
+<div id="goodsMan" class="my_title">
+	
+	<div class="manage_title">
+		<div class="manage_title_item">
+		  	<span class="title_name">库存信息</span>
+		  	<div class="select_parent">
+		  		<img src="../imgs/manage/select.svg" alt="">
+		  		<input type="text" placeholder="输入商品名或简写" id="stockInfo_select"></input>
+		  	</div>
+		</div>
+
+		<div class="manage_title_item">
+			<button class="button" type="button" id="si_instorag">入库查询</button>
+			<button class="button" type="button" id="si_outstorage">出库查询</button>
+			<button class="button" type="button" id="si_Estimate">估清管理</button>
+			<button class="button" type="button" id="si_print">打印清单</button>
+			<button class="button" type="button" id="si_download">下载清单</button>
+		</div>
+	</div>
+
+	<div class="manage_main ">
+		<div class="stock_main stockInfo_main">
+				<li>
+					<dt  class="one_title ">
+						<div class="img_minus">
+							<img src="../imgs/minus.svg" alt="">
+						</div>
+						<div>商品</div>
+						<span class="myDisplay">1</span>
+					</dt>
+
+					<dd>
+						<!-- <div class="two_title">
+							<div class="one_title ">
+								<div class="img_add">
+									<img src="../imgs/add.svg" alt="">
+								</div>
+								<div>商品1</div>
+								<span class="myDisplay">111</span>
+							</div>
+
+							<div class="my_inner">
+							<hr>
+							<table class="myTable  my_innerbox"> 
+								<thead>
+									<tr>
+										<td>名称</td>
+										<td>属性</td>
+										<td>库存数量</td>
+										<td>单位</td>
+										<td>采购单价</td>
+										<td>最低库存</td>
+										<td>最高库存</td>
+										<td>出售单价</td>
+										<td>保质期</td>
+									</tr>
+									
+								</thead>
+								<tbody>
+									<tr>
+										<td>青岛啤酒</td>
+										<td>商品</td>
+										<td>10</td>
+										<td>瓶</td>
+										<td>￥3</td>
+										<td>20</td>
+										<td>100</td>
+										<td>￥10</td>
+										<td>12月</td>
+									</tr>
+								</tbody>
+							</table>
+							</div>
+
+
+						</div>
+
+						<div class="my_inner">
+						<hr>
+						<table class="myTable  my_innerbox"> 
+							<thead>
+								<tr>
+									<td>名称</td>
+									<td>属性</td>
+									<td>单位</td>
+									<td>采购单价</td>
+									<td>最低库存</td>
+									<td>最高库存</td>
+									<td>出售单价</td>
+									<td>保质期</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>青岛啤酒</td>
+									<td>商品</td>
+									<td>瓶</td>
+									<td>￥3</td>
+									<td>20</td>
+									<td>100</td>
+									<td>￥10</td>
+									<td>12月</td>
+								</tr>
+							</tbody>
+						</table>
+						</div> -->
+					</dd>
+				</li>
+				
+
+				<li>
+					<dt  class="one_title">
+						<div class="img_add">
+							<img src="../imgs/add.svg" alt="">
+						</div>
+						<div>设备</div>
+						<span class="myDisplay">2</span>
+					</dt>
+
+					<dd>
+						<!-- <div class="two_title">
+							<div class="one_title ot_goodMan">
+								<div class="img_add">
+									<img src="../imgs/add.svg" alt="">
+								</div>
+								<div>设备1</div>
+							</div>
+
+							<div class="my_inner">
+							<hr>
+							<table class="myTable  my_innerbox"> 
+								<thead>
+									<tr>
+										<td>名称</td>
+										<td>属性</td>
+										<td>库存数量</td>
+										<td>单位</td>
+										<td>采购单价</td>
+										<td>最低库存</td>
+										<td>最高库存</td>
+										<td>使用年限</td>
+										<td>维保周期</td>
+										<td>折旧</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>雪花</td>
+										<td>酒水</td>
+										<td>100</td>
+										<td>瓶</td>
+										<td>10000元</td>
+										<td>10</td>
+										<td>1000</td>
+										<td>20</td>
+										<td>1周</td>
+										<td>1000</td>
+									</tr>
+								</tbody>
+							</table>
+							</div>
+						</div>
+
+						<div class="my_inner my_inner1">
+						<hr>
+						<table class="myTable  my_innerbox"> 
+							<thead>
+								<tr>
+									<td>名称</td>
+									<td>属性</td>
+									<td>单位</td>
+									<td>采购单价</td>
+									<td>最低库存</td>
+									<td>最高库存</td>
+									<td>使用年限</td>
+									<td>维保周期</td>
+									<td>折旧</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>雪花</td>
+									<td>酒水</td>
+									<td>瓶</td>
+									<td>10000元</td>
+									<td>10</td>
+									<td>1000</td>
+									<td>20</td>
+									<td>1周</td>
+									<td>1000</td>
+								</tr>
+							</tbody>
+						</table>
+						</div> -->
+					</dd>
+				</li>
+
+
+				<li>
+					<dt  class="one_title">
+						<div class="img_add">
+							<img src="../imgs/add.svg" alt="">
+						</div>
+						<div>酒水</div>
+						<span class="myDisplay">3</span>
+					</dt>
+
+					<dd><!-- 
+						<div class="two_title">
+							<div class="one_title ot_goodMan">
+								<div class="img_add">
+									<img src="../imgs/add.svg" alt="">
+								</div>
+								<div>酒水1</div>
+							</div>
+
+							<div class="my_inner">
+							<hr>
+							<table class="myTable  my_innerbox"> 
+								<thead>
+									<tr>
+										<td>名称</td>
+										<td>属性</td>
+										<td>库存数量</td>
+										<td>单位</td>
+										<td>采购单价</td>
+										<td>最低库存</td>
+										<td>最高库存</td>
+										<td>出售单价</td>
+										<td>保质期</td>
+										<td>售卖提成</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>雪花</td>
+										<td>酒水</td>
+										<td>50</td>
+										<td>瓶</td>
+										<td>10元</td>
+										<td>10</td>
+										<td>1000</td>
+										<td>20元</td>
+										<td>1年</td>
+										<td>1</td>
+									</tr>
+								</tbody>
+							</table>
+							</div>
+						</div>
+
+						<div class="my_inner">
+						<hr>
+						<table class="myTable  my_innerbox"> 
+							<thead>
+								<tr>
+									<td>名称</td>
+									<td>属性</td>
+									<td>单位</td>
+									<td>采购单价</td>
+									<td>最低库存</td>
+									<td>最高库存</td>
+									<td>使用年限</td>
+									<td>维保周期</td>
+									<td>折旧</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>雪花</td>
+									<td>酒水</td>
+									<td>瓶</td>
+									<td>10000元</td>
+									<td>10</td>
+									<td>1000</td>
+									<td>20</td>
+									<td>1周</td>
+									<td>1000</td>
+								</tr>
+							</tbody>
+						</table>
+						</div> -->
+					</dd>
+				</li>
+
+				<li>
+					<dt  class="one_title">
+						<div class="img_add">
+							<img src="../imgs/add.svg" alt="">
+						</div>
+						<div>其他</div>
+						<span class="myDisplay">4</span>
+					</dt>
+
+					<dd><!-- 
+						<div class="my_inner">
+						<hr>
+						<table class="myTable  my_innerbox"> 
+							<thead>
+								<tr>
+									<td>名称</td>
+									<td>属性</td>
+									<td>库存数量</td>
+									<td>单位</td>
+									<td>采购单价</td>
+									<td>最低库存</td>
+									<td>最高库存</td>
+									<td>出售单价</td>
+									<td>保质期</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>雪花</td>
+									<td>酒水</td>
+									<td>123</td>
+									<td>瓶</td>
+									<td>100元</td>
+									<td>10</td>
+									<td>1000</td>
+									<td>2000</td>
+									<td>1周</td>
+								</tr>
+							</tbody>
+						</table>
+						</div> -->
+
+					</dd>
+				</li>
+		</div>
+
+		<div class="stock_main history_model myDisplay" >
+			<li></li>
+			<li>
+				<dt  class="one_title">
+					<div class="img_minus">
+						<img src="../imgs/minus.svg" alt="">
+					</div>
+					<div>商品</div>
+					<span class="myDisplay">1</span>
+				</dt>
+					
+				<dd class="my_inner">
+					<div class="my_innerbox">
+						<div class="myTable_title">
+							<div>商品</div>
+							<div>-&nbsp;<span>商品1</span></div>
+						</div>
+						<table class="myTable">
+								<thead>
+									<tr>
+										<td>名称</td>
+										<td>属性</td>
+										<td>采购数量</td>
+										<td>单位</td>
+										<td>采购单价</td>
+										<td>采购合计</td>
+										<td>保质期</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>青岛啤酒</td>
+										<td>商品</td>
+										<td>10</td>
+										<td>瓶</td>
+										<td>￥3</td>
+										<td>￥30</td>
+										<td>12月</td>
+									</tr>
+								</tbody>
+						</table>
+						
+						<div class="myTable_title">
+							<div>商品</div>
+						</div>
+						<table class="myTable">
+								<thead>
+									<tr>
+										<td>名称</td>
+										<td>属性</td>
+										<td>单位</td>
+										<td>采购单价</td>
+										<td>出售单价</td>
+										<td>保质期</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>青岛啤酒</td>
+										<td>商品</td>
+										<td>瓶</td>
+										<td>￥3</td>
+										<td>￥10</td>
+										<td>12月</td>
+									</tr>
+								</tbody>
+						</table>
+					
+					</div>
+				</dd>
+			</li>
+			<li>
+				<dt  class="one_title">
+					<div class="img_add">
+						<img src="../imgs/add.svg" alt="">
+					</div>
+					<div>设备</div>
+					<span class="myDisplay">1</span>
+				</dt>
+
+			</li>
+			<li>
+				<dt  class="one_title">
+					<div class="img_add">
+						<img src="../imgs/add.svg" alt="">
+					</div>
+					<div>酒水</div>
+					<span class="myDisplay">1</span>
+				</dt>
+			</li>
+			<li>
+				<dt  class="one_title">
+					<div class="img_add">
+						<img src="../imgs/add.svg" alt="">
+					</div>
+					<div>其他</div>
+					<span class="myDisplay">1</span>
+				</dt>
+			</li>
+		</div>
+
+	</div>
+</div>
+
+
+
+

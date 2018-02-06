@@ -1,0 +1,279 @@
+
+#nav,.nav_logo,.nav_menu,.nav_user{
+	float: left;
+}
+
+#index{
+	width: 19.2rem;
+	padding:0.2rem 0.3rem;
+
+	
+}
+#index,#index_content,#index_sidebar,#index_main_submenu,#index_main_seat,#index_saleout,#index_queue_s,#index_queue_l{
+	float: left;
+}
+#nav,#index_main_submenu,#index_main_seat,#index_saleout,#index_queue_s,#index_queue_l{
+	background-color:rgba(250,250,250,0.85);
+}
+/*~~~~~~~~~~~~~~~~~~页面主要内容~~~~~~~~~~~~~~~~~~~~~~~*/
+#index_content{
+	width: 13.26rem;
+	margin-right: 0.3rem;
+	height: 100%;
+}
+#index_header{
+	width: 13.26rem;
+	height: 0.75rem;
+	
+
+}
+#index_header_msg,#index_header_info{
+	background-color: rgba(51,51,51,0.5);
+	float: left;
+	width: 6.48rem;
+	height: 0.75rem;
+}
+#index_header_msg{
+	margin-right: 0.3rem;
+}
+#index_main{
+	margin-top: 0.3rem;
+	width: 13.26rem;
+	height: calc(100% - 0.3rem - 0.75rem);
+
+	
+}
+/**/
+#index_main_submenu{
+	width: 1.7rem;
+	height: calc(100% - 0.3rem);
+	margin-right: 0.3rem;
+	
+}
+.menu_child{
+	margin-left: 0.65rem;
+}
+.menu_child li a{
+    text-align: left;
+    display: block;
+    margin: 0.25rem auto;
+    
+}
+.menu_child li a:first-child{
+    margin-top: 0.4rem;
+    
+}
+.menu_child li a:hover{
+    color: #ff761a;
+    
+}
+.line{
+	width: 100%;
+	height: 1px;
+    background-color: rgba(0,0,0,0.4);
+    margin-left: -0.25rem;
+    
+
+}
+.menu_child svg{
+	position: absolute;
+    width: 0.2rem;
+    height: 0.2rem;
+    margin-left: -0.3rem;
+
+}
+
+#index_main_seat{
+
+	width: 11.25rem;
+
+	height: calc(100% - 0.3rem);
+	position: relative;
+}
+
+.seat_header{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 0.84rem;
+	
+    
+}
+.seat_header_content{
+	margin: 0.3rem 0.3rem auto 0.3rem;
+}
+.set_time{
+	width: 1.3rem;
+	height: 0.4rem;
+	padding-left: 0.5rem;
+	margin-right: 0.2rem;
+}
+.time_btn{
+	width: 0.8rem;
+	height: 0.45rem;
+	margin-right: 0.2rem;
+	
+}
+.time_btn_active{
+	background-color: #FF761A;
+	color: white;
+	border: none;
+}
+.indent{
+	width: 1.2rem;
+	height: 0.4rem;
+	background-color: #FF761A;
+	color: white;
+	margin-left:4rem;
+	border: none;
+
+}
+.seat_body{
+    width: 100%;
+    height: calc(100% - 1.31rem - 0.84rem) ;
+    margin: 0.84rem auto 1.31rem auto;
+    overflow-y: auto;
+
+
+}
+.seat_body_content{
+	margin: 0.3rem 0rem auto 0.3rem;
+}
+.table_id{
+	position: absolute;
+	left: 0.08rem;
+	top: 0.08rem;
+
+}
+.table_used{
+	position: absolute;
+	top: 0.08rem;
+	right: 0.08rem;
+}
+
+
+.table_costomer_phone{
+	position: absolute;
+	bottom: 0.06rem;
+	left: 0.08rem;
+	font-size: 0.06rem;
+
+}
+
+.table_costomer_user{
+	position: absolute;
+	bottom: 0.22rem;
+	left: 0.08rem;
+
+}
+.table_time{
+	position: absolute;
+	bottom: 0.06rem;
+	right: 0.08rem;
+}
+
+
+.table_customer_checkout{
+	position: absolute;
+	width: 0.4rem;
+	height: 0.4rem;
+	top: 25%;
+	left: 42.5%;
+
+
+}
+
+
+
+
+
+.seat_footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 1.31rem;
+	box-shadow: -3px -29px 46px -15px rgba(0,0,0,0.44);
+
+
+}
+.seat_status{
+	margin: 0.3rem auto 0.2rem 0.3rem;
+
+}
+.seat_status button{
+	width: 0.38rem;
+	height: 0.2rem;
+	border: none;
+	border-radius: 0.02rem;
+}
+.seat_status span{
+	margin-right: 0.15rem;
+}
+.showall{
+	background-color: #333333;
+}
+
+.join_btn,.order_btn{
+	width: 1.2rem;
+	height: 0.4rem;
+	background-color:#FF761A;
+	color: white;
+	border: none;
+	float: right;
+	margin-right: 0.3rem;
+
+}
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#index_sidebar{
+
+	width:5.04rem;
+	height: calc(100% - 0.3rem);
+	
+
+}
+#index_saleout{
+	width: 5.04rem;
+	height: 50%;
+	margin-bottom: 0.3rem;
+}
+#index_queue_s{
+	width: 2.37rem;
+	height: calc(50% - 0.3rem);
+	float: left;
+	margin-right:0.3rem;
+}
+#index_queue_l{
+	width: 2.37rem;
+	height: calc(50% - 0.3rem);
+	float: right;
+	background-color: lightred;
+}
+
+/*~~~~~~~~manage.html*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

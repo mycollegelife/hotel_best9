@@ -1,0 +1,1448 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<!-- <link rel="stylesheet" href="../css/common.css"> -->
+	<link rel="stylesheet" href="../css/public.css">
+	<link rel="stylesheet" href="../css/manage.css">
+	<link rel="stylesheet" href="../css/memberStock.css">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script src="../js/index.js"></script>
+	<script src="../js/memberStockTop.js"></script>
+
+	<style>
+		a{
+			cursor: pointer;
+			user-select: none;
+		}
+		.manage_main{
+			overflow: hidden !important;
+			overflow-y: auto !important;
+		}
+
+	/*加减号*/
+		.img_minus img{
+			width: 0.16rem;
+			height: 0.02rem;
+			margin-top: 0.07rem;
+			display: block;
+		}
+		.img_add img{
+			width: 0.16rem;
+			height: 0.16rem;
+			display: block;
+
+		}
+	/*黑色  红色  蓝色  绿色   的鱼头样式*/
+		.tag_black{
+			background-color: #333333;
+		}
+		.tag_black:before{
+		 border-right:10px solid #333;
+		}
+		.tag_red{
+			background-color: #FF1A1A;
+		}
+		.tag_red:before{
+		 border-right:10px solid #FF1A1A;
+		}
+		.tag_blue{
+			background-color: #1AA3FF;
+		}
+		.tag_blue:before{
+		 border-right:10px solid #1AA3FF;
+		}
+		.tag_green{
+			background-color: #8ACC15;
+		}
+		.tag_green:before{
+		 border-right:10px solid #8ACC15;
+		}
+	/*库存  主界面*/
+		.stock_main{
+			padding: 0.2rem 0.3rem 0.1rem 0.2rem;
+		}
+		.stock_main li{
+			width: 16.2rem;
+			margin-bottom: 0.2rem;
+		}
+
+		.stock_main li dd{
+			display: none;
+		}
+		.stock_main li:nth-child(1) dd{
+			display: block;
+		}
+
+		.stock_main li .two_title .my_inner{
+			display: none;
+		}
+
+		.stock_main li .one_title{
+			height: 0.5rem;
+			width: 100%;
+			background: rgba(255,255,255,1);
+			box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
+			margin-bottom: 0.1rem;
+			position: relative;
+			display: flex;
+			align-items: center;
+		}
+		.stock_main li .one_title div{
+			position: absolute;
+			font-size: 0px;
+		}
+		.stock_main li .one_title div:nth-child(1){
+			width: 0.16rem;
+			height: 0.16rem;
+			top: 0.17rem;
+			left: 0.2rem;
+			user-select: none;
+		}
+		.stock_main li .one_title div:nth-child(2){
+			left: 1rem;
+			font-size: 0.24rem;
+		}
+		
+		
+		.goodsMan_main li .one_title div:nth-child(3){
+			right: 5rem;
+			color: #FF761A;
+			cursor: pointer;
+			font-size: 0.16rem;
+		}/*物品管理  私有样式*/
+		
+		.stock_main li .one_title div:last-child{
+			right:0.25rem;
+
+		}
+		.stock_main li .one_title div:last-child .button{
+			margin-left: 0.3rem;
+		}
+		.stock_main li .one_title div:last-child .svg_style{
+			margin-right: 0px;
+			margin-left: 0.2rem;
+			margin-top: 0.1rem;
+		}
+		.stock_main li dd{
+			margin-left: 0.4rem;
+			width: 15.8rem;
+			height: auto;
+		}
+		.stock_main li dd .my_inner{
+			width: 100%;
+			box-sizing: border-box;
+			padding: 0rem 0.6rem 0rem 0.3rem;
+			background: rgba(255,255,255,.9);
+			margin-bottom: 0.1rem;
+		}
+		.stock_main li dd .two_title .my_inner{
+			width: 15.1rem;
+			margin-left: 0.7rem;
+		}
+
+		
+
+
+
+	
+	
+
+	
+
+
+	/*添加分类模板的专有样式*/
+		/*.stockTem_main{
+			width: 4.6rem;
+			min-width: 285px;
+		}
+		.stockTem_main div:nth-child(3) label{
+			float: left;
+			padding-top: 5px;
+		}
+		.stockTem_main div:nth-child(3) li{
+			list-style: none;
+			width: 3.7rem;
+			min-width: 223px;
+			display: inline-block;
+			float: right;
+		}*/
+	
+/*---------------------申请购单的样式-------------------------*/
+	
+	
+
+	/*申购清单的  快速添加样式*/
+		.apliPurchase{
+			position: relative;
+		}
+		.center_hei{
+			overflow-y: auto;
+		}
+		.apliPurchase_bottom{
+			width: 16.7rem;
+			background-color: #fff;
+			box-shadow: 0px -3px 4px rgba(0,0,0,.2);
+			border-top: 1px solid rgba(0,0,0,.2);
+			position: absolute;
+			bottom: 0px;
+		}
+		.apb_spread{
+			height: 2.3rem;
+			position: relative;
+		}
+		.apbs_title{
+			height: 0.4rem;
+			margin-top: 0.1rem;
+			position: relative;
+		}
+		.apbs_center{
+			margin-top: 0.31rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+		.apbs_center  li{
+			display: block;
+			list-style: none;
+			font-size: 0rem;
+			position: relative;
+		}
+		.apbs_center li label{
+			display: inline-block;
+			font-size: 0.2rem;
+			margin-right: 0.1rem;
+		}
+		.apbs_center li .input{
+			background-color: #E6E6E6;
+		}
+		.apbs_center li .select{
+			padding-left: 0.1rem;
+			background-color: #D9D9D9;
+		}
+		.apbs_center li .select option{
+			background: #F2F2F2;
+		}
+		.apbs_center li img{
+			width: 0.14rem;
+			height: 0.2rem;
+			position: absolute;
+			right: 0.1rem;
+			top: 0.1rem;
+		}
+		.apbs_center li .select option.select_add{
+			background-color: #E6E6E6;
+			color: #9A9A9A;
+		}
+	
+		.apbs_center li:nth-child(1) .select,.apbs_center li:nth-child(3) .select{
+			width: 1.2rem;
+		}
+		.apbs_center li:nth-child(2) .select{
+			width: 1.8rem;
+		}
+		.apbs_center li:nth-child(3) .input{
+			width: 1.1rem;
+			margin-right: 0.05rem;
+		}
+		.apbs_center li:nth-child(4) .input{
+			width: 0.5rem;
+			margin-right: 0.05rem;
+
+		}
+		.apbs_center li span{
+			display: inline-block;
+			width: 0.2rem;
+			font-size: 0.2rem;
+			
+		}
+		.apbs_center li:nth-child(5) .input{
+			width: 1.7rem;
+
+		}
+		.apbs_center li:nth-child(5){
+			margin-right: 0px;
+		}
+		.apbs_bottom{
+			position: absolute;
+			top: 1.62rem;
+			left: 6.15rem;
+			font-size: 0px;
+
+		}
+		.apbs_bottom button{
+			font-size: 0.18rem;
+		}
+		.apbs_bottom button:nth-child(1){
+			margin-right: 2rem;
+		}
+		.apb_gather{
+			display: none;
+			height: 0.4rem;
+			position: relative;
+		}
+		.apb_gather div,.apbs_title div{
+			font-size: 0.16rem;
+			color: #FF761A;
+			padding-top: 0.1rem;
+			padding-left: 0.2rem; 
+		}
+		.apb_gather img,.apbs_title img{
+			width: 0.32rem;
+			height: 0.18rem;
+			display: block;
+			position: absolute;
+			right: 0.3rem;
+			top: 0.1rem;
+		}
+
+	/*申购清单的  历史数据 和 库存管理的   入库管理  样式*/
+		
+		.history_model li.stockMain_title dt{
+			width: 5.2rem;
+			height: 0.4rem;
+			font-size: 0px;
+			margin: 0 auto;
+		}
+		.history_model li.stockMain_title dt button{
+			width: 1.3rem;
+			height: 0.4rem;
+			text-align: center;
+			font-size: 0.18rem;
+			border: 0px;
+			outline: none;
+			background-color: #fff;
+		}
+		.history_model li.stockMain_title dt button.hover{
+			color: #fff;
+			background-color: #FF761A;
+			box-shadow: 0px 0px 4px rgba(0,0,0,.16);
+		}
+
+		/*.history_model li:nth-child(2) dd.my_inner{
+			display: block;
+		}*/
+		.history_model li dt div:nth-child(2) span{
+			font-size: 0.24rem;
+			margin-right: 0.5rem;
+		}
+		.history_model li dt div:nth-child(3){
+			left: 6rem !important;
+			
+		}
+		.history_model li dd{
+			width: 15.1rem;
+			margin-left: 1.1rem;
+		}
+		.history_model li dd.my_inner{
+			box-sizing: border-box;
+			padding: 0rem 0.6rem 0rem 0.3rem;
+			background: rgba(255,255,255,.9);
+			margin-bottom: 0.1rem;
+		}
+
+		.history_model .myTable_title{
+			padding-top: 0.2rem;
+			font-size: 0.2rem;
+	
+		}
+		.history_model .myTable_title div{
+			display: inline-block;
+		}
+		.history_model .myTable_title div:nth-child(1){
+			border-left: 0.03rem solid #000;
+			font-weight: bold;
+			padding-left: 0.1rem;
+		}
+		.history_model .myTable_title div:nth-child(2){
+			margin-right: 0.6rem
+		}
+
+
+
+
+/*---------------------------------- 采购管理------------------------------*/
+
+
+	/*入库管理的样式*/
+	
+
+	/*出库管理的样式*/
+		.outStorage_main li dt div:nth-child(3){
+			left: 2.3rem;
+		}
+		.outStorage_main li dt div:nth-child(3) span{
+			font-size: 0.2rem;
+			margin-right: 0.4rem;
+		}
+		.outStorage_main li dt div:nth-child(3) span b{
+			font-weight: normal;
+		}
+
+	/*报损中心的样式*/
+		
+
+	/*输入公式的提示框*/
+		.promptBox{
+			width: auto;
+			height: 0.48rem;
+			padding: 0.05rem 0.1rem;
+			background-color: #E6E6E6;
+			position: absolute;
+			left: 0.5rem;
+			bottom: 0.5rem;
+		}
+		.promptBox p{
+			 white-space:nowrap; 
+			font-size: 0.1rem;
+			cursor: pointer;
+		}
+		.promptBox p:nth-child(1){
+			font-size: 0.12rem;
+		}
+		.promptBox p input{
+			width: 0.1rem;
+			height: 0.1rem;
+			outline: none;
+			padding: 0px;
+			border-radius: 0px;
+			border-color: #333;
+		}
+		.promptBox + p{
+			width: 0;
+			height: 0;
+			border-left: 0.1rem solid transparent;
+			border-right: 0.1rem solid transparent;
+			border-top: 0.1rem solid #E6E6E6;
+			position: absolute;
+			top: -0.1rem;
+			left: 0.8rem;
+		}
+
+	
+
+
+
+</style>
+<script type="text/javascript">
+	$(window).resize(function ()
+	{
+		
+
+		// 设置右下角内容区  li下 my_inner 的高度
+			function setInnerHeight(target) {
+			    var tabH = $(target).find(".my_innerbox").height();
+			    if (tabH>500) {
+			    	$(target).css("height",5+"rem");
+			    	$(target).css("overflow-y","scroll");
+			    	
+			    	$(target).find(".my_innerbox").css("overflow-y","auto");
+			    }else{
+			    	$(target).css("height",tabH);
+			    }
+			}
+			function set_inner_height(){
+				var addminus = $(".stock_main li dt div:nth-child(1)");
+				for (var i = 0; i < addminus.length; i++) {
+					if(addminus.eq(i).hasClass("img_minus")){
+						setInnerHeight(addminus.eq(i).parent().next());// 设置 my_inner 的高度
+					}
+				}
+			}
+			// set_inner_height();
+
+		// 设置 申购管理 右下角内容区的高度
+			function setConHeight1() {
+				var mem_height=$("#member_content").height();
+				var mem_titleH = $(".manage_title").outerHeight(true);
+				var mem_bottomH = $(".apliPurchase_bottom").outerHeight(true);
+				var mm_height=parseInt(mem_height)-parseInt(mem_titleH)-parseInt(mem_bottomH);
+				$(".center_hei").css("height", mm_height);
+			}
+			setConHeight1();
+		// 设置
+			
+		
+	});
+	$(window).resize();
+	
+
+</script>
+
+</head>
+<body>
+<div class="wrap">
+<nav id="nav" class="nav">
+	<div class="nav_logo">
+		<span class="hotel_name">卡拉曼达涪城万达店</span>
+		<img src="../imgs/logo.png" alt="">
+
+	</div>
+	<div class="nav_menu">
+	  	<ul>
+	  		<li><a href="../index.html">餐台</a></li>
+	  		<li><a href="">订单</a></li>
+	  		<li><a href="">报表</a></li>
+	  		<li><a href="member.html">会员</a></li>
+	  		<li><a href="">营销</a></li>
+	  		<li><a href="manage.html">管理</a></li>
+	  		<li><a class="active"  href="#">库存</a></li>
+	  		<li><a href="">其它</a></li>
+	  	</ul>
+	</div>
+	<div class="nav_user">
+		<span class="user_info">
+			<i class="online_user">萧经滕</i>
+			<br>
+			<i class="online_time">已在线2小时30分</i>
+		</span>
+		<img class="user_head" src="../imgs/touxiang.png" alt="">
+
+	</div>
+</nav>
+<div id="manage">
+<!-- 左边导航栏 -->
+	<div id="manage_menu" class="manage_menu">
+		<ul class="ul_style">
+			<li class="dropdown drop">
+               	<img src="../imgs/manage/purchase_logo.svg" alt=""  class="ul_logo" >
+				<span>采购管理</span>
+               	<img src="../imgs/manage/arrow-right.svg" alt="" class="triangle">
+				<dl class="dropdown_menu">
+					<dt class="hover">
+						<span>|</span>
+						<a href="javacript:;" id="goods_manage">物品管理</a>
+					</dt>
+					<dt>
+						<a href="javacript:;" id="appli_purchase">申购清单</a>
+					</dt>
+				</dl>
+			</li>
+			<li class="dropdown" >
+			   	<img src="../imgs/manage/stock_logo.svg" alt="" class="ul_logo">
+				<span>库存管理</span>
+			   	<img src="../imgs/manage/arrow_bottom.svg" alt="" class="triangle">
+				<dl class="dropdown_menu" >
+					<dt><a href="javacript:;" id="inventory_info">库存信息</a></dt>
+					<dt><a href="javacript:;" id="enter_storage">入库管理</a></dt>
+					<dt><a href="javacript:;" id="out_storage">出库管理</a></dt>
+					<dt><a href="javacript:;" id="scrap_center">报损中心</a></dt>
+				</dl>
+			</li>
+		</ul>
+	</div>
+<!-- 右边内容区 -->
+	<div id="member_content" class="manage_content">
+	</div>
+</div>
+</div>
+<script src="../js/memberStockBottom.js"></script>
+
+<script>
+	
+
+	// 设置 申购管理 右下角内容区的高度
+		function setConHeight1() {
+			var mem_height=$("#member_content").height();
+			var mem_titleH = $(".manage_title").outerHeight(true);
+			var mem_bottomH = $(".apliPurchase_bottom").outerHeight(true);
+			var mm_height=parseInt(mem_height)-parseInt(mem_titleH)-parseInt(mem_bottomH);
+			$(".center_hei").css("height", mm_height);
+		}
+
+	// 设置右下角内容区  li下 my_inner 的高度  和 设置表格的表头
+		function setInnerHeight(target,theadFun) {
+		    var tabH = $(target).find(".my_innerbox").height();
+		    console.log(tabH)
+
+		    if (tabH>500) {
+		    	$(target).css("height",5+"rem");
+		    	$(target).css("overflow-y","auto");
+		    	
+		    	theadFun(target);//置表格的表头
+		    }else{
+		    	$(target).css("height",tabH);
+		    }
+		}
+
+
+	// 设置表格的表头固定
+		function fix_thead(target){
+			// 滚动固定表格的头  $(this) == my_inner
+			$(target).scroll(function () {
+
+			    var scrollH = $(this).scrollTop() -1;	
+				
+			    $(this).find("thead").css({
+			    	transform: "translateY("+scrollH+"px)",
+			    });
+			    $(this).find("thead").children().addClass("hover");//变颜色
+
+			    //设置 hr 的高度
+			    var hrThead = $(this).find("thead").height()+1;
+
+			    $(this).find("hr").css({
+			    	transform: "translateY("+scrollH+"px)",
+			    	top:""+hrThead+"px"
+			    });
+			    $(this).find("hr").addClass("hover");//显示
+
+				if ($(this).scrollTop() == 0) {
+					$(this).find("thead").children().removeClass("hover");
+			    	$(this).find("hr").removeClass("hover")
+				}
+			});
+		}
+	
+	// 表格表头的占位函数
+		function unfix_thead(target){
+			console.log("这个是占位函数")
+		}
+
+	// 点击加减号展开收起 
+		function add_minus(ev,evFuture,addClassify){
+			$(ev).on("click",evFuture,function(){
+				var $add_minus = $(this);//加减号的div
+				// console.log($add_minus.html());
+
+				if ($add_minus.hasClass("img_minus")) {
+					$add_minus.removeClass("img_minus");
+					$add_minus.addClass("img_add");
+					$add_minus.children("img").attr("src","../imgs/add.svg");
+
+					$add_minus.parent().next().css("display","none");
+
+					//再次点击是一级分类的隐藏二级分类内容
+					var dd_first = $add_minus.parent().next().children("div:first-child");
+					if (dd_first.hasClass("two_title")) {
+						var ddF_first = dd_first.children().find("div:first-child");
+						if (ddF_first.hasClass("img_minus") ) {
+							ddF_first.removeClass("img_minus");
+							ddF_first.addClass("img_add");
+							ddF_first.children("img").attr("src","../imgs/add.svg");
+
+							ddF_first.parent().next().css("display","none");
+						}
+					}
+
+				}else if($add_minus.hasClass("img_add")){
+					$add_minus.removeClass("img_add");
+					$add_minus.addClass("img_minus");
+					$add_minus.children("img").attr("src","../imgs/minus.svg");
+
+					addClassify($add_minus);//分类的加减号
+				}
+			})
+		}
+
+		// 一级分类加号点击(库存信息)
+			function add_oneClassify($add_minus){
+				// console.log("1级分类加号点击")
+
+				var dd_main = $add_minus.parent().next();//获取dd标签
+				if (dd_main.children().length == "0") {//一级分类 dd 没有内容
+					var first_token = $add_minus.parent().find(".myDisplay").html();//一级分类的token
+					var type_token = "";
+					var twoClass_con = "";// 判断一级分类 加载不同的二级分类
+					if (first_token == "1") {
+						twoClass_con = goods_dataTwo;
+					}else if(first_token =="2"){
+						twoClass_con = devices_dataTwo;
+					}else if(first_token =="3"){
+						twoClass_con = drinks_dataTwo;
+					}else if(first_token =="4"){
+						twoClass_con = others_dataTwo;
+					};
+					var myUrl = "/snug/queryGoodsByFirAndTow";
+
+					oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl)//通过ajax加载一级分类下的内容
+				} else {
+					dd_main.css("display","block")//一级分类的展开
+					// setInnerHeight(dd_main,fix_thead);
+				}
+			}
+
+		// 2级分类加号点击(库存信息)
+			function add_twoClassify($add_minus){
+				var first_token = $add_minus.parent().parent().parent().parent().find(".myDisplay").html();
+				var type_token = $add_minus.siblings(".myDisplay").html();
+				// console.log("二级分类加号点击first_token:"+first_token+"type_token"+type_token)
+				
+				var twoClass_con = "";// 判断一级分类 加载不同的二级分类
+				if (first_token == "1") {
+					twoClass_con = goods_dataTwo;
+				}else if(first_token =="2"){
+					twoClass_con = devices_dataTwo;
+				}else if(first_token =="3"){
+					twoClass_con = drinks_dataTwo;
+				}else if(first_token =="4"){
+					twoClass_con = others_dataTwo;
+				};
+				
+				var type_main = $add_minus.parent().parent();//div.two_title 二级分类
+				if ($add_minus.parent().next().length == "0") {//二级分类没有my_inner内容
+					// console.log("二级分类没有my_inner内容")
+
+					$.ajax({//通过ajax得到内容
+						url:"/snug/queryGoodsByFirAndTow",
+						data:{
+							firstfather : first_token,
+							towtoken : type_token
+						},
+						success:function(data){
+							var data = JSON.parse(data);
+							var myData_fir = data.info;
+							console.log(data)
+							
+							if (data.status == "1") {
+								var str = "";
+								
+								twoClass_con(myData_fir,str,type_main);//加载二级分类的内容
+								
+								type_main.children(".my_inner").css("display","block");//有内容时设置显示状态
+							
+								setInnerHeight($add_minus.parent().parent().children(".my_inner"),fix_thead);
+
+							} else {
+								console.log("点击分类加载失败！")
+							}
+						},
+						error:function(){
+							console.log("点击分类加载失败！")
+						}
+					})
+				} else {
+					type_main.find(".my_inner").css("display","block");//有内容时设置显示状态
+				}
+			}
+
+		// 一级分类点击加减号展开收起(入库管理)
+			function add_inStock($add_minus){
+
+				var dd_main = $add_minus.parent().next();//获取dd标签
+				if (dd_main.children().length == "0") {//一级分类 dd 没有内容
+					var token = $add_minus.children("span").html();//一级分类的token
+					console.log(token);
+					$.ajax({
+						url:"/snug/queryInGoodMes",
+						data:{attence_info_token:token},
+						success:function(data){
+							var data = JSON.parse(data);
+							var data_goods = data.info;
+
+							var str_firReturn = add_inStockCon(data_goods);//li 的内容
+							var strFirReturn = '<div class="my_innerbox">'+str_firReturn+'</div>';
+							dd_main.html(strFirReturn);
+
+							dd_main.css("display","block")//一级分类的展开
+							setInnerHeight(dd_main,unfix_thead);
+						}
+					});
+				} else {
+					dd_main.css("display","block")//一级分类的展开
+					
+				}
+			}
+
+
+	//申购清单的历史数据和入库管理的  顶部 点击切换  审核状态
+		
+
+
+
+
+
+	//申购清单 出库管理和报损中心 点击切换  快速添加的展开  收起状态
+		function quick_add(){
+			$("#apbs_toDown").click(function(){
+				$(".apb_spread").css("display","none");
+				$(".apb_gather").css("display","block");
+				setConHeight1();//设置右下内容模板 中间  高度
+			
+			});
+			$("#apbg_toUp").click(function(){
+				$(".apb_spread").css("display","block");
+				$(".apb_gather").css("display","none");
+				setConHeight1();//设置右下内容模板 中间  高度
+			
+			})
+		}
+
+	// 输入框公式的计算
+		function calculate(){
+			$("#calculate").change(function(){
+				var calCon  = eval($(this).val());
+				$(this).val(calCon );
+			})
+		}
+
+
+	//点击物品管理
+		function goodsMan(){
+			$("#member_content").load("stock/goodsMan.html",function(){
+				
+				setConHeight();//设置右下内容模板高度
+
+				setInnerHeight(".my_inner1",fix_thead);// 设置右下角内容区  li下 my_inner 的高度
+				
+				add_minus(".stock_main li dt","div:nth-child(1)",fix_thead,add_oneClassify);// 一级分类点击加减号展开收起
+				add_minus(".stock_main li dd",".one_title div:nth-child(1)",fix_thead,add_twoClassify);// 二级分类点击加减号展开收起
+
+				// 添加分类
+				$(".gm_addClassify").click(function(){
+					var str = '<div class="alert_bg"> <div class="alert_model"> <div class="alert_model_title">添加分类</div> <div class="alert_model_content  my_al_content"> <div> <label>分类名称</label> <input type="text" name="" class="input"> </div> </div> <div class="alert_model_item"> <button class="button" id="alert_confirm">确认</button> <button class="button btn_grey" id="alert_return">取消</button> </div> </div> </div>';
+					$(".wrap").prepend(str);
+
+					$(".alert_bg").find(".input").focus();
+					$(".alert_bg").click(function(){
+						$(this).find(".input").focus();
+					})
+					//确认添加
+					$("#alert_confirm").click(function(){
+						var classify_name = $(this).parent().prev().find(".input").val();
+						
+						if (classify_name.length>0) {
+							// console.log(classify_name);
+							$(".alert_bg").remove();
+						}
+					})
+					//返回添加
+					$("#alert_return").click(function(){
+						$(".alert_bg").remove();
+					})
+				})
+
+
+				// 添加物品
+				addModel("#gm_addGoods","#addGoods_model",modelHe,addGoods,returnGoods1)
+			})
+		}
+		goodsMan();
+		
+		$("#goods_manage").click(function(){
+			goodsMan();
+
+		});
+	
+	// 点击申请购单
+		$("#appli_purchase").click(function(){
+			$("#member_content").load("stock/apliPurchase.html",function(){
+				var baseCon = $("#goodsMan");
+
+				setConHeight();//设置右下内容模板高度
+				setConHeight1();//设置右下内容模板 中间  高度
+				
+				setInnerHeight(".my_inner1",fix_thead);// 设置右下角内容区  li下 my_inner 的高度
+				
+				// add_minus(fix_thead);// 点击加减号展开收起
+
+				quick_add(); //快速添加的展开  收起状态
+
+					
+
+				// 点击历史数据
+					$("#ap_history").click(function(){
+						ap_display(baseCon,"#history_model");//显示历史数据
+						
+						setConHeight();//设置右下内容模板高度
+
+						setInnerHeight("#history_model .my_inner",unfix_thead);
+
+						tab_status();// 顶部 点击切换  审核状态
+
+						
+							
+
+						// 点击返回 申购清单
+							$("#hm_return").click(function(){
+								ap_hidden(baseCon,"#history_model");
+								for (var i = 0; i <  hm_btn.length; i++) {
+									 hm_btn.eq(i).removeClass("hover");
+								}
+								$("#hm_all").addClass("hover");
+
+							})
+						
+
+						//点击切换至   全部 
+							$("#hm_all").click(function(){
+								
+							})
+
+						//点击切换至   待审核 
+							$("#hm_check").click(function(){
+								
+							})
+
+						//点击切换至   已通过
+							$("#hm_passed").click(function(){
+								
+							})
+
+						//点击切换至  未通过
+							$("#hm_failed").click(function(){
+								
+							})
+					})
+
+				// 点击批量上传
+					$("#ap_upload").click(function(){
+						alert("批量上传")
+					})
+
+				// 点击打印清单
+					$("#ap_print").click(function(){
+						alert("打印清单")
+					})
+
+				// 点击下载清单
+					$("#ap_download").click(function(){
+						alert("下载清单")
+					})
+
+				// 点击提交申请
+					$("#ap_submit").click(function(){
+						alert("提交申请")
+					})
+
+			})
+		})
+		// 申购清单   下的显示隐藏模板  函数
+			function  ap_display(ev1,ev2){
+				ev1.css("display","none");
+				$(ev2).css("display","block");
+			}
+			function  ap_hidden(ev1,ev2){
+				ev1.css("display","block");
+				$(ev2).css("display","none");
+			}
+
+/*-----------------------------------点击库存管理-----------------------------*/
+	// 点击库存信息
+		$("#inventory_info").click(function(){
+			$("#member_content").load("stock/stockInfo.html",function(){
+				setConHeight();//设置右下内容模板高度
+				
+				add_minus(".stock_main li dt","div:nth-child(1)",add_oneClassify);// 一级分类点击加减号展开收起
+				add_minus(".stock_main li dd",".one_title div:nth-child(1)",add_twoClassify);// 二级分类点击加减号展开收起
+
+				// setInnerHeight(".stock_main li dd",fix_thead)
+				
+				var first_token = "";
+				var type_token = "";
+				var dd_main = $(".stock_main li:first-child dd");
+				var twoClass_con = goods_dataTwo;//商品一级分类内容
+				var myUrl = "/snug/queryGoodsMes";
+
+				oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
+
+				// 点击搜索
+				$("#stockInfo_select").bind("input propertychange change",function(){
+					// console.log($("#stockInfo_select").val());
+					
+					var $selectVal = $("#stockInfo_select").val();
+					console.log($("#stockInfo_select").val());
+
+					if ($selectVal == "") {
+						$(".stockInfo_main").removeClass("myDisplay");
+						$(".history_model").addClass("myDisplay");
+						
+					} else {
+						$(".stockInfo_main").addClass("myDisplay");
+						$(".history_model").removeClass("myDisplay");
+						$.ajax({
+							url:"/snug/queryAllGoodsMes",
+							data:{key_word:"123"},
+							
+							success:function(data){
+								var data = JSON.parse(data);
+								console.log(data)
+
+
+								var data_goods = data.goods_array;
+								var data_equ = data.equ_array;
+								var data_wine = data.wine_array;
+								var data_othersgoods = data.othersgoods_array;
+
+								if (data_goods.length>0) {
+									console.log(data_goods)
+
+									var str1 = "";
+									var str_1 = "";
+									for (var i = 0; i < data_goods.length; i++) {
+										
+									}
+								}
+
+
+
+							}
+						})
+
+					}
+
+
+
+					
+
+				});
+
+			})
+		})
+
+	// 库存信息一级分类的 ajax
+		function oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl){
+			$.ajax({
+				url:myUrl,
+				data:{
+					firstfather : first_token,
+					towtoken : type_token
+				},
+				success:function(data){
+					var data = JSON.parse(data);
+					console.log(data)
+					if (data.status == "1") {
+						stockInfo_dataOne(data,dd_main,twoClass_con);//加载一级分类内容
+						
+						dd_main.css("display","block")//一级分类的展开
+						
+						setInnerHeight(dd_main.children(".my_inner"),fix_thead);
+						
+					} else {
+						console.log("库存管理获取列表失败！")
+					};
+				},
+				error:function(){
+					console.log("库存管理获取列表失败！")
+				}
+			})
+		}
+
+	// 库存信息  处理数据   函数
+		function stockInfo_dataOne(data,dd_main,twoFun){//一级分类   的数据处理
+			var myData_fir = data.info;
+			var myData_type = data.sec_type;
+			var str = "";	
+			if (myData_type.length>0) {//二级分类的标题
+				for (var i = 0; i < myData_type.length; i++) {
+					str+='<div class="two_title"> <div class="one_title"> <div class="img_add"> <img src="../imgs/add.svg" alt=""> </div> <div>'+myData_type[i].category_info_name+'</div><span class="myDisplay">'+myData_type[i].category_info_token+'</span></div> </div>'
+				}
+			}
+			twoFun(myData_fir,str,dd_main)//一级分类数据
+		}
+
+		//商品
+		function goods_dataTwo(myData_fir,str,dd_main){//二级分类  商品的数据处理
+			// console.log("二级分类 商品的数据处理")
+			var str_fir = "";	
+			if (myData_fir.length>0) {
+				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+					str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>商品</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td> <td>'+myData_fir[i].food_material_outprice+'</td> <td>'+myData_fir[i].food_material_guarantee+'</td> </tr>';
+				}
+
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+
+			}else{
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关商品</td><td></td></thead></table> </div>'
+			}
+			dd_main.append(str);
+		}
+		// 设备
+		function devices_dataTwo(myData_fir,str,dd_main){//二级分类  设备 的数据处理
+			// console.log("二级分类 设备的数据处理")
+			var str_fir = "";	
+			if (myData_fir.length>0) {
+				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+					str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>设备</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td><td>使用年限</td><td>'+myData_fir[i].food_material_servicelift+'</td><td>折旧</td> </tr>';
+				}
+
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td><td>库存数量</td><td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>使用年限</td> <td>维保周期</td> <td>折旧</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+
+			}else{
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关设备</td><td></td></thead></table> </div>'
+			}
+			dd_main.append(str);
+		}
+		// 酒水
+		function drinks_dataTwo(myData_fir,str,dd_main){//二级分类  设备 的数据处理
+			// console.log("二级分类 酒水的数据处理")
+			var str_fir = "";	
+			if (myData_fir.length>0) {
+				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+					str_fir+='<tr> <td>'+myData_fir[i].wine_info_name+'</td> <td>酒水</td> <td>'+myData_fir[i].wine_info_max_numbers+'</td> <td>'+myData_fir[i].wine_info_unit+'</td> <td>'+myData_fir[i].wine_info_price_low+'</td> <td>'+myData_fir[i].wine_info_min_inventory+'</td> <td>'+myData_fir[i].wine_info_max_inventory+'</td><td>'+myData_fir[i].wine_info_price_high+'</td><td>'+myData_fir[i].wine_info_guarantee+'</td><td>'+myData_fir[i].wine_info_commission_price+'</td> </tr>';
+				}
+
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td><td>库存数量</td><td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> <td>售卖提成</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+
+			}else{
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关酒水</td><td></td></thead></table> </div>'
+			}
+			dd_main.append(str);
+		}
+		// 其他
+		function others_dataTwo(myData_fir,str,dd_main){//二级分类  设备 的数据处理
+			// console.log(               "二级分类 酒水的数据处理")
+			var str_fir = "";	
+			if (myData_fir.length>0) {
+				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+					str_fir+='<tr> <td>'+myData_fir[i].othersgoods_info_name+'</td> <td>其他</td> <td>'+myData_fir[i].othersgoods_info_max_numbers+'</td> <td>'+myData_fir[i].othersgoods_info_unit+'</td> <td>'+myData_fir[i].othersgoods_info_price_low+'</td> <td>'+myData_fir[i].othersgoods_info_min_inventory+'</td> <td>'+myData_fir[i].othersgoods_info_max_inventory+'</td><td>'+myData_fir[i].othersgoods_info_price_high+'</td><td>'+myData_fir[i].othersgoods_info_guarantee+'</td> </tr>';
+				}
+
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+
+			}else{
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关物品</td><td></td></thead></table> </div>'
+			}
+			dd_main.append(str);
+		}
+
+
+
+
+
+	// 点击 入库管理
+		$("#enter_storage").click(function(){
+			$("#member_content").load("stock/enterStorage.html",function(){
+				setConHeight();//设置右下内容模板高度
+				tab_status_fun("")// 全部的入库信息加载
+				tab_status();// 顶部 点击切换  审核状态
+				add_minus(".stockMain_main"," li dt div:nth-child(1)",add_inStock);// 一级分类点击加减号展开收起
+
+				// 搜索功能
+				$("#inStock_select").bind("input propertychange change",function(){
+					var $selectVal = $(this).val();
+					console.log($(this).val());
+
+					if ($selectVal == "") {
+						$(".stock_main").children(" li:first-child").removeClass("myDisplay");
+						tab_status_fun("")// 全部的入库信息加载
+					}else {
+						$(".stock_main").children(" li:first-child").addClass("myDisplay");
+						$.ajax({
+							url:"/snug/queryLikeNameAndTime",
+							data:{key_word:"3"},
+							success:function(data){
+								var data = JSON.parse(data);
+								var data_header = data.info;
+								console.log(data)
+
+								header_con(data_header);// header 条内容加载处理
+							}
+						})
+					}
+				})
+
+			})
+		})
+
+		// 头部导航的点击
+		function tab_status(){
+			var hm_btn = $(".history_model li:nth-child(1) dt button");
+			hm_btn.click(function(){
+				$(this).siblings().removeClass("hover");
+				$(this).addClass("hover");
+				
+				var statusFlag;
+				if ($(this).html() == "全部") {
+					statusFlag = "";
+				} else if($(this).html() == "待审核"){
+					statusFlag = "3";
+				}else if($(this).html() == "已入库"){
+					statusFlag = "4";
+				}else if($(this).html() == "不属实"){
+					statusFlag = "5";
+				}
+
+				tab_status_fun(statusFlag)//头部导航的点击 ajax 加载内容
+
+			})
+
+		}
+		// 头部导航的点击 ajax 函数的封装
+		function tab_status_fun(statusFlag){
+			$.ajax({
+				url:"/snug/queryInGoodsMes",
+				data:{status_flag:statusFlag},
+				success:function(data){
+					var data = JSON.parse(data);
+					var data_header = data.header;
+					var data_goods = data.goods;
+					// console.log(data);
+
+					var str_firReturn = add_inStockCon(data_goods);//li 的内容
+					header_con(data_header);// header 条内容加载处理
+					
+					// stockMain_main 第一个li显示 处理
+					if (data_header.length > 0) {
+						//第一个li显示
+							var stock_inner = $(".stockMain_main").children("li:first-child").find(".my_inner");
+							var strFirReturn = '<div class="my_innerbox">'+str_firReturn+'</div>';
+							stock_inner.html(strFirReturn);
+
+							setInnerHeight(stock_inner,unfix_thead);
+
+						// 设置第一个 li 的加减号
+							var li_add=$(".stockMain_main").find("li:first-child dt div:first-child");
+							li_add.removeClass("img_add");
+							li_add.addClass("img_minus");
+							li_add.children("img").attr("src","../imgs/minus.svg");
+					}
+				}
+			})
+		}
+
+		// 显示 header 条内容加载处理
+			function header_con(data_header){
+				var str ="";//li里面的数据
+				var  flag,flagClass,time,times,btn;
+				if (data_header.length > 0) {
+					for (var i = 0; i < data_header.length; i++) {
+						if (data_header[i].examine_info_flag == "5") {
+							flag = "不属实";
+							flagClass ="tag_red";
+							btn = '<button class="button">打印清单</button><button class="button btn_red">重申入库</button>'
+						}else if(data_header[i].examine_info_flag == "4"){
+							flag = "已入库";
+							flagClass ="tag_green";
+							btn = '<button class="button">打印清单</button><button class="button btn_red">反入库</button>'
+						}else if(data_header[i].examine_info_flag == "3"){
+							flag = "待审核";
+							flagClass ="tag_blue";
+							btn = '<button class="button">打印清单</button> <button class="button btn">不属实</button> <button class="button">审核入库</button>';
+						}
+
+					//------ ---------------传过来的时间类型不一样------------
+						times = data_header[i].examine_info_times.toString();
+						time = times.substring(0,10);
+						
+
+						str += '<li> <dt class="one_title"> <div class="img_add"> <img src="../imgs/add.svg" alt=""> <span class="myDisplay">'+data_header[i].attence_info_token+'</span></div> <div> <span>'+data_header[i].attence_info_series+'</span> <span>'+data_header[i].department_id+'</span> <span>'+time+'</span> </div> <div> <a class="tag '+flagClass+'">'+flag+'</a> </div> <div>'+btn+'</div> </dt> <dd class="my_inner"></dd> </li>'
+					}
+					$(".stockMain_main").html(str);
+				}
+			}
+		
+		//点击加号    li下 my_inner的内容加载处理
+			function add_inStockCon(data_goods){
+				var one_titleName;
+				var str_fir="";//整个二级分类数据
+				var str_firReturn="";//整个二级分类数据(函数返回值)
+				var str_two="";//二级分类的内容
+				var str_firCon="";//一级分类的内容
+				var str_firTitle="";//一级分类的标题
+				var tab_con;//不同分类下的内容
+
+				if (data_goods.length>0) {
+					for (var i = 0; i < data_goods.length; i++) {
+						if (data_goods[i].type_fir == "1") {
+							one_titleName = "商品";
+							tab_con = goods_tabCon;
+						}else if (data_goods[i].type_fir == "2") {
+							one_titleName = "设备";
+							tab_con = devices_tabCon;
+						}else if (data_goods[i].type_fir == "3") {
+							one_titleName = "酒水";
+							tab_con = drinks_tabCon;
+						}else if (data_goods[i].type_fir == "4") {
+							one_titleName = "其他";
+							tab_con = others_tabCon;
+						}
+
+						// 二级分类
+						var myType= data_goods[i].type_sec;
+						if ( myType.length>0) {//有二级分类的内容
+							for (var j = 0; j < myType.length; j++) {
+								var two_titleName = '-&nbsp;<span>'+myType[j].type_sec_name+'</span>';
+								
+								var myGoods = data_goods[i].type_sec[j].goods;
+								if (myGoods.length>0) {//二级分类下的内容
+									str_firReturn += tab_con(one_titleName,two_titleName,myGoods,str_two,str_fir)//加载二级分类下的内容
+								}
+							}
+						}
+
+						// 一级分类
+						var myFirst = data_goods[i].type_fir_goods;
+						if (myFirst.length>0) {//有一级分类的内容
+							var two_titleName = "";
+							str_firReturn += tab_con(one_titleName,two_titleName,myFirst,str_two,str_fir)//加载分类下的内容
+						}
+					}
+				}
+				return str_firReturn;
+			}
+
+		 	// 商品下 一级分类 和 二级分类  的表格内容数据处理
+		 	function goods_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){
+		 		var price_two = "";//二级分类下的采购合计
+		 		var price_one = 0;//二级分类下的小计
+		 		for (var n = 0; n < myGoods.length; n++) {
+		 		
+
+		 			price_two = myGoods[n].food_material_inprice * myGoods[n].food_material_number;//采购合计计算
+		 			
+		 			str_two += '<tr> <td>'+myGoods[n].food_material_name+'</td> <td>'+one_titleName+'</td> <td>'+myGoods[n].food_material_number+'</td> <td>'+myGoods[n].food_material_unit+'</td> <td>'+myGoods[n].food_material_inprice+'</td><td>'+myGoods[n].food_material_min_inventory+'</td><td>'+myGoods[n].food_material_max_inventory+'</td><td>'+price_two+'</td> <td>'+myGoods[n].food_material_guarantee+'</td> </tr>'
+		 			
+		 			price_one =  price_one+parseInt(price_two);//小计
+		 		}
+
+		 		str_fir+='<div class="myTable_title"> <div>'+one_titleName+'</div><div>'+two_titleName+'</div> <div>小计：<span>'+price_one+'</span>元</div> </div> <table class="myTable"> <thead> <tr> <td>名称</td> <td>属性</td> <td>采购数量</td> <td>单位</td> <td>采购单价</td><td>最低库存</td><td>最高库存</td><td>采购合计</td> <td>保质期</td> </tr> </thead> <tbody>'+str_two+'</tbody> </table>';
+		 		
+		 		return str_fir;
+		 	}
+
+		 	// 设备下 一级分类 和 二级分类  的表格内容数据处理   没有写
+				function devices_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){}
+				function drinks_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){}
+				function others_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){}
+		
+
+	// 点击 出库管理
+		$("#out_storage").click(function(){
+			$("#member_content").load("stock/outStorage.html",function(){
+				setConHeight();//设置右下内容模板高度
+				setConHeight1();//设置右下内容模板 中间  高度
+				
+				setInnerHeight(".my_inner1",fix_thead);// 设置右下角内容区  li下 my_inner 的高度
+								
+				// add_minus(fix_thead);// 点击加减号展开收起
+
+				quick_add(); //快速添加的展开  收起状态
+
+
+			})
+		})
+
+	// 点击 报损中心
+		$("#scrap_center").click(function(){
+			$("#member_content").load("stock/scrapCenter.html",function(){
+				setConHeight();//设置右下内容模板高度
+				setConHeight1();//设置右下内容模板 中间  高度
+				
+				setInnerHeight(".my_inner1",fix_thead);// 设置右下角内容区  li下 my_inner 的高度
+								
+				// add_minus(fix_thead);// 点击加减号展开收起
+
+				quick_add(); //快速添加的展开  收起状态
+
+				calculate();// 输入框公式的计算		
+
+				//隐藏数量计算的提示框
+					$(".promptBox p input").click(function(){
+						$(this).parent().parent().css("display","none")
+						$(this).parent().parent().next().css("display","none")
+					})
+
+				// 添加分类的弹出框
+					$(".apbs_center ul li .select").change(function () {
+					       
+					       	if ($(this).find("option:selected").text() == "+ 添加分类") {
+					       		alert(1);
+					       	}
+
+
+					});
+
+					
+					
+			})
+		})
+
+
+
+
+
+	// 添加按钮   的模板
+		function addModel(ev,ev2,model,add,remove){
+			$(ev).click(function(){
+						$("#goodsMan").css("display","none");
+						$(ev2).css("display","block");
+						
+						model();// 设置模板内容的高度
+						
+						add();// 添加 按钮
+
+						remove(ev2)// 点击返回物品管理
+						
+					})
+
+		}
+
+	
+	
+	// 设置添加模板   鱼头颜色  和 物品管理的 添加分类
+		function addClassify(){
+			//设置鱼头的颜色
+			var fish_head = $(".stockTem_main div:nth-child(3) li a");
+			fish_color(fish_head);
+
+			// 点击确认添加按钮
+			$("#add_classify").click(function(){
+				var $name = $(".stockTem_main input[name='name']").val();
+				console.log($name);
+				
+				var $arry = new Array();
+				var j=0;
+				
+				for (var i = 0; i < fish_head.length; i++) {
+					if (! fish_head.eq(i).hasClass("tag_black")) {
+						$arry[j] = fish_head.eq(i).html();
+						j++;
+					}
+				}
+				console.log($arry);
+			});
+		}
+	// 添加分类的返回按钮
+		function returnGoods(ev){
+			$("#return_goods").click(function(){
+				$("#goodsMan").css("display","block");
+				$(ev).css("display","none");
+
+				$(".stockTem_main input").val("");
+			})
+		}
+		// 鱼头颜色
+		function fish_color(fish_head ){
+			for (var i = 0; i < fish_head.length; i++) {
+				fish_head.eq(i).addClass("tag_black");
+			}
+			fish_head.click(function(){
+				if ($(this).hasClass("tag_black")) {
+					$(this).removeClass("tag_black");
+				}else{
+					$(this).addClass("tag_black");
+				}
+			})
+		}
+
+	// 物品管理的  添加物品
+	function addGoods(){
+		$("#add_goods").click(function(){
+			console.log("添加物品")
+		})
+	}
+
+	// 添加物品的返回按钮
+	function returnGoods1(ev){
+		$("#return_goods1").click(function(){
+			$("#goodsMan").css("display","block");
+			$(ev).css("display","none");
+
+			$(".stockTem_main input").val("");
+		})
+	}
+
+
+
+
+
+
+		
+</script>
+</body>
+</html>

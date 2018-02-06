@@ -1,0 +1,503 @@
+<html>
+
+　　<head>
+	<meta charset="utf-8">
+	<title>先显示在给 inner 设置高度</title>
+
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<style type="text/css" >
+	*,dd{
+		padding: 0px;
+		margin: 0px;
+	}
+	li{
+		list-style: none;
+
+	}
+	.myDisplay{
+		display: none;
+	}
+	/*库存  主界面*/
+		.stock_main{
+			padding: 0.2rem 0.3rem 0.1rem 0.2rem;
+		}
+		.stock_main li{
+			width: 16.2rem;
+			margin-bottom: 0.2rem;
+		}
+
+		.stock_main li dd{
+			display: none;
+		}
+		.stock_main li:nth-child(1) dd{
+			display: block;
+		}
+		.stock_main li .two_title .my_inner{
+			display: none;
+		}
+
+		.stock_main li .one_title{
+			height: 0.5rem;
+			width: 100%;
+			background: rgba(255,255,255,1);
+			box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
+			margin-bottom: 0.1rem;
+			position: relative;
+		}
+		.stock_main li .one_title div{
+			position: absolute;
+			display: inline-block;
+			line-height: 0.5rem;
+		}
+		.stock_main li .one_title div:nth-child(1){
+			width: 0.16rem;
+			height: 0.16rem;
+			top: 0.17rem;
+			left: 0.2rem;
+			user-select: none;
+		}
+		.stock_main li .one_title div:nth-child(2){
+			left: 1rem;
+			font-size: 0.24rem;
+		}
+		
+		
+		.goodsMan_main li .one_title div:nth-child(3){
+			right: 5rem;
+			color: #FF761A;
+			cursor: pointer;
+			font-size: 0.16rem;
+		}/*物品管理  私有样式*/
+		
+		.stock_main li .one_title div:last-child{
+			right:0.25rem;
+		}
+		.stock_main li .one_title div:last-child .svg_style{
+			margin-right: 0px;
+			margin-left: 0.2rem;
+			margin-top: 0.1rem;
+		}
+		.stock_main li dd{
+			margin-left: 0.4rem;
+			width: 15.8rem;
+			height: auto;
+		}
+		.stock_main li dd .my_inner{
+			width: 100%;
+			box-sizing: border-box;
+			padding: 0rem 0.6rem 0rem 0.3rem;
+			background: rgba(255,255,255,.9);
+			margin-bottom: 0.1rem;
+		}
+		.stock_main li dd .two_title .my_inner{
+			width: 15.1rem;
+			margin-left: 0.7rem;
+		}
+
+	/*滚动条样式*/
+		.my_inner{
+	        /*height: 200px;*/
+	        /*overflow-y: scroll;*/
+		}
+		
+		.my_innerbox{
+			height: 0px;
+	        overflow-x: hidden;
+	        /*overflow-y: auto;*/
+	    }
+	    /*滚动条样式*/
+	    ::-webkit-scrollbar {/*滚动条整体样式*/
+	        width: 0.06rem;     /*高宽分别对应横竖滚动条的尺寸*/
+	        height: 3.72rem;
+	    }
+	    ::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+	        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	    	border: 1px solid #95989A;
+	    	border-radius: 10px;  
+	   		background-color: #333333;  
+	    }
+	    ::-webkit-scrollbar-track {/*滚动条里面轨道*/
+	    	border: 1px solid #95989A;
+	        border-radius: 10px;  
+	    	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.5);  
+	    	background-color: rgba(255,255,255,.9);  
+	    }
+
+	/*库存的  表格基本样式*/
+		.myTable{
+			width: 100%;
+		}
+		.myTable tr td{
+			border-bottom: 1px solid #E6E6E6;
+		}
+		.myTable tr td{
+			text-align: center;
+		}
+		.myTable tr td:nth-child(1){
+			text-align: left;
+		}
+		.myTable tr  td:last-child{
+			text-align: right;
+		}
+		.myTable thead tr  td:last-child span{
+			float: right;
+			margin-right: 0.2rem;
+		}
+		.myTable tbody tr  td:last-child span{
+			color: #ff761A;
+			cursor: pointer;
+		}
+		.myTable thead{
+			box-shadow: none;
+		}
+		.myTable thead tr td{
+			font-size: 0.2rem;
+			padding: 0.2rem 0rem 0.12rem 0rem;
+		}
+		.myTable tbody tr td{
+			font-size: 0.16rem;
+			padding: 0.1rem 0rem;
+		}
+		.myTable thead tr.hover{
+			background: #fafafa;
+			border-bottom: 1px solid #000;
+		}
+		/*表格下的hr*/
+		.my_inner hr{
+			display: none;
+			margin: 0px;
+			position: relative;
+			height: 1px;
+			background-color: #E6E6E6 !important;
+			border: none;
+		}
+		.my_inner hr.hover{
+			display: block;
+		}
+
+		/*物品管理    表格  单独样式*/
+			
+
+		/*申购清单的  表格的单独样式*/
+			.apliPurchase_main .myTable tbody tr  td:first-child,.outStorage_main .myTable tbody tr  td:first-child{
+				padding-left: 0.15rem;
+			}
+
+
+</style>
+	
+</head>
+
+<body style="background:rgba(0,0,0,.5);">
+	<div class="manage_main ">
+		<div class="stock_main">
+				<li>
+					<dt  class="one_title ot_goodMan">
+						<div class="img_minus">
+							<img src="../imgs/minus.svg" alt="">
+						</div>
+						<div>商品</div>
+						<span class="myDisplay">1</span>
+					</dt>
+
+					<dd>
+						
+					<!-- 	<div class="two_title">
+							<div class="one_title ot_goodMan">
+								<div class="img_add">
+									<img src="../imgs/add.svg" alt="">
+								</div>
+								<div>商品1</div>
+								<span class="myDisplay">111</span>
+							</div>
+
+							<div class="my_inner">
+							<hr>
+							<table class="myTable  my_innerbox"> 
+								<thead>
+									<tr>
+										<td>名称</td>
+										<td>属性</td>
+										<td>库存数量</td>
+										<td>单位</td>
+										<td>采购单价</td>
+										<td>最低库存</td>
+										<td>最高库存</td>
+										<td>出售单价</td>
+										<td>保质期</td>
+									</tr>
+									
+								</thead>
+								<tbody>
+									<tr>
+										<td>青岛啤酒</td>
+										<td>商品</td>
+										<td>10</td>
+										<td>瓶</td>
+										<td>￥3</td>
+										<td>20</td>
+										<td>100</td>
+										<td>￥10</td>
+										<td>12月</td>
+									</tr>
+								</tbody>
+							</table>
+							</div>
+
+
+						</div>
+
+						<div class="my_inner my_inner1">
+						<hr>
+						<table class="myTable  my_innerbox"> 
+							<thead>
+								<tr>
+									<td>名称</td>
+									<td>属性</td>
+									<td>单位</td>
+									<td>采购单价</td>
+									<td>最低库存</td>
+									<td>最高库存</td>
+									<td>出售单价</td>
+									<td>保质期</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>青岛啤酒</td>
+									<td>商品</td>
+									<td>瓶</td>
+									<td>￥3</td>
+									<td>20</td>
+									<td>100</td>
+									<td>￥10</td>
+									<td>12月</td>
+								</tr>
+							</tbody>
+						</table>
+						</div> -->
+
+					</dd>
+				</li>
+				<li>
+					<dt  class="one_title ot_goodMan">
+						<div class="img_add">
+							<img src="../imgs/add.svg" alt="">
+						</div>
+						<div>商品</div>
+						<span class="myDisplay">1</span>
+					</dt>
+
+					<dd>
+
+					</dd>
+				</li>
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+// 设置字体大小
+		function setFontsize(){
+			var whdef = 100/1920;// 表示1920的设计图,使用100PX的默认值
+			var wH = window.innerHeight;// 当前窗口的高度
+			var wW = window.innerWidth;// 当前窗口的宽度
+			var rem = wW * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
+			$('html').css('font-size', rem + "px");
+		}
+		setFontsize();
+
+// 设置右下角内容区  li下 my_inner 的高度  和 设置表格的表头
+	function setInnerHeight(target,theadFun) {
+	    var tabH = $(target).find(".my_innerbox").height();
+	    console.log(tabH)
+
+	    if (tabH>500) {
+	    	$(target).css("height",5+"rem");
+	    	$(target).css("overflow-y","auto");
+	    	
+	    	theadFun(target);//置表格的表头
+	    }else{
+	    	$(target).css("height",tabH);
+	    }
+	}
+
+// 设置表格的表头固定
+		function fix_thead(target){
+			// 滚动固定表格的头  $(this) == my_inner
+			$(target).scroll(function () {
+
+			    var scrollH = $(this).scrollTop() -1;	
+				
+			    $(this).find("thead").css({
+			    	transform: "translateY("+scrollH+"px)",
+			    });
+			    $(this).find("thead").children().addClass("hover");//变颜色
+
+			    //设置 hr 的高度
+			    var hrThead = $(this).find("thead").height()+1;
+
+			    $(this).find("hr").css({
+			    	transform: "translateY("+scrollH+"px)",
+			    	top:""+hrThead+"px"
+			    });
+			    $(this).find("hr").addClass("hover");//显示
+
+				if ($(this).scrollTop() == 0) {
+					$(this).find("thead").children().removeClass("hover");
+			    	$(this).find("hr").removeClass("hover")
+				}
+			});
+		}
+	
+	// 表格表头的占位函数
+		function unfix_thead(target){
+			console.log("这个是占位函数")
+		}
+
+// 一级分类的加减号点击
+	$(".stock_main li dt").on("click","div:nth-child(1)",function(){
+		var $add_minus = $(this);//加减号的div
+		// console.log($add_minus);
+
+		if ($add_minus.hasClass("img_minus")) {
+			$add_minus.removeClass("img_minus");
+			$add_minus.addClass("img_add");
+			$add_minus.children().attr("src","../imgs/add.svg");
+
+			$add_minus.parent().next().css("display","none")
+		}else if($add_minus.hasClass("img_add")){
+			$add_minus.removeClass("img_add");
+			$add_minus.addClass("img_minus");
+			$add_minus.children().attr("src","../imgs/minus.svg");
+			
+			$add_minus.parent().next().css("display","block")//一级分类的展开
+
+
+			var dd_main = $add_minus.parent().next();//获取dd标签
+			if ($add_minus.parent().next().children().length == "0") {//一级分类 dd 没有内容
+				
+				var myData_fir = data1.info;
+				var myData_type = data1.sec_type;
+				var str = "";	
+
+				if (myData_type.length>0) {//二级分类的标题
+					for (var i = 0; i < myData_type.length; i++) {
+						str+='<div class="two_title"> <div class="one_title ot_goodMan"> <div class="img_add"> <img src="../imgs/add.svg" alt=""> </div> <div>'+myData_type[i].category_info_name+'</div><span class="myDisplay">'+myData_type[i].category_info_token+'</span></div> </div>'
+					}
+				}
+
+				console.log("二级分类 商品的数据处理")
+				var str_fir = "";	
+				if (myData_fir.length>0) {
+					for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+						str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>商品</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td> <td>'+myData_fir[i].food_material_outprice+'</td> <td>'+myData_fir[i].food_material_guarantee+'</td> </tr>';
+					}
+
+					str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+
+				} 
+				dd_main.append(str);
+				setInnerHeight(dd_main.children(".my_inner"),fix_thead);
+
+				
+			} else {
+				// setInnerHeight(dd_main.children(".my_inner"),fix_thead);
+			}
+
+
+		}
+	})
+
+// 2级分类的加减号点击
+	$(".stock_main li dd ").on("click",".one_title div:nth-child(1)",function(){
+		console.log("二级分类")
+		var $add_minus = $(this);//加减号的div
+
+		if ($add_minus.hasClass("img_minus")) {
+			$add_minus.removeClass("img_minus");
+			$add_minus.addClass("img_add");
+			$add_minus.children().attr("src","../imgs/add.svg");
+
+			$add_minus.parent().next().css("display","none")
+		}else if($add_minus.hasClass("img_add")){
+			$add_minus.removeClass("img_add");
+			$add_minus.addClass("img_minus");
+			$add_minus.children().attr("src","../imgs/minus.svg");
+			
+			
+			var type_main = $add_minus.parent().parent();//div.two_title 二级分类
+			if ($add_minus.parent().next().length == "0") {//二级分类没有my_inner内容
+				console.log("二级分类没有my_inner内容")
+
+			var myData_fir = data2.info;
+			console.log(myData_fir)
+			var str = "";	
+			var str_fir = "";	
+			if (myData_fir.length>0) {
+				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+					str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>商品</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td> <td>'+myData_fir[i].food_material_outprice+'</td> <td>'+myData_fir[i].food_material_guarantee+'</td> </tr>';
+				}
+
+				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+
+			} 
+			type_main.append(str);
+			
+			
+			type_main.find(".my_inner").css("display","block");//有内容时设置显示状态
+				
+				
+			setInnerHeight(type_main.children(".my_inner"),fix_thead);
+					
+			} else {
+				type_main.find(".my_inner").css("display","block");//有内容时设置显示状态
+			
+			}
+
+
+		}
+	})
+
+
+// json 数据
+	// 一级分类的JSon数据
+	var data1 = {
+		status: "1", mes: "success", 
+		sec_type: [{category_info_name: "茶叶", category_info_token: "0001"}], 
+		info: [{
+				food_material_guarantee:"15",
+				food_material_inprice:"20",
+				food_material_max_inventory:"300",
+				food_material_min_inventory:"100",
+				food_material_name:"大蒜",
+				food_material_number:"10",
+				food_material_outprice:"25",
+				food_material_token:"dashuan001",
+				food_material_unit:"斤"
+			}]
+	}
+
+	// 2级分类的JSon数据
+	var data2 = {
+		status: "1", mes: "success", 
+		info: [{
+			food_material_guarantee:"720",
+			food_material_inprice:"200",
+			food_material_max_inventory:"20000",
+			food_material_min_inventory:"10000",
+			food_material_name:"毛尖",
+			food_material_number:"20",
+			food_material_outprice:"1000",
+			food_material_token:"maojian001",
+			food_material_unit:"两"
+		}]
+	}
+
+</script>
+</body>
+
+
+</html>
+

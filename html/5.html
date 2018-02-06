@@ -1,0 +1,111 @@
+<html>
+
+　　<head>
+	<meta charset="utf-8">
+	<title>先显示在给 inner 设置高度</title>
+
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<style type="text/css" >
+	*,dd{
+		padding: 0px;
+		margin: 0px;
+	}
+	li{
+		list-style: none;
+
+	}
+	.div1{
+		height: 200px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+	.div2{
+		display: none;
+	}
+	
+	.left{
+		width: 70%;
+		height: 100%;
+		background-color: rgba(255,23,14,.5);
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+	}
+	.left li{
+		width: 10%;
+		height: 30px;
+		background-color: #333;
+		color: #fff;
+		cursor: pointer;
+	}
+	.right{
+		width: 20%;
+		height: 100%;
+		float: left;
+		background-color: rgba(55,66,77,.5);
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+	.right2{
+		display: none;
+	}
+
+</style>
+	
+</head>
+
+<body style="background:rgba(0,0,0,.5);">
+	<div class="manage_main ">
+		<div class="div1">
+			<div class="left">
+				<li>桌子 1 </li>
+				<li>桌子 2 </li>
+				<li>桌子 3 </li>
+				<li>桌子 4 </li>
+				<li>桌子 5 </li>
+				<li>桌子 6 </li>
+			</div>
+	
+			<div class="right right1">
+				<button>转台</button>
+			</div>
+	
+			<div class="right right2">
+				<button>不转台</button>
+			</div>
+		</div>
+
+		<div class="div2" >
+			我是转台
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+	
+
+	$(".left li").on("click",function(){
+		var li_name = $(this).html();
+		console.log(1)
+		
+		$(".right1 button").off("click");
+
+		$(".right1 button").one("click",function(ev){
+			console.log(li_name);
+
+			//$(this).off("click");
+		})
+		
+		//$(this).off("click");
+	})
+	 
+</script>
+</body>
+
+
+</html>
+

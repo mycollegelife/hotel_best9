@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>餐饮系统</title>
+
+	
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- 引入 时间选择插件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	
+	<!-- 自己写的样式 -->
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/index.js"></script>
+
+
+
+	<script>
+		$(window).resize(function ()// 绑定到窗口的这个事件中
+		{
+		  var whdef = 100/1920;// 表示1920的设计图,使用100PX的默认值
+		  var wH = window.innerHeight;// 当前窗口的高度
+		  var wW = window.innerWidth;// 当前窗口的宽度
+		  var rem = wW * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
+		  $('html').css('font-size', rem + "px");
+		  
+		});
+		$(window).resize()
+
+
+		window.onload=function () {
+
+			
+			
+			
+
+		}
+	</script>
+
+
+</head>
+<body>
+	<div id="wrap" class="wrap">
+		<nav id="nav" class="nav">
+			<div class="nav_logo">
+				<span class="hotel_name">卡拉曼达涪城万达店</span>
+				<img src="imgs/logo.png" alt="">
+
+			</div>
+			<div class="nav_menu">
+			  	<ul>
+			  		<li><a class="active" href="">餐台</a></li>
+			  		<li><a href="">订单</a></li>
+			  		<li><a href="">报表</a></li>
+			  		<li><a href="html/member.html">会员</a></li>
+			  		<li><a href="">营销</a></li>
+			  		<li><a  href="html/manage.html">管理</a></li>
+			  		<li><a href="html/stock.html">库存</a></li>
+			  		<li><a href="">其它</a></li>
+			  	</ul>	
+			</div>
+			<div class="nav_user">
+				<span class="user_info">
+					<i class="online_user">萧经滕</i>
+					<br>
+					<i class="online_time">已在线2小时30分</i>
+				</span>
+				<img class="user_head" src="imgs/touxiang.png" alt="">
+				
+			</div>
+		</nav>
+        <div id="index">
+			<div id="index_content">
+				<div id="index_header">
+					<div id="index_header_msg"></div>
+					<div id="index_header_info"></div>
+				</div>
+				<div id="index_main">
+					<div id="index_main_submenu">
+						<ul class="menu_child">
+							<li>
+								
+
+								<a href="javacript:;">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="259 2121 24 24">
+								  <defs>
+								    <style>
+								      .cls-1 {
+								        fill: #ff761a;
+								      }
+								    </style>
+								  </defs>
+								  <g id="全部" transform="translate(194.66 2057.188)">
+								    <path id="Path_23" data-name="Path 23" d="M313.868,312.269h4.009v4.009h-4.009Z" transform="translate(-242.839 -241.797)"/>
+								    <path id="Path_24" data-name="Path 24" d="M313.884,560.405h4.009v4.009h-4.009Z" transform="translate(-242.855 -483.281)"/>
+								    <path id="Path_25" data-name="Path 25" d="M563.095,312.269H567.1v4.009h-4.009Z" transform="translate(-485.386 -241.797)"/>
+								    <path id="Path_26" data-name="Path 26" class="cls-1" d="M563.095,312.269H567.1v4.009h-4.009Z" transform="translate(-485.386 -241.797)"/>
+								    <path id="Path_27" data-name="Path 27" class="cls-1" d="M313.868,312.269h4.009v4.009h-4.009Z" transform="translate(-242.839 -241.797)"/>
+								    <path id="Path_28" data-name="Path 28" class="cls-1" d="M313.884,560.405h4.009v4.009h-4.009Z" transform="translate(-242.855 -483.281)"/>
+								    <path id="Path_29" data-name="Path 29" class="cls-1" d="M76.34,63.812a12,12,0,1,0,12,12A12,12,0,0,0,76.34,63.812Zm-6.028,6.333a.331.331,0,0,1,.331-.331h4.671a.331.331,0,0,1,.331.331v4.671a.331.331,0,0,1-.331.331H70.643a.331.331,0,0,1-.331-.331V70.145Zm5.333,11.322a.331.331,0,0,1-.331.331H70.643a.331.331,0,0,1-.331-.331V76.8a.331.331,0,0,1,.331-.331h4.671a.331.331,0,0,1,.331.331Zm1.348-11.322a.331.331,0,0,1,.331-.331h4.671a.331.331,0,0,1,.331.331v4.671a.331.331,0,0,1-.331.331H77.324a.331.331,0,0,1-.331-.331Zm5.333,11.323A.331.331,0,0,1,82,81.8H77.324a.331.331,0,0,1-.331-.331V76.8a.331.331,0,0,1,.331-.331H82a.331.331,0,0,1,.331.331Z"/>
+								  </g>
+								</svg>
+								全部
+								</a>
+							</li>
+							<li><a href="javacript:;">一层</a></li>
+							<li><a href="javacript:;">二层</a></li>
+							<div class="line"></div>
+							<li><a href="javacript:;">全部</a></li>
+							<li>
+								<a href="javacript:;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="259 2174 24 24">
+									  <defs>
+									    <style>
+									      .cls-1 {
+									        fill: #333;
+									      }
+									    </style>
+									  </defs>
+									  <path id="一级" class="cls-1" d="M27.781,17.669a12,12,0,1,0,12,12A12,12,0,0,0,27.781,17.669Zm3.429,6.857H29.495V34.812h1.714v1.714H24.352V34.812h1.714V24.527H24.352V22.812h6.857Z" transform="translate(243.22 2156.331)"/>
+									</svg>
+
+								厅</a>
+							</li>
+							<li><a href="javacript:;">雅间</a></li>
+						</ul>
+					</div>
+					<div id="index_main_seat">
+						<div class="seat_header">
+							<div class="seat_header_content">
+								<input type="text" class="input set_time">
+								<button class="button time_btn time_btn_active" >上午</button>
+								<button class="button time_btn">中午</button>
+								<button class="button time_btn">晚上</button>
+								<button class="button indent">订单</button>
+							</div>
+						</div>
+						<div class="seat_body">
+						    <div class="seat_body_content">
+								<div class="table empty">
+									<span class="table_id">
+										厅 1001
+									</span>
+									<span class="table_used">
+									    15/18
+									</span>
+
+									<span class="table_costomer_phone">
+									15196235249
+									</span>
+									<span class="table_costomer_user">王先生</span>
+
+									<span class="table_time">1:20</span>
+
+									<img class="table_customer_checkout" src="imgs/checkout.png" alt="">
+
+								</div>
+								<div class="table dirty"></div>
+								<div class="table use"></div>
+								<div class="table order"></div>
+								<div class="table join"></div>
+								<div class="table checkout"></div>
+								<div class="table empty"></div>
+								<div class="table dirty"></div>
+								<div class="table use"></div>
+								<div class="table order"></div>
+								<div class="table join"></div>
+								<div class="table checkout"></div>
+							</div>
+						</div>
+						<div class="seat_footer">
+							<div class="seat_footer_content">
+								<div class="seat_status">
+									<button class="button empty"></button>
+									<span>空桌</span>
+
+									<button class="button use"></button>
+									<span>在用</span>
+
+									<button class="button order"></button>
+									<span>预约</span>
+
+									<button class="button dirty"></button>
+									<span>脏桌</span>
+
+									<button class="button checkout"></button>
+									<span>已结帐</span>
+
+									<button class="button join"></button>
+									<span>联桌</span>
+
+									<button class="button showall"></button>
+									<span>显示全部</span>
+								</div>
+								<div class="seat_options">
+									<button class="button join_btn">
+										并台
+									</button><button class="button order_btn">
+										预订
+									</button>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="index_sidebar">
+				<div id="index_saleout">
+					<div class="saleout_content">
+						<h2>外卖</h2>
+
+					</div>
+				</div>
+				<div id="index_queue_s"></div>
+				<div id="index_queue_l"></div>
+			</div>
+		</div>
+		
+	</div>
+	
+</body>
+</html>

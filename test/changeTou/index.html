@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>更换头像</title>
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+	<div class="avater">
+		<img src="" alt="">
+	</div>
+	<form action="#" id="uploadForm" enctype="multipart/form-data" method="post">
+		<input type="file" value="更换头像" name="file" accecp="image/*" class="hidden">
+
+		<input type="text">
+
+	</form>
+	<script>
+		window.onload=function () {
+
+			$("input[name='file']").change(function () {
+				console.log("wenbenyigaibian");
+				var formData=new FormData();
+				formData.append("file",$('input[name="file"][0].files[0]'));
+				$.ajax({
+					url:'upload-ajax.php',
+					type:'post',
+					data:formData,
+					cache:false,
+					processData:false,
+					contentType:false,
+					success:function (data) {
+						if (data.status=='fail') {
+							alert(data.message);
+						}
+						if (data,status=='success') {
+							$(".avatar img").attr("src",data.url+"?"+new Data().getTime()),error:function (e) {
+								console.log(e);
+							}
+						}
+					}
+				})
+			})
+		}
+	</script>
+</body>
+</html>

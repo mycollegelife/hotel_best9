@@ -1,0 +1,441 @@
+
+
+<!-- 入库管理页面 -->
+
+<!-- 入库管理  主界面 -->
+<div id="goodsMan" class="my_title">
+	
+	<div class="manage_title">
+		<div class="manage_title_item">
+		  	<span class="title_name">入库管理</span>
+		  	<div class="select_parent">
+		  		<img src="../imgs/manage/select.svg" alt="">
+		  		<input type="text" placeholder="输入商品名或简写" id="inStock_select"></input>
+		  	</div>
+		</div>
+
+		<div class="manage_title_item">
+			<button class="button" type="button">操作记录</button>
+			<button class="button" type="button">估清管理</button>
+			<button class="button" type="button">下载清单</button>
+		</div>
+	</div>
+
+	<div class="manage_main history_model">
+		<div class="stock_main">
+			<li class="stockMain_title">
+				<dt>
+					<button class="hover" id="hm_all">全部</button>
+					<button id="hm_check">待审核</button>
+					<button id="hm_passed">已入库</button>
+					<button id="hm_failed">不属实</button>
+				</dt>
+			</li>
+			<div class="stockMain_main">
+				
+			</div>
+
+			<!-- <li>
+				<dt class="one_title">
+					<div class="img_minus">
+						<img src="../imgs/minus.svg" alt="">
+						<span class="myDisplay">1</span>
+					</div>
+					<div>
+						<span>ab12458</span>
+						<span>后厨部门</span>
+						<span>2017-01-25</span>
+					</div>
+					<div>
+						<a class="tag tag_blue">未审核</a>
+					</div>
+					<div>
+						<button class="button">打印清单</button>
+						<button class="button">不属实</button>
+						<button class="button">审核入库</button>
+					</div>
+
+				</dt>
+					
+					<dd class="my_inner">
+							<div class="my_innerbox">
+								<div class="myTable_title">
+									<div>商品</div>
+									<div>-<span>&nbsp;商品1</span></div>
+									<div>小计：<span>245</span>元</div>
+
+								</div>
+								<table class="myTable">
+										<thead>
+											<tr>
+												<td>名称</td>
+												<td>属性</td>
+												<td>采购数量</td>
+												<td>单位</td>
+												<td>采购单价</td>
+												<td>最低库存</td>
+												<td>最高库存</td>
+												<td>采购合计</td>
+												<td>保质期</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>10</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>10</td>
+												<td>100</td>
+												<td>￥30</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>10</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥30</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>10</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥30</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>10</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥30</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>10</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥30</td>
+												<td>12月</td>
+											</tr>
+											
+										</tbody>
+								</table>
+								
+								<div class="myTable_title">
+									<div>商品</div>
+									<div>小计：<span>245</span>元</div>
+								</div>
+								<table class="myTable">
+										<thead>
+											<tr>
+												<td>名称</td>
+												<td>属性</td>
+												<td>单位</td>
+												<td>采购单价</td>
+												<td>出售单价</td>
+												<td>保质期</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+										</tbody>
+								</table>
+							</div>
+					</dd>
+			</li>
+
+			<li>
+				<dt  class="one_title">
+					<div class="img_add">
+						<img src="../imgs/add.svg" alt="">
+					</div>
+					<div>
+						<span>ab12</span>
+						<span>客房中心</span>
+						<span>2017-01-25</span>
+					</div>
+					<div>
+						<a class="tag tag_red">不属实</a>
+					</div>
+					<div>
+						
+					</div>
+					<div>
+						<button class="button">打印清单</button>
+						<button class="button btn_red">重申入库</button>
+					</div>
+				</dt>
+						
+				<dd class="my_inner">
+							<div class="my_innerbox">
+								<div class="myTable_title">
+									<div>商品</div>
+									<div>-<span>商品1</span></div>
+									<div>小计：<span>245</span>元</div>
+								</div>
+								<table class="myTable">
+										<thead>
+											<tr>
+												<td>名称</td>
+												<td>属性</td>
+												<td>单位</td>
+												<td>采购单价</td>
+												<td>出售单价</td>
+												<td>保质期</td>
+											</tr>
+										</thead>
+										<tbody>
+											
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+										</tbody>
+								</table>
+							</div>
+				</dd>
+			</li>
+				
+			<li>
+				<dt  class="one_title">
+					<div class="img_add">
+						<img src="../imgs/add.svg" alt="">
+					</div>
+					<div>
+						<span>ab12</span>
+						<span>客房中心</span>
+						<span>2017-01-25</span>
+					</div>
+					<div>
+						<a class="tag tag_green">已入库</a>
+					</div>
+					<div>
+						
+					</div>
+					<div>
+						<button class="button">打印清单</button>
+						<button class="button btn_red">反入库</button>
+					</div>
+				</dt>
+					
+				<dd class="my_inner ">
+						<div class="my_innerbox">
+							<div class="myTable_title">
+								<div>商品</div>
+								<div>小计：<span>245</span>元</div>
+							</div>
+							<table class="myTable">
+										<thead>
+											<tr>
+												<td>名称</td>
+												<td>属性</td>
+												<td>单位</td>
+												<td>采购单价</td>
+												<td>出售单价</td>
+												<td>保质期</td>
+											</tr>
+										</thead>
+										<tbody>
+											
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+											<tr>
+												<td>青岛啤酒</td>
+												<td>商品</td>
+												<td>瓶</td>
+												<td>￥3</td>
+												<td>￥10</td>
+												<td>12月</td>
+											</tr>
+										</tbody>
+							</table>
+						</div>
+				</dd>
+			</li> -->
+		</div>
+	</div>
+
+</div>
+
+
+
+
