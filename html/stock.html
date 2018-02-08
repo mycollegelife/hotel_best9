@@ -491,9 +491,6 @@
 						<span>|</span>
 						<a href="javacript:;" id="goods_manage">物品管理</a>
 					</dt>
-					<dt>
-						<a href="javacript:;" id="appli_purchase">申购清单</a>
-					</dt>
 				</dl>
 			</li>
 			<li class="dropdown" >
@@ -504,7 +501,6 @@
 					<dt><a href="javacript:;" id="inventory_info">库存信息</a></dt>
 					<dt><a href="javacript:;" id="enter_storage">入库管理</a></dt>
 					<dt><a href="javacript:;" id="out_storage">出库管理</a></dt>
-					<dt><a href="javacript:;" id="scrap_center">报损中心</a></dt>
 				</dl>
 			</li>
 		</ul>
@@ -518,7 +514,6 @@
 <!-- 图片的上传处理 -->
 
 <script>
-	
 
 	// 设置 申购管理 右下角内容区的高度
 		function setConHeight1() {
@@ -803,98 +798,7 @@
 
 		});
 	
-	// 点击申请购单
-		$("#appli_purchase").click(function(){
-			$("#member_content").load("stock/apliPurchase.html",function(){
-				var baseCon = $("#goodsMan");
-
-				setConHeight();//设置右下内容模板高度
-				setConHeight1();//设置右下内容模板 中间  高度
-				
-				setInnerHeight(".my_inner1",fix_thead);// 设置右下角内容区  li下 my_inner 的高度
-				
-				// add_minus(fix_thead);// 点击加减号展开收起
-
-				quick_add(); //快速添加的展开  收起状态
-
-					
-
-				// 点击历史数据
-					$("#ap_history").click(function(){
-						ap_display(baseCon,"#history_model");//显示历史数据
-						
-						setConHeight();//设置右下内容模板高度
-
-						setInnerHeight("#history_model .my_inner",unfix_thead);
-
-						tab_status();// 顶部 点击切换  审核状态
-
-						
-							
-
-						// 点击返回 申购清单
-							$("#hm_return").click(function(){
-								ap_hidden(baseCon,"#history_model");
-								for (var i = 0; i <  hm_btn.length; i++) {
-									 hm_btn.eq(i).removeClass("hover");
-								}
-								$("#hm_all").addClass("hover");
-
-							})
-						
-
-						//点击切换至   全部 
-							$("#hm_all").click(function(){
-								
-							})
-
-						//点击切换至   待审核 
-							$("#hm_check").click(function(){
-								
-							})
-
-						//点击切换至   已通过
-							$("#hm_passed").click(function(){
-								
-							})
-
-						//点击切换至  未通过
-							$("#hm_failed").click(function(){
-								
-							})
-					})
-
-				// 点击批量上传
-					$("#ap_upload").click(function(){
-						alert("批量上传")
-					})
-
-				// 点击打印清单
-					$("#ap_print").click(function(){
-						alert("打印清单")
-					})
-
-				// 点击下载清单
-					$("#ap_download").click(function(){
-						alert("下载清单")
-					})
-
-				// 点击提交申请
-					$("#ap_submit").click(function(){
-						alert("提交申请")
-					})
-
-			})
-		})
-		// 申购清单   下的显示隐藏模板  函数
-			function  ap_display(ev1,ev2){
-				ev1.css("display","none");
-				$(ev2).css("display","block");
-			}
-			function  ap_hidden(ev1,ev2){
-				ev1.css("display","block");
-				$(ev2).css("display","none");
-			}
+	
 
 /*-----------------------------------点击库存管理-----------------------------*/
 	// 库存里 公用的tbody 和 thead 的内容 （库存信息 库存信息查询 入库管理）
@@ -1362,45 +1266,7 @@
 			})
 		})
 
-	// 点击 报损中心
-		$("#scrap_center").click(function(){
-			$("#member_content").load("stock/scrapCenter.html",function(){
-				setConHeight();//设置右下内容模板高度
-				setConHeight1();//设置右下内容模板 中间  高度
-				
-				setInnerHeight(".my_inner1",fix_thead);// 设置右下角内容区  li下 my_inner 的高度
-								
-				// add_minus(fix_thead);// 点击加减号展开收起
-
-				quick_add(); //快速添加的展开  收起状态
-
-				calculate();// 输入框公式的计算		
-
-				//隐藏数量计算的提示框
-					$(".promptBox p input").click(function(){
-						$(this).parent().parent().css("display","none")
-						$(this).parent().parent().next().css("display","none")
-					})
-
-				// 添加分类的弹出框
-					$(".apbs_center ul li .select").change(function () {
-					       
-					       	if ($(this).find("option:selected").text() == "+ 添加分类") {
-					       		alert(1);
-					       	}
-
-
-					});
-
-					
-					
-			})
-		})
-
-
-
-
-
+	
 	// 添加按钮   的模板
 		function addModel(ev,ev2,model,add,remove){
 			$(ev).click(function(){
