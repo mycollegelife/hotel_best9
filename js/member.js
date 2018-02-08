@@ -78,12 +78,74 @@
 			$(".mem_main tbody").html(str);
 		}
 
+	// 会员列表 编辑时 处理数据函数
+		function memList_editData(myData,j){
+			var str = "<h3>页面没有写</h3>";
+			return str;
+		}
+
+	// 会员等级 编辑时 处理数据函数
+		function memRank_editData(myData,j){
+			// ----------    等级   --------先默认设置12级
+				var my_real = myData[j].member_degree_real;
+				var my_option = "";
+				for (var i = 0; i < 12; i++) {
+					if (i  == my_real) {
+						my_option +='<option selected>'+(i+1)+'</option>';
+					}else{
+						my_option +='<option>'+(i+1)+'</option>';
+					}
+				}
+			// ----------    等级   --------先默认设置12级
+			
+			// 积分字符串截取
+				var myUnit = myData[j].member_degree_unit;
+				var index = myUnit.indexOf(":");
+				var myUnit1 = myUnit.substring(0,index);
+				var myUnit2 = myUnit.substring(index+1);
+
+			var str = '<div><b>等级设置</b></div> <div> <label>等级<i class="my_opacity">单位</i></label> <select class="select select_lg " name="real">'
+			+my_option+
+			'</select> <img src="../imgs/manage/select_logo.svg" alt=""> </div> <div> <label><i class="my_opacity">等级名称</i></label> <span>数字越大,等级越高</span> </div> <div> <label>等级名称</label> <input type="text" name="name" class="input input_lg" value="'
+			+myData[j].member_degree_name+
+			'"/> </div> <div> <label>等级条件</label> <input type="text" name="lower" class="input input_lg" value="'
+			+myData[j].member_degree_lower+
+			'"/> </div> <div> <label><i class="my_opacity">升级条件</i></label> <span>会员升级条件，不填写默认为不自动升级</span> </div> <div> <label>折扣<i class="my_opacity">单位</i></label> <input type="text" name="discount" class="input input_lg" value="'
+			+myData[j].member_degree_discount+
+			'"/> </div> <div> <label><i class="my_opacity">折扣折扣</i></label> <span>请设置0.1-10之间的数字，值为空代表不设置折扣</span> </div> <div> <label>积分规则</label> <p>每消费</p> <input type="text" name="unit1" class="input input_lg" value="'
+			+myUnit1+
+			'"/> <p>得</p> <input type="text" name="unit2" class="input input_lg" value="'
+			+myUnit2+
+			'"/> <p>积分</p> </div> <div> <label>信用额度</label> <input type="text" name="credit" class="input input_lg" value="'
+			+myData[j].member_degree_discount+
+			'"/> <p>元</p> </div> <div> <label>结算周期</label> <input type="text" name="settle" class="input input_lg" value="'
+			+myData[j].member_degree_discount+
+			'"/> <p>天</p> </div>';
+
+			return str;
+		}
+
+	// 会员分组 编辑时 处理数据函数
+		function memGroup_editData(myData,j){
+			var str ='<div><b>分组设置</b></div> <div> <label>分组名称</label> <input type="text"  name="name"  class="input input_lg" value="'
+			+myData[j].member_group_name+
+			'"/> </div> <div> <label>联系人<i class="my_opacity">人</i></label> <input type="text" name="person"  class="input input_lg" value="'
+			+myData[j].member_group_master+
+			'"/> </div> <div> <label><i class="my_opacity">联系人人</i></label> <span>协议单位分组可填相关联系人</span> </div> <div> <label>联系电话</label> <input type="text" name="telNum"  class="input input_lg" value="'
+			+myData[j].member_group_num+
+			'"/> </div> <div> <label><i class="my_opacity">联系电话</i></label> <span>联系人的电话</span> </div>'
+
+
+			return str;	
+		}
+
+
 	// 会员 获取 所有列表内容   的函数封装
-		function List_getCon(data,getDataFun,myToken,deleteUrl){
+		function List_getCon(data,getDataFun,myToken,deleteUrl,addFun,editFun){
 			var data = JSON.parse(data);
 			var myData = data.info;
 			
-			// console.log(data);
+			console.log(data);
 
 			$(".mem_main tbody").html("");
 			
@@ -96,14 +158,37 @@
 				// 点击修改
 					$(".mem_main tbody img.edit").click(function(){
 						var $myToken = $(this).parent().parent().find("td.myDisplay").html();
-						
 						console.log($myToken);
-						
+
+						modelHe();
+						var $rank_content = $("#rank_content");
+						var $rank_model_edit = $("#rank_model_edit");
+						var $add = $("#rank_model_edit #add");
+						var $return= $("#rank_model_edit #return");
+
+						$rank_content.addClass("myDisplay");
+						$rank_model_edit.removeClass("myDisplay");						
+
 						for (var j = 0; j < myData .length; j++) {
 							if (eval(myToken) == $myToken) {
-								console.log(myData[j])
+								console.log(myData[j]);
+								
+								var str = editFun(myData,j);//编辑  处理数据
 							}
 						}
+						$(".tem_main").html(str);	
+
+						// 返回按钮
+							$return.click(function(){
+								$rank_content.removeClass("myDisplay");
+								$rank_model_edit.addClass("myDisplay");
+								$("#member_rankM input").val("");
+							})
+						// 确认添加按钮
+							$add.click(function(){
+								addFun();
+
+							})
 					})
 
 				// 点击删除
@@ -141,7 +226,7 @@
 				$.ajax({
 					url:"/snug/queryMembers",
 					success:function(data){
-				    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember");//会员列表 获取内容 
+				    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
 					},
 					error:function(){
 					    console.log("获取失败！")
@@ -158,7 +243,7 @@
 						$.ajax({
 							url:"/snug/queryMembers",
 							success:function(data){
-						    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember");//会员列表 获取内容 
+						    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
 							},
 							error:function(){
 							    console.log("获取失败！")
@@ -171,7 +256,7 @@
 								search_condition:$selectVal,
 							},
 							success:function(data){
-								List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember");//会员列表 获取内容 
+								List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
 							},
 							error:function(){
 
@@ -201,7 +286,7 @@
 			$.ajax({
 				url:"/snug/queryMemberDegrees",
 				success:function(data){
-				    List_getCon(data,memRank_getData,"myData[j].member_degree_token","/snug/deleteMemberDegree");//会员等级 获取内容 
+				    List_getCon(data,memRank_getData,"myData[j].member_degree_token","/snug/deleteMemberDegree",add_con,memRank_editData);//会员等级 获取内容 
 				},
 				error:function(){
 				    console.log("添加失败！")
@@ -217,7 +302,7 @@
 			var $discount = $("input[name='discount']").val();
 			var $unit1 = $("input[name='unit1']").val();
 			var $unit2 = $("input[name='unit2']").val();
-			var $unit = $unit1/$unit2;
+			var $unit = $unit1+":"+$unit2;
 			var $credit = $("input[name='credit']").val();
 			var $settle = $("input[name='settle']").val();
 
@@ -251,8 +336,6 @@
 					console.log("添加失败！")
 				}
 			}) 
-			
-
 		}
 	
 	//点击会员等级
@@ -263,7 +346,7 @@
 			$.ajax({
 				url:"/snug/queryMemberGroups",
 				success:function(data){
-				    List_getCon(data,memGroup_getData,"myData[j].member_group_token","/snug/deleteMemberGroup");//会员分组获取内容 
+				    List_getCon(data,memGroup_getData,"myData[j].member_group_token","/snug/deleteMemberGroup",add_con1,memGroup_editData);//会员分组获取内容 
 				},
 				error:function(){
 					console.log("添加失败！")
@@ -318,25 +401,19 @@
 
 				//新建等级 更改页面内容
 				$("#mem_newrank").click(function(){
-					
-
-
-
-
-
 					modelHe();
 					var $rank_content = $("#rank_content");
 					var $rank_model = $("#rank_model");
-					var $add = $("#add");
-					var $return= $("#return");
+					var $add = $("#rank_model #add");
+					var $return= $("#rank_model #return");
 
-					$rank_content.css("display","none");
-					$rank_model.css("display","block");
+					$rank_content.addClass("myDisplay");
+					$rank_model.removeClass("myDisplay");
 
 					// 返回按钮
 						$return.click(function(){
-							$rank_content.css("display","block");
-							$rank_model.css("display","none");
+							$rank_content.removeClass("myDisplay");
+							$rank_model.addClass("myDisplay");
 							$("#member_rankM input").val("");
 						})
 					// 确认添加按钮

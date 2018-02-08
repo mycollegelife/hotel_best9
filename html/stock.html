@@ -230,9 +230,9 @@
 		.apbs_center li img{
 			width: 0.14rem;
 			height: 0.2rem;
-			position: absolute;
-			right: 0.1rem;
-			top: 0.1rem;
+			position: relative;
+			right: 0.2rem;
+			top: 0.05rem;
 		}
 		.apbs_center li .select option.select_add{
 			background-color: #E6E6E6;
@@ -246,11 +246,11 @@
 			width: 1.8rem;
 		}
 		.apbs_center li:nth-child(3) .input{
-			width: 1.1rem;
+			width: 1.2rem;
 			margin-right: 0.05rem;
 		}
 		.apbs_center li:nth-child(4) .input{
-			width: 0.5rem;
+			width: 0.6rem;
 			margin-right: 0.05rem;
 
 		}
@@ -261,7 +261,7 @@
 			
 		}
 		.apbs_center li:nth-child(5) .input{
-			width: 1.7rem;
+			width: 1.8rem;
 
 		}
 		.apbs_center li:nth-child(5){
@@ -541,6 +541,7 @@
 </div>
 </div>
 <script src="../js/memberStockBottom.js"></script>
+<!-- 图片的上传处理 -->
 
 <script>
 	
@@ -922,6 +923,57 @@
 			}
 
 /*-----------------------------------点击库存管理-----------------------------*/
+	// 库存里 公用的tbody 和 thead 的内容 （库存信息 库存信息查询 入库管理）
+		//商品
+		function goods_dataTbody(myData_fir){
+			var str_fir = "";
+			for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+				str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>商品</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td> <td>'+myData_fir[i].food_material_outprice+'</td> <td>'+myData_fir[i].food_material_guarantee+'</td> </tr>';
+			}
+			return str_fir;
+		}
+		function goods_dataThead(str_fir){
+			var str = '<table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table>'
+			return str;
+		}
+		//设备
+		function devices_dataTbody(myData_fir){
+			var str_fir = "";	
+			for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+				str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>设备</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td><td>使用年限</td><td>'+myData_fir[i].food_material_servicelift+'</td><td>折旧</td> </tr>';
+			}
+			return str_fir;
+		}
+		function devices_dataThead(str_fir){
+			var str = '<table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td><td>库存数量</td><td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>使用年限</td> <td>维保周期</td> <td>折旧</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table>'
+			return str;
+		}
+		//酒水
+		function drinks_dataTbody(myData_fir){
+			var str_fir = "";	
+			for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+				str_fir+='<tr> <td>'+myData_fir[i].wine_info_name+'</td> <td>酒水</td> <td>'+myData_fir[i].wine_info_max_numbers+'</td> <td>'+myData_fir[i].wine_info_unit+'</td> <td>'+myData_fir[i].wine_info_price_low+'</td> <td>'+myData_fir[i].wine_info_min_inventory+'</td> <td>'+myData_fir[i].wine_info_max_inventory+'</td><td>'+myData_fir[i].wine_info_price_high+'</td><td>'+myData_fir[i].wine_info_guarantee+'</td><td>'+myData_fir[i].wine_info_commission_price+'</td> </tr>';
+			}
+			return str_fir;
+		}
+		function drinks_dataThead(str_fir){
+			var str = '<table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td><td>库存数量</td><td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> <td>售卖提成</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> '
+			return str;
+		}
+		//其他
+		function others_dataTbody(myData_fir){
+			var str_fir = "";	
+			for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
+				str_fir+='<tr> <td>'+myData_fir[i].othersgoods_info_name+'</td> <td>其他</td> <td>'+myData_fir[i].othersgoods_info_max_numbers+'</td> <td>'+myData_fir[i].othersgoods_info_unit+'</td> <td>'+myData_fir[i].othersgoods_info_price_low+'</td> <td>'+myData_fir[i].othersgoods_info_min_inventory+'</td> <td>'+myData_fir[i].othersgoods_info_max_inventory+'</td><td>'+myData_fir[i].othersgoods_info_price_high+'</td><td>'+myData_fir[i].othersgoods_info_guarantee+'</td> </tr>';
+			}
+			return str_fir;
+		}
+		function others_dataThead(str_fir){
+			var str = '<table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table>'
+			return str;
+		}
+
+
 	// 点击库存信息
 		$("#inventory_info").click(function(){
 			$("#member_content").load("stock/stockInfo.html",function(){
@@ -941,7 +993,7 @@
 				oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
 
 				// 点击搜索
-				$("#stockInfo_select").bind("input propertychange change",function(){
+				$("#stockInfo_select").bind("input propertychange",function(){
 					// console.log($("#stockInfo_select").val());
 					
 					var $selectVal = $("#stockInfo_select").val();
@@ -951,9 +1003,13 @@
 						$(".stockInfo_main").removeClass("myDisplay");
 						$(".history_model").addClass("myDisplay");
 						
+						// oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
 					} else {
 						$(".stockInfo_main").addClass("myDisplay");
 						$(".history_model").removeClass("myDisplay");
+						var dd_main = $(".history_model li dd");
+						dd_main.html("");
+					
 						$.ajax({
 							url:"/snug/queryAllGoodsMes",
 							data:{key_word:"123"},
@@ -962,32 +1018,26 @@
 								var data = JSON.parse(data);
 								console.log(data)
 
-
 								var data_goods = data.goods_array;
 								var data_equ = data.equ_array;
-								var data_wine = data.wine_array;
-								var data_othersgoods = data.othersgoods_array;
-
-								if (data_goods.length>0) {
-									console.log(data_goods)
-
-									var str1 = "";
-									var str_1 = "";
-									for (var i = 0; i < data_goods.length; i++) {
-										
-									}
-								}
+								var data_wine = data.wines_array;
+								var data_othersgoods = data.othersgoodss_array;
+								
+								var dd_main1 = $(".history_model li:nth-child(1) dd");
+								var dd_main2 = $(".history_model li:nth-child(2) dd");
+								var dd_main3 = $(".history_model li:nth-child(3) dd");
+								var dd_main4 = $(".history_model li:nth-child(4) dd");
+								
 
 
-
+								// goods_dataTable 是商品的  其他三个没有写
+								stockInfo_dataSelect(data_goods,dd_main1,goods_dataTbody,goods_dataThead);//商品的内容处理
+								stockInfo_dataSelect(data_equ,dd_main2,devices_dataTbody,devices_dataThead);//设备的内容处理
+								stockInfo_dataSelect(data_wine,dd_main3,drinks_dataTbody,drinks_dataThead);//酒水的内容处理
+								stockInfo_dataSelect(data_othersgoods,dd_main4,others_dataTbody,others_dataThead);//其他的内容处理
 							}
 						})
-
 					}
-
-
-
-					
 
 				});
 
@@ -1038,13 +1088,9 @@
 		//商品
 		function goods_dataTwo(myData_fir,str,dd_main){//二级分类  商品的数据处理
 			// console.log("二级分类 商品的数据处理")
-			var str_fir = "";	
 			if (myData_fir.length>0) {
-				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
-					str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>商品</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td> <td>'+myData_fir[i].food_material_outprice+'</td> <td>'+myData_fir[i].food_material_guarantee+'</td> </tr>';
-				}
-
-				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+				var str_fir = goods_dataTbody(myData_fir);
+				str+='<div class="my_inner"> <hr>'+goods_dataThead(str_fir)+'</div>';;
 
 			}else{
 				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关商品</td><td></td></thead></table> </div>'
@@ -1054,14 +1100,9 @@
 		// 设备
 		function devices_dataTwo(myData_fir,str,dd_main){//二级分类  设备 的数据处理
 			// console.log("二级分类 设备的数据处理")
-			var str_fir = "";	
 			if (myData_fir.length>0) {
-				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
-					str_fir+='<tr> <td>'+myData_fir[i].food_material_name+'</td> <td>设备</td> <td>'+myData_fir[i].food_material_number+'</td> <td>'+myData_fir[i].food_material_unit+'</td> <td>'+myData_fir[i].food_material_inprice+'</td> <td>'+myData_fir[i].food_material_min_inventory+'</td> <td>'+myData_fir[i].food_material_max_inventory+'</td><td>使用年限</td><td>'+myData_fir[i].food_material_servicelift+'</td><td>折旧</td> </tr>';
-				}
-
-				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td><td>库存数量</td><td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>使用年限</td> <td>维保周期</td> <td>折旧</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
-
+				var str_fir =devices_dataTbody(myData_fir);
+				str+='<div class="my_inner"> <hr>'+devices_dataThead(str_fir)+'</div>';
 			}else{
 				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关设备</td><td></td></thead></table> </div>'
 			}
@@ -1070,13 +1111,9 @@
 		// 酒水
 		function drinks_dataTwo(myData_fir,str,dd_main){//二级分类  设备 的数据处理
 			// console.log("二级分类 酒水的数据处理")
-			var str_fir = "";	
 			if (myData_fir.length>0) {
-				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
-					str_fir+='<tr> <td>'+myData_fir[i].wine_info_name+'</td> <td>酒水</td> <td>'+myData_fir[i].wine_info_max_numbers+'</td> <td>'+myData_fir[i].wine_info_unit+'</td> <td>'+myData_fir[i].wine_info_price_low+'</td> <td>'+myData_fir[i].wine_info_min_inventory+'</td> <td>'+myData_fir[i].wine_info_max_inventory+'</td><td>'+myData_fir[i].wine_info_price_high+'</td><td>'+myData_fir[i].wine_info_guarantee+'</td><td>'+myData_fir[i].wine_info_commission_price+'</td> </tr>';
-				}
-
-				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td><td>库存数量</td><td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> <td>售卖提成</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+				var str_fir = drinks_dataTbody(myData_fir); 
+				str+='<div class="my_inner"> <hr>'+drinks_dataThead(str_fir)+'</div>';
 
 			}else{
 				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关酒水</td><td></td></thead></table> </div>'
@@ -1086,13 +1123,9 @@
 		// 其他
 		function others_dataTwo(myData_fir,str,dd_main){//二级分类  设备 的数据处理
 			// console.log(               "二级分类 酒水的数据处理")
-			var str_fir = "";	
 			if (myData_fir.length>0) {
-				for (var i = 0; i < myData_fir.length; i++) {//一级分类下的tbody
-					str_fir+='<tr> <td>'+myData_fir[i].othersgoods_info_name+'</td> <td>其他</td> <td>'+myData_fir[i].othersgoods_info_max_numbers+'</td> <td>'+myData_fir[i].othersgoods_info_unit+'</td> <td>'+myData_fir[i].othersgoods_info_price_low+'</td> <td>'+myData_fir[i].othersgoods_info_min_inventory+'</td> <td>'+myData_fir[i].othersgoods_info_max_inventory+'</td><td>'+myData_fir[i].othersgoods_info_price_high+'</td><td>'+myData_fir[i].othersgoods_info_guarantee+'</td> </tr>';
-				}
-
-				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>名称</td> <td>属性</td> <td>库存数量</td> <td>单位</td> <td>采购单价</td> <td>最低库存</td> <td>最高库存</td> <td>出售单价</td> <td>保质期</td> </tr> </thead> <tbody>'+str_fir+'</tbody> </table> </div>';
+				var str_fir = others_dataTbody(myData_fir);
+				str+='<div class="my_inner"> <hr> '+others_dataThead(str_fir)+'</div>';
 
 			}else{
 				str+='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有相关物品</td><td></td></thead></table> </div>'
@@ -1100,7 +1133,45 @@
 			dd_main.append(str);
 		}
 
+	// 库存信息  搜索    后处理数据函数
+		function stockInfo_dataSelect(data_goods,dd_main1,goods_dataTbody,goods_dataThead){
+			if (data_goods.fir_goods.length>0 || data_goods.sec_goods.length>0) {
+				console.log(data_goods);
+				var str = "";
+				
+				// 遍历二级分类的数据
+				for (var i = 0; i < data_goods.sec_goods.length; i++) {	
+					var two_goods = data_goods.sec_goods[i].goods;
+					var	two_title = data_goods.sec_goods[i].sec_type_name;
+					console.log(two_title);
+					if (two_title == "") {
+						two_title = "";
+					}else{
+						two_title = '-&nbsp;<span>'+two_title+'</span>';
+					}
+					str += std_SelectTable(two_goods,two_title,goods_dataTbody,goods_dataThead);//加载内容
+				}
 
+				// 遍历一级分类的数据
+				for (var i = 0; i < data_goods.fir_goods.length; i++) {
+					var two_title = "";
+					str += std_SelectTable(two_goods,two_title,goods_dataTbody,goods_dataThead);//加载内容
+				}
+				dd_main1.html(str);
+			}else{
+				var str ='<div class="my_inner"> <hr> <table class="myTable  my_innerbox"> <thead> <tr> <td>该分类下没有搜索到相关商品</td><td></td></thead></table> </div>'
+				dd_main1.html(str);
+
+			}
+		}
+		//商品  设备 酒水 其他的表格内容处理
+		function std_SelectTable(two_goods,two_title,goods_dataTbody,goods_dataThead){
+			var str ="";
+			var str_fir = goods_dataTbody(two_goods);
+			str+='<div class="my_innerbox"> <div class="myTable_title"> <div>商品</div> <div>'+two_title +'</div> </div> '+goods_dataThead(str_fir)+'</div></dd>'
+			return str;
+		}
+		
 
 
 
@@ -1113,7 +1184,7 @@
 				add_minus(".stockMain_main"," li dt div:nth-child(1)",add_inStock);// 一级分类点击加减号展开收起
 
 				// 搜索功能
-				$("#inStock_select").bind("input propertychange change",function(){
+				$("#inStock_select").bind("input propertychange",function(){//change 按回车或者外面
 					var $selectVal = $(this).val();
 					console.log($(this).val());
 

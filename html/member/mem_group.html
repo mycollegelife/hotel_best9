@@ -1,4 +1,4 @@
-<!-- 会员等级页面  start-->
+<!-- 会员分组页面  start-->
 <div id="rank_content">
 	<div class="manage_title">
 		<div class="manage_title_item">
@@ -37,9 +37,10 @@
 		</div>
 	</div>
 </div>
-<!-- end 会员等级页面-->
-<!-- 新建等级  start-->
-<div id="rank_model" style="display: none;">
+<!-- end 会员分组页面-->
+
+<!-- 新建分组  start-->
+<div id="rank_model" class=" myDisplay">
 	<div  class="manage_title tem_title ">
 		<div class="manage_title_content">
 			<span>会员分组</span>
@@ -51,28 +52,28 @@
 	<div class="manage_main ">
 		<div class="tm_main">
 			<div class="tem_main group_main">
-			<div><b>分组设置</b></div>
+				<div><b>分组设置</b></div>
 			
-			<div>
-				<label>分组名称</label>
-				<input type="text"  name="name"  class="input input_lg"/>
-			</div>
-			<div>
-				<label>联系人<i class="my_opacity">人</i></label>
-				<input type="text" name="person"  class="input input_lg"/>
-			</div>
-			<div>
-				<label><i class="my_opacity">联系人人</i></label>
-				<span>协议单位分组可填相关联系人</span>
-			</div>
-			<div>
-				<label>联系电话</label>
-				<input type="text" name="telNum"  class="input input_lg"/>
-			</div>
-			<div>
-				<label><i class="my_opacity">联系电话</i></label>
-				<span>联系人的电话</span>
-			</div>
+				<div>
+					<label>分组名称</label>
+					<input type="text"  name="name"  class="input input_lg"/>
+				</div>
+				<div>
+					<label>联系人<i class="my_opacity">人</i></label>
+					<input type="text" name="person"  class="input input_lg"/>
+				</div>
+				<div>
+					<label><i class="my_opacity">联系人人</i></label>
+					<span>协议单位分组可填相关联系人</span>
+				</div>
+				<div>
+					<label>联系电话</label>
+					<input type="text" name="telNum"  class="input input_lg"/>
+				</div>
+				<div>
+					<label><i class="my_opacity">联系电话</i></label>
+					<span>联系人的电话</span>
+				</div>
 			</div>
 		</div>
 		<hr class="tem_line" />
@@ -81,9 +82,52 @@
 			<button id="return" class="button">返回</button>
 		</div>
 	</div>
+</div>
 
 
+<!-- 编辑分组 start-->
+<div id="rank_model_edit" class=" myDisplay">
+	<div  class="manage_title tem_title ">
+		<div class="manage_title_content">
+			<span>会员分组</span>
+			<div class="title_name">编辑分组</div>
+		</div>
+	</div>
 
+
+	<div class="manage_main ">
+		<div class="tm_main">
+			<div class="tem_main group_main">
+				<!-- <div><b>分组设置</b></div>
+			
+				<div>
+					<label>分组名称</label>
+					<input type="text"  name="name"  class="input input_lg"/>
+				</div>
+				<div>
+					<label>联系人<i class="my_opacity">人</i></label>
+					<input type="text" name="person"  class="input input_lg"/>
+				</div>
+				<div>
+					<label><i class="my_opacity">联系人人</i></label>
+					<span>协议单位分组可填相关联系人</span>
+				</div>
+				<div>
+					<label>联系电话</label>
+					<input type="text" name="telNum"  class="input input_lg"/>
+				</div>
+				<div>
+					<label><i class="my_opacity">联系电话</i></label>
+					<span>联系人的电话</span>
+				</div> -->
+			</div>
+		</div>
+		<hr class="tem_line" />
+		<div class="tem_btn">
+			<button id="add" class="button">确认添加</button>
+			<button id="return" class="button">返回</button>
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
 

@@ -48,7 +48,7 @@
 </div>
 <!-- end 会员等级页面-->
 <!-- 新建等级  start-->
-<div id="rank_model" style="display: none;">
+<div id="rank_model" class="myDisplay">
 	<div  class="manage_title tem_title ">
 		<div class="manage_title_content">
 			<span>会员等级</span>
@@ -78,6 +78,89 @@
 					</select>
 					<img src="../imgs/manage/select_logo.svg" alt="">
 					
+				</div>
+				<div>
+					<label><i class="my_opacity">等级名称</i></label>
+					<span>数字越大,等级越高</span>
+				</div>
+				<div>
+					<label>等级名称</label>
+					<input type="text" name="name" class="input input_lg"/>
+				</div>
+				<div>
+					<label>升级条件</label>
+					<input type="text" name="lower" class="input input_lg" />
+				</div>
+				<div>
+					<label><i class="my_opacity">等级条件</i></label>
+					<span>会员升级条件，不填写默认为不自动升级</span>
+				</div>
+				<div>
+					<label>折扣<i class="my_opacity">单位</i></label>
+					<input type="text" name="discount" class="input input_lg" />
+				</div>
+				<div>
+					<label><i class="my_opacity">折扣折扣</i></label>
+					<span>请设置0.1-10之间的数字，值为空代表不设置折扣</span>
+				</div>
+				<div>
+					<label>积分规则</label>
+					<p>每消费</p>
+					<input type="text" name="unit1" class="input input_lg" />
+					<p>得</p>
+					<input type="text" name="unit2" class="input input_lg" />
+					<p>积分</p>
+				</div>
+				<div>
+					<label>信用额度</label>
+					<input type="text" name="credit" class="input input_lg" />
+					<p>元</p>
+				</div>
+				<div>
+					<label>结算周期</label>
+					<input type="text" name="settle" class="input input_lg" />
+					<p>天</p>
+				</div>
+			</div>
+		</div>
+		<hr class="tem_line" />
+		<div class="tem_btn">
+			<button id="add" class="button">确认添加</button>
+			<button id="return" class="button">返回</button>
+		</div>
+	</div>
+</div>
+
+<!-- 会员等级的编辑 -->
+<div id="rank_model_edit" class="myDisplay">
+	<div  class="manage_title tem_title ">
+		<div class="manage_title_content">
+			<span>会员等级</span>
+			<div class="title_name">编辑等级</div>
+		</div>
+	</div>
+
+	<div class="manage_main ">
+		<div class="tm_main">
+			<div class="tem_main rank_main"><!-- 
+				<div><b>等级设置</b></div>
+				<div>
+					<label>等级<i class="my_opacity">单位</i></label>
+					<select class="select select_lg " name="real">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					</select>
+					<img src="../imgs/manage/select_logo.svg" alt="">
 				</div>
 				<div>
 					<label><i class="my_opacity">等级名称</i></label>
@@ -120,7 +203,7 @@
 					<label>结算周期</label>
 					<input type="text" name="settle" class="input input_lg" />
 					<p>天</p>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<hr class="tem_line" />
@@ -130,6 +213,8 @@
 		</div>
 	</div>
 </div>
+
+
 <script type="text/javascript">
 
 </script>

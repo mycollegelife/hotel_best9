@@ -1274,6 +1274,13 @@
 					<div>
 						<label>所属分类</label>
 						<select class="select select_lg">
+							<option>商品</option>
+							<option>设备</option>
+							<option>酒水</option>
+							<option>其他</option>
+						</select>
+						<img src="../imgs/select_logo.svg" alt="">
+						<select class="select select_lg">
 							<option>易耗食材</option>
 							<option>提味</option>
 							<option>膨化</option>
@@ -1290,16 +1297,28 @@
 						</select>
 						<img src="../imgs/select_logo.svg" alt="">
 					</div>
-					<div>
+					<div style="padding-bottom: 0.1rem;">
 						<label>图片<i class="my_opacity">图片</i></label>
-						<input type="file" class="input"/>
-						<img v-bind:src="demand.image" />  
+						<button id="wholeImg" class="button btn_img">选择图片</button>
+						
+						<input type="file" name="whole" id="whole" style="display: none;" capture="camera" onchange="previewImg(this)" />
+					</div>
+					<div>
+						<label><i class="my_opacity">图片图片</i></label>
+						<section class="img_contain">
+							<img id="img" class="ic_img" alt="" src="">
+							<i id="remove" class="remove">+</i> 
+						</section>
+
 					</div>
 					<div>
 						<label>采购价<i class="my_opacity">价</i></label>
 						<input type="text" name="name" class="input input_lg" value="3元/KG" />
 					</div>
 			</div>
+
+
+
 			<div class="tem_main">
 					<div><b>库存信息</b></div>
 					<div>
@@ -1359,3 +1378,66 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+      // $("#btn").click(function(){
+      //    var file = document.getElementById("file");
+      //    console.log(file.files);
+
+      //    var form = new FormData();
+      //    form.append("fileImg",file.files);
+
+      //    $.ajax({
+      //          url: "传输的地址",
+      //          data: form,
+      //          contentType: false, // 注意这里应设为false
+      //          processData: false,    //false
+      //          cache: false,    //缓存
+      //          success: function(data){
+      //              console.log(data);      
+      //          }
+      //    })
+
+      // })
+
+
+    $("#wholeImg").click(function(){
+        $("#whole").click();
+
+    })
+
+    
+    function previewImg(file){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        var preDiv = document.getElementById("wholeImg");
+        
+        //获取图片
+        
+       
+
+        if (file.files && file.files[0]){
+            var reader = new FileReader(); 
+            reader.onload = function(e){  
+            	var img = document.getElementById("img");
+                img.setAttribute("src",e.target.result);
+                
+            }
+            reader.readAsDataURL(file.files[0]);
+        }
+        $("#remove").css("display","inline-block");
+    }
+
+
+    $("#remove").click(function(){
+    	$(this).css("display","none");
+    	img.setAttribute("src","");
+    })
+
+
+</script>
