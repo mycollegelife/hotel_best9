@@ -398,32 +398,4 @@
 		padding-bottom : 0.1rem;
 	}
 
-/*物品管理 添加物品的专有样式*/
-	.addGoodsMo_main{
-		box-sizing: border-box;
-		padding: 0.3rem 1.68rem 0rem 1.68rem; 
-	}
-	.addGoodsMo_main .select{
-		background-color: #D9D9D9;
-	}
-
-	.addGoodsMo_main .tem_main:nth-child(1) div:nth-child(3) .select{
-		width: 1.3rem;
-	}
-	.addGoodsMo_main .tem_main:nth-child(1) div:nth-child(3) .select:nth-child(4){
-		margin-left: -0.04rem;
-	}
-	.addGoodsMo_main .tem_main:nth-child(3) div:nth-child(2) .input{
-		width: 2.6rem;
-		margin-right: 0px;
-	}
-	.addGoodsMo_main .tem_main:nth-child(3) .input{
-		width: 1.1rem;
-		margin-right: 0.1rem;
-		display: inline-block;
-	}
-	.addGoodsMo_main .tem_main:nth-child(3) .select{
-		width: 1.4rem;
-		display: inline-block;
-	}
 
