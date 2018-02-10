@@ -52,7 +52,8 @@
 				if(data.info[i].user_info_flag == 1){
 					status="checked";
 				}
-				str+='<tr><td>'+(i+1)+'</td><td>'+myData[i].user_info_phone+
+				str+='<tr><td><input type="checkbox" name=""></td><td>'+(i+1)+
+				'</td><td>'+myData[i].user_info_phone+
 				'</td><td>'+myData[i].member_group_name+
 				'</td><td class="myDisplay">'+myData[i].user_info_token+
 				'</td><td>'+myData[i].user_info_level+
@@ -96,6 +97,7 @@
 				'</td><td class="myDisplay">'+myData[i].member_group_token+
 				'</td><td>'+myData[i].member_group_num+
 				'</td><td>'+myData[i].member_group_master+
+				'</td><td>'+myData[i].member_group_phone+
 				'</td><td><img class="svg_style edit" src="../imgs/manage/change.svg" alt=""><img class="svg_style delete" src="../imgs/manage/delect.svg" alt=""></td></tr>';
 			};
 			$(".mem_main tbody").html(str);
@@ -251,54 +253,55 @@
 
 				quick_add()//消息群发的展开收起
 
-				// $.ajax({
-				// 	url:"/snug/queryMembers",
-				// 	success:function(data){
-				//     	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
-				// 	},
-				// 	error:function(){
-				// 	    console.log("获取失败！")
-				// 	}
-				// });
+				$.ajax({
+					url:"/snug/queryMembers", 
+					success:function(data){
+						console.log(1)
+				    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
+					},
+					error:function(){
+					    console.log("获取失败！")
+					}
+				});
 
-				//搜索会员
-				// $("#mem_select").bind("input propertychange change",function(event){
-				// 	// console.log($("#mem_select").val());
+				// 搜索会员
+				$("#mem_select").bind("input propertychange change",function(event){
+					// console.log($("#mem_select").val());
 					
-				// 	var $selectVal = $("#mem_select").val();
+					var $selectVal = $("#mem_select").val();
 
-				// 	if ($selectVal == "") {
-				// 		$.ajax({
-				// 			url:"/snug/queryMembers",
-				// 			success:function(data){
-				// 		    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
-				// 			},
-				// 			error:function(){
-				// 			    console.log("获取失败！")
-				// 			}
-				// 		});
-				// 	} else {
-				// 		$.ajax({
-				// 			url:"/snug/queryFuzzyMembers",
-				// 			data:{
-				// 				search_condition:$selectVal,
-				// 			},
-				// 			success:function(data){
-				// 				List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
-				// 			},
-				// 			error:function(){
+					if ($selectVal == "") {
+						$.ajax({
+							url:"/snug/queryMembers",
+							success:function(data){
+						    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
+							},
+							error:function(){
+							    console.log("获取失败！")
+							}
+						});
+					} else {
+						$.ajax({
+							url:"/snug/queryFuzzyMembers",
+							data:{
+								search_condition:$selectVal,
+							},
+							success:function(data){
+								List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
+							},
+							error:function(){
 
-				// 				console.log("搜索失败！")
-				// 			}
-				// 		});
+								console.log("搜索失败！")
+							}
+						});
 
-				// 	}
+					}
 
 
 
 					
 
-				// });
+				});
 			})
 		};//添加内容
 		loadMemList();//点击会员时自动加载会员列表

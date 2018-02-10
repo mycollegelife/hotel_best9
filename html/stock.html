@@ -213,9 +213,11 @@
 		}
 		.om_con .myTable tr td{
 			padding: 0.1rem 0rem ;
-			text-align: center !important;
+			text-align: center ;
 		}
-
+		.om_con .myTable tr td:first-child{
+			width: 1.5rem;
+		}
 		.om_con .myTable thead tr{
 			/*background-color: #F2F2F2;*/
 		}
@@ -224,16 +226,11 @@
 		}
 		.om_con .myTable tbody tr td:last-child{
 			width: 3.4rem;
-			text-align: right !important;
 		}
 		.om_con .myTable tbody tr td:last-child button{
-			margin-right: 0.3rem;
-			
+			margin-left: 0.15rem;
+			margin-right: 0.15rem;
 		}
-
-
-
-
 </style>
 <script type="text/javascript">
 	$(window).resize(function ()
@@ -580,6 +577,26 @@
 			return str;
 		}
 
+	// 库存信息 在搜索时对内容的 样式 设置
+		function setStockCon(stock_main){
+			stock_main.find("li dd").html("");
+			var stockM_li = stock_main.find("li");
+			for (var i = 0; i < stockM_li.length; i++) {//清空减号
+				var stock_add = stockM_li.eq(i).find("dt div:first-child");
+				if (stock_add.hasClass("img_minus")) {
+					stock_add.removeClass("img_minus");
+					stock_add.addClass("img_add");
+					stock_add.children("img").attr("src","../imgs/add.svg");
+				}
+			}
+			var stock_add0 = stockM_li.eq(0).find("dt div:first-child");
+			if (stock_add0.hasClass("img_add")) {//设置第一个为减号
+				stock_add0.removeClass("img_add");
+				stock_add0.addClass("img_minus");
+				stock_add0.children("img").attr("src","../imgs/minus.svg");
+				stockM_li.eq(0).find("dd").css("display","block");
+			}
+		}
 
 	//库存默认加载函数
 	function stockLoad(){
@@ -593,7 +610,7 @@
 			
 			var first_token = "";
 			var type_token = "";
-			var dd_main = $(".stock_main li:first-child dd");
+			var dd_main = $(".stockInfo_main li:first-child dd");
 			var twoClass_con = goods_dataTwo;//商品一级分类内容
 			var myUrl = "/snug/queryGoodsMes";
 
@@ -606,16 +623,20 @@
 				var $selectVal = $("#stockInfo_select").val();
 				console.log($("#stockInfo_select").val());
 
+				var stock_main = $(".stock_main");
+				
 				if ($selectVal == "") {
-					$(".stockInfo_main").removeClass("myDisplay");
-					$(".history_model").addClass("myDisplay");
+					stock_main.removeClass("history_model");
+					stock_main.find("li dd").removeClass("my_inner")
 					
-					// oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
+					setStockCon(stock_main);//设置内容的样式
+
+					oneClass_ajax(goods_dataTwo,"","",$(".stockInfo_main li:first-child dd"),"/snug/queryGoodsMes");//通过ajax加载一级分类下的内容
 				} else {
-					$(".stockInfo_main").addClass("myDisplay");
-					$(".history_model").removeClass("myDisplay");
-					var dd_main = $(".history_model li dd");
-					dd_main.html("");
+					stock_main.addClass("history_model");
+					stock_main.find("li dd").addClass("my_inner")
+					
+					setStockCon(stock_main);//设置内容的样式
 				
 					$.ajax({
 						url:"/snug/queryAllGoodsMes",
@@ -790,197 +811,69 @@
 		$("#enter_storage").click(function(){
 			$("#member_content").load("stock/enterStorage.html",function(){
 				setConHeight();//设置右下内容模板高度
-				tab_status_fun("")// 全部的入库信息加载
-				tab_status();// 顶部 点击切换  审核状态
-				add_minus(".stockMain_main"," li dt div:nth-child(1)",add_inStock);// 一级分类点击加减号展开收起
+				
+			// 设置右下角内容区 my_inner 的高度
+				var good_mo_hei = $(".manage_main").height();
+				var ratio = window.innerWidth *100/1920;//计算比例
+				var tem_hei = good_mo_hei - 0.9*ratio;
+				$(".my_inner").css("height",tem_hei+"px");//设置miy_inner的高度			
+				
+				var tabHei = $(".my_innerbox").height();
+				var divHei = $(".my_inner").height();
+				
+				if (tabHei > divHei) {
+					$(".my_inner").css("overflow-y","auto");
+					fix_thead(".my_inner")
+				}
 
-				// 搜索功能
-				$("#inStock_select").bind("input propertychange",function(){//change 按回车或者外面
-					var $selectVal = $(this).val();
-					console.log($(this).val());
+			// 时间选择器
+				$("#time_select").flatpickr({
+					mode: "range",
+					maxDate: "today",
+					dateFormat: "Y-m-d",
+					defaultDate: ["today", "today"],
+				});
 
-					if ($selectVal == "") {
-						$(".stock_main").children(" li:first-child").removeClass("myDisplay");
-						tab_status_fun("")// 全部的入库信息加载
-					}else {
-						$(".stock_main").children(" li:first-child").addClass("myDisplay");
-						$.ajax({
-							url:"/snug/queryLikeNameAndTime",
-							data:{key_word:"3"},
-							success:function(data){
-								var data = JSON.parse(data);
-								var data_header = data.info;
-								console.log(data)
+			// 获取数据
+				// time = "2018-02-09 00:00:00,2018-02-09 23:59:59";
+				outStock_data("","","1","4");
+			
 
-								header_con(data_header);// header 条内容加载处理
-							}
-						})
-					}
+			// 通过名称搜索
+				$("#outStock_select").bind("input propertychange",function(){
+					var name = $(this).val()
+					var status = outStock_status($(".om_title li"));//判断 出库的状态
+					var time = outStock_time($("#time_select"));// 获取时间
+
+					outStock_data(name,time,"1",status);
+				})
+
+			// 通过时间搜索
+				$("#time_select").bind("input propertychange",function(){
+					
+					var name = $("#outStock_select").val();
+					var status = outStock_status($(".om_title li"));//判断 出库的状态
+					var time = outStock_time($(this));// 获取时间
+					console.log(time);
+					
+					outStock_data(name,time,"1",status);
+				})
+
+			// 通过状态搜索
+				$(".om_title li").click(function(){
+					$(this).addClass("hover");
+					$(this).siblings().removeClass("hover");
+					
+					var name = $("#outStock_select").val();
+					var time = outStock_time($("#time_select"));
+					var status = outStock_status($(this));
+					
+					// console.log(name+time+status)
+					outStock_data(name,time,"1",status);
 				})
 
 			})
 		})
-
-		// 头部导航的点击
-		function tab_status(){
-			var hm_btn = $(".history_model li:nth-child(1) dt button");
-			hm_btn.click(function(){
-				$(this).siblings().removeClass("hover");
-				$(this).addClass("hover");
-				
-				var statusFlag;
-				if ($(this).html() == "全部") {
-					statusFlag = "";
-				} else if($(this).html() == "待审核"){
-					statusFlag = "3";
-				}else if($(this).html() == "已入库"){
-					statusFlag = "4";
-				}else if($(this).html() == "不属实"){
-					statusFlag = "5";
-				}
-
-				tab_status_fun(statusFlag)//头部导航的点击 ajax 加载内容
-
-			})
-
-		}
-		// 头部导航的点击 ajax 函数的封装
-		function tab_status_fun(statusFlag){
-			$.ajax({
-				url:"/snug/queryInGoodsMes",
-				data:{status_flag:statusFlag},
-				success:function(data){
-					var data = JSON.parse(data);
-					var data_header = data.header;
-					var data_goods = data.goods;
-					// console.log(data);
-
-					var str_firReturn = add_inStockCon(data_goods);//li 的内容
-					header_con(data_header);// header 条内容加载处理
-					
-					// stockMain_main 第一个li显示 处理
-					if (data_header.length > 0) {
-						//第一个li显示
-							var stock_inner = $(".stockMain_main").children("li:first-child").find(".my_inner");
-							var strFirReturn = '<div class="my_innerbox">'+str_firReturn+'</div>';
-							stock_inner.html(strFirReturn);
-
-							setInnerHeight(stock_inner,unfix_thead);
-
-						// 设置第一个 li 的加减号
-							var li_add=$(".stockMain_main").find("li:first-child dt div:first-child");
-							li_add.removeClass("img_add");
-							li_add.addClass("img_minus");
-							li_add.children("img").attr("src","../imgs/minus.svg");
-					}
-				}
-			})
-		}
-
-		// 显示 header 条内容加载处理
-			function header_con(data_header){
-				var str ="";//li里面的数据
-				var  flag,flagClass,time,times,btn;
-				if (data_header.length > 0) {
-					for (var i = 0; i < data_header.length; i++) {
-						if (data_header[i].examine_info_flag == "5") {
-							flag = "不属实";
-							flagClass ="tag_red";
-							btn = '<button class="button">打印清单</button><button class="button btn_red">重申入库</button>'
-						}else if(data_header[i].examine_info_flag == "4"){
-							flag = "已入库";
-							flagClass ="tag_green";
-							btn = '<button class="button">打印清单</button><button class="button btn_red">反入库</button>'
-						}else if(data_header[i].examine_info_flag == "3"){
-							flag = "待审核";
-							flagClass ="tag_blue";
-							btn = '<button class="button">打印清单</button> <button class="button btn">不属实</button> <button class="button">审核入库</button>';
-						}
-
-					//------ ---------------传过来的时间类型不一样------------
-						times = data_header[i].examine_info_times.toString();
-						time = times.substring(0,10);
-						
-
-						str += '<li> <dt class="one_title"> <div class="img_add"> <img src="../imgs/add.svg" alt=""> <span class="myDisplay">'+data_header[i].attence_info_token+'</span></div> <div> <span>'+data_header[i].attence_info_series+'</span> <span>'+data_header[i].department_id+'</span> <span>'+time+'</span> </div> <div> <a class="tag '+flagClass+'">'+flag+'</a> </div> <div>'+btn+'</div> </dt> <dd class="my_inner"></dd> </li>'
-					}
-					$(".stockMain_main").html(str);
-				}
-			}
-		
-		//点击加号    li下 my_inner的内容加载处理
-			function add_inStockCon(data_goods){
-				var one_titleName;
-				var str_fir="";//整个二级分类数据
-				var str_firReturn="";//整个二级分类数据(函数返回值)
-				var str_two="";//二级分类的内容
-				var str_firCon="";//一级分类的内容
-				var str_firTitle="";//一级分类的标题
-				var tab_con;//不同分类下的内容
-
-				if (data_goods.length>0) {
-					for (var i = 0; i < data_goods.length; i++) {
-						if (data_goods[i].type_fir == "1") {
-							one_titleName = "商品";
-							tab_con = goods_tabCon;
-						}else if (data_goods[i].type_fir == "2") {
-							one_titleName = "设备";
-							tab_con = devices_tabCon;
-						}else if (data_goods[i].type_fir == "3") {
-							one_titleName = "酒水";
-							tab_con = drinks_tabCon;
-						}else if (data_goods[i].type_fir == "4") {
-							one_titleName = "其他";
-							tab_con = others_tabCon;
-						}
-
-						// 二级分类
-						var myType= data_goods[i].type_sec;
-						if ( myType.length>0) {//有二级分类的内容
-							for (var j = 0; j < myType.length; j++) {
-								var two_titleName = '-&nbsp;<span>'+myType[j].type_sec_name+'</span>';
-								
-								var myGoods = data_goods[i].type_sec[j].goods;
-								if (myGoods.length>0) {//二级分类下的内容
-									str_firReturn += tab_con(one_titleName,two_titleName,myGoods,str_two,str_fir)//加载二级分类下的内容
-								}
-							}
-						}
-
-						// 一级分类
-						var myFirst = data_goods[i].type_fir_goods;
-						if (myFirst.length>0) {//有一级分类的内容
-							var two_titleName = "";
-							str_firReturn += tab_con(one_titleName,two_titleName,myFirst,str_two,str_fir)//加载分类下的内容
-						}
-					}
-				}
-				return str_firReturn;
-			}
-
-		 	// 商品下 一级分类 和 二级分类  的表格内容数据处理
-		 	function goods_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){
-		 		var price_two = "";//二级分类下的采购合计
-		 		var price_one = 0;//二级分类下的小计
-		 		for (var n = 0; n < myGoods.length; n++) {
-		 		
-
-		 			price_two = myGoods[n].food_material_inprice * myGoods[n].food_material_number;//采购合计计算
-		 			
-		 			str_two += '<tr> <td>'+myGoods[n].food_material_name+'</td> <td>'+one_titleName+'</td> <td>'+myGoods[n].food_material_number+'</td> <td>'+myGoods[n].food_material_unit+'</td> <td>'+myGoods[n].food_material_inprice+'</td><td>'+myGoods[n].food_material_min_inventory+'</td><td>'+myGoods[n].food_material_max_inventory+'</td><td>'+price_two+'</td> <td>'+myGoods[n].food_material_guarantee+'</td> </tr>'
-		 			
-		 			price_one =  price_one+parseInt(price_two);//小计
-		 		}
-
-		 		str_fir+='<div class="myTable_title"> <div>'+one_titleName+'</div><div>'+two_titleName+'</div> <div>小计：<span>'+price_one+'</span>元</div> </div> <table class="myTable"> <thead> <tr> <td>名称</td> <td>属性</td> <td>采购数量</td> <td>单位</td> <td>采购单价</td><td>最低库存</td><td>最高库存</td><td>采购合计</td> <td>保质期</td> </tr> </thead> <tbody>'+str_two+'</tbody> </table>';
-		 		
-		 		return str_fir;
-		 	}
-
-		 	// 设备下 一级分类 和 二级分类  的表格内容数据处理   没有写
-				function devices_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){}
-				function drinks_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){}
-				function others_tabCon(one_titleName,two_titleName,myGoods,str_two,str_fir){}
 		
 
 	// 点击 出库管理
@@ -1010,32 +903,146 @@
 					defaultDate: ["today", "today"],
 				});
 
-
-
 			// 获取数据
-				var my_key_name = $("#outStock_select").val();
-				var $key_time = $("#time_select").val()+"";
-				var $key_time1 = $key_time.substring(0,10);
-				var $key_time2 = $key_time.substring(14,24);
-				my_key_time = $key_time1 +","+$key_time2
+				// time = "2018-02-09 00:00:00,2018-02-09 23:59:59";
+				outStock_data("","","1","4");
+			
 
-				$.ajax({
-					url:"/snug/queryByTimeAndName",
-					data:{
-						key_name:my_key_name,
-						key_time:my_key_time,
-						manage_type:"1",
-						status_type:"4"
-					},
-					success:function(data){
-						var data =JSON.parse(data);
-						console.log(data);
-					}
+			// 通过名称搜索
+				$("#outStock_select").bind("input propertychange",function(){
+					var name = $(this).val()
+					var status = outStock_status($(".om_title li"));//判断 出库的状态
+					var time = outStock_time($("#time_select"));// 获取时间
+
+					outStock_data(name,time,"1",status);
+				})
+
+			// 通过时间搜索
+				$("#time_select").bind("input propertychange",function(){
+					
+					var name = $("#outStock_select").val();
+					var status = outStock_status($(".om_title li"));//判断 出库的状态
+					var time = outStock_time($(this));// 获取时间
+					console.log(time);
+					
+					outStock_data(name,time,"1",status);
+				})
+
+			// 通过状态搜索
+				$(".om_title li").click(function(){
+					$(this).addClass("hover");
+					$(this).siblings().removeClass("hover");
+					
+					var name = $("#outStock_select").val();
+					var time = outStock_time($("#time_select"));
+					var status = outStock_status($(this));
+					
+					// console.log(name+time+status)
+					outStock_data(name,time,"1",status);
 				})
 
 			})
 		})
+// 出库管理 搜索的数据处理	
+	function outStock_data(name,time,type,status){
+		$.ajax({
+			url:"/snug/queryByTimeAndName",
+			data:{
+				key_name:name,
+				key_time:time,
+				manage_type:type,
+				status_type:status
+			},
+			success:function(data){
+				var data =JSON.parse(data);
+				console.log(data);
+				if (data.status == 1) {
+					var myData = data.info;
+					if (myData.length>0) {
+						var btn= "";
+						var str="";
+						for (var i = 0; i < myData.length; i++) {//tbody塞内容
+							var thisStatus = myData[i].food_material_out_flag;
+							if (thisStatus == "4") {// 判断 button按钮
+								btn = ' <button class="button">通过</button> <button class="button">不通过</button>';
+							}else if(thisStatus == "5"){
+								btn = ' <button class="button btn_red">反通过</button>'
+							}else if(thisStatus == "6"){
+								btn = ' <button class="button btn_red">重申入库</button>'
+							}
+							str+='<tr> <td>'+myData[i].food_material_out_name+'</td> <td> <span>'+myData[i].food_material_out_type+'</span></td> <td>'+myData[i].food_material_out_to_department+'</td> <td>'+myData[i].food_material_out_quantity+'</td> <td>'+myData[i].food_material_out_time+'</td> <td>'+btn+'</td> </tr>'
+						}
+						$(".om_con tbody").html(str);
 
+						if (status == "") {//全部时  添加td
+							var theadOperate =  $(".om_con thead td:last-child");
+							var tbodyOperate =  $(".om_con tbody tr");
+
+							if (! $(".om_con thead td").hasClass("theadOperate")) {
+								theadOperate.before("<td class='theadOperate'>状态</td>");
+							}
+							var tag,tag_color;
+							for (var i = 0; i < myData.length; i++) {
+								var thisStatus = myData[i].food_material_out_flag;
+								if (thisStatus == "4") {// 判断 状态
+									tag= "待审核";
+									tag_color = "tag_blue";
+								}else if(thisStatus == "5"){
+									tag= "已通过";
+									tag_color = "tag_green";
+								}else if(thisStatus == "6"){
+									tag= "不通过";
+									tag_color = "tag_red";
+								}
+
+								tbodyOperate.eq(i).find("td:last-child").before('<td><a class="tag '+tag_color+'">'+tag+'</a></td>');
+							}
+						}else{
+							if ($(".om_con thead td").hasClass("theadOperate")) {
+								$(".theadOperate").remove();
+							}
+						}
+					}else{
+						console.log("改情况下没有数据")
+					}
+				}else{
+					console.log("返回状态为2！info为空")
+					$(".om_con tbody").html("");
+				}
+			}
+		})
+	}
+	//获取出库的状态 
+		function outStock_status(statusEv){
+			var status = "";
+			for (var i = 0; i < statusEv.length; i++) {
+				if (statusEv.eq(i).hasClass("hover")) {
+					var statusVal = statusEv.eq(i).html();
+					if (statusVal == "待审核") {
+						status = "4";
+					}else if(statusVal == "通过"){
+						status = "5";
+					}else if(statusVal == "不通过"){
+						status = "6";
+					}else if(statusVal == "全部"){
+						status = "";
+					}
+				}
+			}
+			return status;
+		}
+	//获取搜索的时间范围
+		function outStock_time(ev){
+			var $key_time = ev.val();
+			var $key_time1 = $key_time.substring(0,10);
+			var $key_time2 = $key_time.substring(14,24);
+			
+			var time ="";
+			if ($key_time1 !=="" && $key_time2 !=="") {
+				time= $key_time1 +" 00:00:00,"+$key_time2+" 23:59:59";
+			}
+			return time;
+		}
 		
 </script>
 </body>
