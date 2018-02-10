@@ -13,11 +13,11 @@
 	<script src="../js/index.js"></script>
 	<script src="../js/memberStockTop.js"></script>
 	<style>
-
 		
 		.manage_main{
  			background-color: rgba(242,242,242,.95);
  		}
+
 	/*会员设置的表格*/
 		.mem_table{
 			width: 100%;
@@ -30,17 +30,14 @@
 		.mem_table tbody tr{
 			border-bottom: 1px solid #CCCCCC;
 			padding-right: 0.3rem;
-
 		}
+
+		
 		.mem_table td{
 			height: 0.4rem;
 			text-align: center;
 			box-sizing: border-box;
 			line-height: 0.4rem;
-			
-		}
-		.mem_table td:last-child{
-			padding: 0.05rem 0rem 0.05rem 0rem;
 		}
 		.mem_table img{
 			margin: 0px;
@@ -48,20 +45,127 @@
 			margin-bottom: -0.1rem;
 			display: inline;
 		}
-	/*会员分组表格的  单独样式*/
-		.memGroup_table td:nth-child(1){
-			width: 20%;
-			padding-left: 0.1rem;
-			text-align: left;
+		.mem_table thead tr img{
+			width: 0.14rem;
+			height: 0.2rem;
+			display: inline-block;
+			margin-left: 0px;
+			margin-bottom: -0.04rem;
+
 		}
-		.memGroup_table td:nth-child(2){
-			width: 20%;
+	/*会员列表表格的  单独样式*/
+		.ml_table td:first-child{
+			width: 0.4rem;
+			text-align: right;
+		}
+		.ml_table td:nth-child(2){
+			width: 0.4rem;
+		}
+		.ml_table td:last-child,.mr_table td:last-child,.mg_table td:last-child{
+			width: 1.7rem;
+			padding: 0.05rem 0rem 0.05rem 0rem;
+		}
+
+	/*会员分组表格的  单独样式*/
+		.mg_table td:first-child{
+			width: 2rem;
 		}
 		
-		.memGroup_table td:last-child{
-			width: 20%;
-			padding-right: 0.3rem;
-			text-align: right;
+	/*挂账账单表格的  单独样式*/
+	.mb_table td:nth-child(4){
+		width: 2.5rem;
+	}
+	.mb_table td:nth-child(4) span,.mb_table tbody td:last-child span{
+		color: #FF761A;
+		cursor: pointer;
+	}
+
+
+	/*消息群发的样式 申购清单(已删除 样式沿用)快速添加样式*/
+		.manage_main{
+			overflow:hidden;
+		}
+		.apliPurchase{
+			position: relative;
+		}
+		.center_hei{
+			overflow-y: auto;
+		}
+		.apliPurchase_bottom{
+			width: 16.7rem;
+			background-color: #fff;
+			box-shadow: 0px -3px 4px rgba(0,0,0,.2);
+			border-top: 1px solid rgba(0,0,0,.2);
+			position: absolute;
+			bottom: 0px;
+		}
+		.apb_spread{
+			height: 2.3rem;
+			position: relative;
+		}
+		.apbs_title{
+			height: 0.4rem;
+			margin-top: 0.1rem;
+			position: relative;
+		}
+		.apbs_center{
+			margin-top: 0.05rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.apbs_center  li{
+			display: block;
+			font-size: 0rem;
+		}
+		.apbs_center li label{
+			display: inline-block;
+			font-size: 0.2rem;
+			margin-right: 0.1rem;
+		}
+		.apbs_center li textarea{
+			width: 5rem;
+			height: 0.8rem;
+			font-size: 0.16rem;
+			box-sizing: border-box;
+			padding: 0.08rem;
+			margin-right: 0.8rem;
+			background-color: #F2F2F2;
+			border:none;
+			resize: none;
+		}
+
+		.apbs_bottom{
+			position: absolute;
+			top: 1.62rem;
+			left: 6.15rem;
+			font-size: 0px;
+
+		}
+		.apbs_bottom button{
+			font-size: 0.18rem;
+		}
+		.apbs_bottom button:nth-child(1){
+			margin-right: 2rem;
+		}
+		.apb_gather{
+			display: none;
+			height: 0.4rem;
+			position: relative;
+		}
+		.apb_gather div,.apbs_title div{
+			font-size: 0.16rem;
+			color: #FF761A;
+			padding-top: 0.1rem;
+			padding-left: 0.2rem; 
+		}
+		.apb_gather img,.apbs_title img{
+			width: 0.32rem;
+			height: 0.18rem;
+			display: block;
+			position: absolute;
+			right: 0.3rem;
+			top: 0.1rem;
 		}
 		
 	</style>
@@ -106,7 +210,7 @@
 			<li class="dropdown drop">
 	          	<img src="../imgs/manage/member_logo.svg" alt=""  class="ul_logo" >
 				<span>会员管理</span>
-	          	<img src="../imgs/manage/arrow-right.svg" alt="" class="triangle">
+	          	<img src="../imgs/manage/arrow_right.svg" alt="" class="triangle">
 				<dl class="dropdown_menu">
 					<dt class="hover">
 						<span>|</span>
@@ -118,22 +222,9 @@
 					<dt>
 						<a href="javacript:;" id="mem_group">会员分组</a>
 					</dt>
-				</dl>
-			</li>
-			<li class="dropdown" >
-			   	<img src="../imgs/manage/agreenment_logo.svg" alt="" class="ul_logo">
-				<span>协议单位</span>
-			   	<img src="../imgs/manage/arrow_bottom.svg" alt="" class="triangle">
-				<dl class="dropdown_menu" >
-					<dt><a href="javacript:;" id="inventory_info">库存信息</a></dt>
-				</dl>
-			</li>
-			<li class="dropdown" >
-			   	<img src="../imgs/manage/info_logo.svg" alt="" class="ul_logo">
-				<span>消息群发</span>
-			   	<img src="../imgs/manage/arrow_bottom.svg" alt="" class="triangle">
-				<dl class="dropdown_menu" >
-					<dt><a href="javacript:;" id="scrap_center">报损中心</a></dt>
+					<dt>
+						<a href="javacript:;" id="mem_bill">挂账账单</a>
+					</dt>
 				</dl>
 			</li>
 		</ul>

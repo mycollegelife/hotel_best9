@@ -7,7 +7,6 @@
 			var ratio = window.innerWidth *100/1920;//计算比例
 			// 滚动固定表格的头  $(this) == my_inner
 			$(target).scroll(function () {
-				
 				if ($(this).scrollTop()>0.3*ratio) {
 					var scrollH = $(this).scrollTop() -0.3*ratio;
 					$(this).find("thead").css({
@@ -21,6 +20,30 @@
 			});
 		}
 	
+	// 会员列表的高度
+		function setConHeight1() {
+			var mem_height=$(".manage_main").height();
+			var mem_bottomH = $(".apliPurchase_bottom").outerHeight(true);
+			var mm_height=parseInt(mem_height)-parseInt(mem_bottomH);
+			$(".center_hei").css("height", mm_height);
+		}
+
+	//消息群发展开  收起状态
+		function quick_add(){
+			$("#apbs_toDown").click(function(){
+				$(".apb_spread").css("display","none");
+				$(".apb_gather").css("display","block");
+				setConHeight1();//设置右下内容模板 中间  高度
+			
+			});
+			$("#apbg_toUp").click(function(){
+				$(".apb_spread").css("display","block");
+				$(".apb_gather").css("display","none");
+				setConHeight1();//设置右下内容模板 中间  高度
+			
+			})
+		}
+
 	// 会员列表 获取列表时 遍历数据函数
 		function memList_getData(data,myData){
 			var str="";
@@ -221,56 +244,61 @@
 		function  loadMemList(){
 			$("#member_content").load("member/mem_list.html",function(){
 				setConHeight();//设置右下内容高度
-				fix_thead(".manage_main");//固定表头
+				
+				setConHeight1();//设置会员列表 高度
+				
+				fix_thead(".mem_main");//固定表头
 
-				$.ajax({
-					url:"/snug/queryMembers",
-					success:function(data){
-				    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
-					},
-					error:function(){
-					    console.log("获取失败！")
-					}
-				});
+				quick_add()//消息群发的展开收起
+
+				// $.ajax({
+				// 	url:"/snug/queryMembers",
+				// 	success:function(data){
+				//     	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
+				// 	},
+				// 	error:function(){
+				// 	    console.log("获取失败！")
+				// 	}
+				// });
 
 				//搜索会员
-				$("#mem_select").bind("input propertychange change",function(event){
-					// console.log($("#mem_select").val());
+				// $("#mem_select").bind("input propertychange change",function(event){
+				// 	// console.log($("#mem_select").val());
 					
-					var $selectVal = $("#mem_select").val();
+				// 	var $selectVal = $("#mem_select").val();
 
-					if ($selectVal == "") {
-						$.ajax({
-							url:"/snug/queryMembers",
-							success:function(data){
-						    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
-							},
-							error:function(){
-							    console.log("获取失败！")
-							}
-						});
-					} else {
-						$.ajax({
-							url:"/snug/queryFuzzyMembers",
-							data:{
-								search_condition:$selectVal,
-							},
-							success:function(data){
-								List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
-							},
-							error:function(){
+				// 	if ($selectVal == "") {
+				// 		$.ajax({
+				// 			url:"/snug/queryMembers",
+				// 			success:function(data){
+				// 		    	List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
+				// 			},
+				// 			error:function(){
+				// 			    console.log("获取失败！")
+				// 			}
+				// 		});
+				// 	} else {
+				// 		$.ajax({
+				// 			url:"/snug/queryFuzzyMembers",
+				// 			data:{
+				// 				search_condition:$selectVal,
+				// 			},
+				// 			success:function(data){
+				// 				List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData);//会员列表 获取内容 
+				// 			},
+				// 			error:function(){
 
-								console.log("搜索失败！")
-							}
-						});
+				// 				console.log("搜索失败！")
+				// 			}
+				// 		});
 
-					}
+				// 	}
 
 
 
 					
 
-				});
+				// });
 			})
 		};//添加内容
 		loadMemList();//点击会员时自动加载会员列表
@@ -386,6 +414,43 @@
 	//点击会员分组
 		newRankGroup('#mem_group',"member/mem_group.html",test_con1,add_con1)
 	
+	//点击挂账账单
+		$("#mem_bill").click(function(){
+			$("#member_content").load("member/mem_bill.html",function(){
+				setConHeight();//设置右下内容高度
+				// 点击结账
+				
+				$(".mb_table tbody td:last-child span").click(function(){
+					console.log(1)
+
+					var str = '<div class="alert_bg"> <div class="alert_model mb_alert_model"> <div class="alert_model_title"><span>挂账-结账</span><button class="button btn_blue" id="alert_return">返回</button></div> <div class="alert_model_content"><div class="om_title">	<li class="hover">现金</li>	<li>微信</li>	<li>支付宝</li></div> <div> <label>欠费金额</label> <input type="text" name="" class="input input_lg"> </div><div> <label>实收<i class="my_opacity">实收</i></label> <input type="text" name="" class="input input_lg"> </div> <div> <label>找零<i class="my_opacity">找零</i></label> <input type="text" name="" class="input input_lg"> </div> </div> <div class="alert_model_item"> <button class="button" id="alert_confirm">确认收款</button> <button class="button" >重置</button> </div> </div> </div>';
+					$(".wrap").prepend(str);
+
+					$(".alert_model_content").find("div:nth-child(2) .input").focus();
+					
+					// $(".alert_bg").click(function(){
+					// 	// $(this).find(".input").focus();
+					// })
+					//确认添加
+					$("#alert_confirm").click(function(){
+						var classify_name = $(this).parent().prev().find(".input").val();
+						
+						if (classify_name.length>0) {
+							// console.log(classify_name);
+							$(".alert_bg").remove();
+						}
+					})
+					//返回添加
+					$("#alert_return").click(function(){
+						$(".alert_bg").remove();
+					})
+				})
+			})
+		})
+
+
+
+
 	// 新建等级  和  新建分组的函数封装
 		function newRankGroup(event1,loadUrl,listFUN,addFun){
 			$(event1).click(function () {

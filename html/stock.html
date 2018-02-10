@@ -9,8 +9,9 @@
 	<link rel="stylesheet" href="../css/public.css">
 	<link rel="stylesheet" href="../css/manage.css">
 	<link rel="stylesheet" href="../css/memberStock.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="../js/index.js"></script>
 	<script src="../js/memberStockTop.js"></script>
 
@@ -62,7 +63,7 @@
 		.tag_green:before{
 		 border-right:10px solid #8ACC15;
 		}
-	/*库存  主界面*/
+	/*库存 信息  主界面*/
 		.stock_main{
 			padding: 0.2rem 0.3rem 0.1rem 0.2rem;
 		}
@@ -107,15 +108,6 @@
 			left: 1rem;
 			font-size: 0.24rem;
 		}
-		
-		
-		.goodsMan_main li .one_title div:nth-child(3){
-			right: 5rem;
-			color: #FF761A;
-			cursor: pointer;
-			font-size: 0.16rem;
-		}/*物品管理  私有样式*/
-		
 		.stock_main li .one_title div:last-child{
 			right:0.25rem;
 
@@ -145,23 +137,98 @@
 			margin-left: 0.7rem;
 		}
 
+	/*库存信息 搜索   后显示样式*/
+		.history_model li.stockMain_title dt{
+			width: 5.2rem;
+			height: 0.4rem;
 
-/*---------------------------------- 采购管理------------------------------*/
+			font-size: 0px;
+			margin: 0 auto;
+		}
+		.history_model li.stockMain_title dt button{
+			width: 1.3rem;
+			height: 0.4rem;
+			text-align: center;
+			font-size: 0.18rem;
+			border: 0px;
+			outline: none;
+			background-color: #fff;
+		}
+		.history_model li.stockMain_title dt button.hover{
+			color: #fff;
+			background-color: #FF761A;
+			box-shadow: 0px 0px 4px rgba(0,0,0,.16);
+		}
+
+		/*.history_model li:nth-child(2) dd.my_inner{
+			display: block;
+		}*/
+		.history_model li dt div:nth-child(2) span{
+			font-size: 0.24rem;
+			margin-right: 0.5rem;
+		}
+		.history_model li dt div:nth-child(3){
+			left: 6rem !important;
+		}
+		.history_model li dd{
+			width: 15.1rem;
+			margin-left: 1.1rem;
+		}
+		.history_model li dd.my_inner{
+			box-sizing: border-box;
+			padding: 0rem 0.6rem 0rem 0.3rem;
+			background: rgba(255,255,255,.9);
+			margin-bottom: 0.1rem;
+		}
+		.history_model .myTable_title{
+			padding-top: 0.2rem;
+			font-size: 0.2rem;
+			color: #FF761A;
+		}
+		.history_model .myTable_title div{
+			display: inline-block;
+		}
+		.history_model .myTable_title div:nth-child(1){
+			border-left: 0.03rem solid #FF761A;
+			font-weight: bold;
+			padding-left: 0.1rem;
+		}
+		.history_model .myTable_title div:nth-child(2){
+			margin-right: 0.6rem
+		}
 
 
 	/*入库管理的样式*/
 	
 
 	/*出库管理的样式*/
-		.outStorage_main li dt div:nth-child(3){
-			left: 2.3rem;
+
+		.outStorage_main{
+			padding: 0.2rem;
 		}
-		.outStorage_main li dt div:nth-child(3) span{
-			font-size: 0.2rem;
-			margin-right: 0.4rem;
+		.om_con {
+			background-color: #fff;
+			padding: 0rem 0.3rem;
+			box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
 		}
-		.outStorage_main li dt div:nth-child(3) span b{
-			font-weight: normal;
+		.om_con .myTable tr td{
+			padding: 0.1rem 0rem ;
+			text-align: center !important;
+		}
+
+		.om_con .myTable thead tr{
+			/*background-color: #F2F2F2;*/
+		}
+		.om_con .myTable tbody tr td{
+			padding: 0.05rem  !important;
+		}
+		.om_con .myTable tbody tr td:last-child{
+			width: 3.4rem;
+			text-align: right !important;
+		}
+		.om_con .myTable tbody tr td:last-child button{
+			margin-right: 0.3rem;
+			
 		}
 
 
@@ -244,7 +311,10 @@
 				<span>库存管理</span>
 			   	<img src="../imgs/manage/arrow_right.svg" alt="" class="triangle">
 				<dl class="dropdown_menu" >
-					<dt><a href="javacript:;" id="inventory_info">库存信息</a></dt>
+					<dt class="hover">
+						<span>|</span>
+						<a href="javacript:;" id="inventory_info">库存信息</a>
+					</dt>
 					<dt><a href="javacript:;" id="enter_storage">入库管理</a></dt>
 					<dt><a href="javacript:;" id="out_storage">出库管理</a></dt>
 				</dl>
@@ -511,74 +581,80 @@
 		}
 
 
+	//库存默认加载函数
+	function stockLoad(){
+		$("#member_content").load("stock/stockInfo.html",function(){
+			setConHeight();//设置右下内容模板高度
+			
+			add_minus(".stock_main li dt","div:nth-child(1)",add_oneClassify);// 一级分类点击加减号展开收起
+			add_minus(".stock_main li dd",".one_title div:nth-child(1)",add_twoClassify);// 二级分类点击加减号展开收起
+
+			// setInnerHeight(".stock_main li dd",fix_thead)
+			
+			var first_token = "";
+			var type_token = "";
+			var dd_main = $(".stock_main li:first-child dd");
+			var twoClass_con = goods_dataTwo;//商品一级分类内容
+			var myUrl = "/snug/queryGoodsMes";
+
+			oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
+
+			// 点击搜索
+			$("#stockInfo_select").bind("input propertychange",function(){
+				// console.log($("#stockInfo_select").val());
+				
+				var $selectVal = $("#stockInfo_select").val();
+				console.log($("#stockInfo_select").val());
+
+				if ($selectVal == "") {
+					$(".stockInfo_main").removeClass("myDisplay");
+					$(".history_model").addClass("myDisplay");
+					
+					// oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
+				} else {
+					$(".stockInfo_main").addClass("myDisplay");
+					$(".history_model").removeClass("myDisplay");
+					var dd_main = $(".history_model li dd");
+					dd_main.html("");
+				
+					$.ajax({
+						url:"/snug/queryAllGoodsMes",
+						data:{key_word:"123"},
+						
+						success:function(data){
+							var data = JSON.parse(data);
+							console.log(data)
+
+							var data_goods = data.goods_array;
+							var data_equ = data.equ_array;
+							var data_wine = data.wines_array;
+							var data_othersgoods = data.othersgoodss_array;
+							
+							var dd_main1 = $(".history_model li:nth-child(1) dd");
+							var dd_main2 = $(".history_model li:nth-child(2) dd");
+							var dd_main3 = $(".history_model li:nth-child(3) dd");
+							var dd_main4 = $(".history_model li:nth-child(4) dd");
+							
+
+
+							// goods_dataTable 是商品的  其他三个没有写
+							stockInfo_dataSelect(data_goods,dd_main1,goods_dataTbody,goods_dataThead);//商品的内容处理
+							stockInfo_dataSelect(data_equ,dd_main2,devices_dataTbody,devices_dataThead);//设备的内容处理
+							stockInfo_dataSelect(data_wine,dd_main3,drinks_dataTbody,drinks_dataThead);//酒水的内容处理
+							stockInfo_dataSelect(data_othersgoods,dd_main4,others_dataTbody,others_dataThead);//其他的内容处理
+						}
+					})
+				}
+
+			});
+
+		})
+	}
+	stockLoad();
+
 	// 点击库存信息
 		$("#inventory_info").click(function(){
-			$("#member_content").load("stock/stockInfo.html",function(){
-				setConHeight();//设置右下内容模板高度
-				
-				add_minus(".stock_main li dt","div:nth-child(1)",add_oneClassify);// 一级分类点击加减号展开收起
-				add_minus(".stock_main li dd",".one_title div:nth-child(1)",add_twoClassify);// 二级分类点击加减号展开收起
-
-				// setInnerHeight(".stock_main li dd",fix_thead)
-				
-				var first_token = "";
-				var type_token = "";
-				var dd_main = $(".stock_main li:first-child dd");
-				var twoClass_con = goods_dataTwo;//商品一级分类内容
-				var myUrl = "/snug/queryGoodsMes";
-
-				oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
-
-				// 点击搜索
-				$("#stockInfo_select").bind("input propertychange",function(){
-					// console.log($("#stockInfo_select").val());
-					
-					var $selectVal = $("#stockInfo_select").val();
-					console.log($("#stockInfo_select").val());
-
-					if ($selectVal == "") {
-						$(".stockInfo_main").removeClass("myDisplay");
-						$(".history_model").addClass("myDisplay");
-						
-						// oneClass_ajax(twoClass_con,first_token,type_token,dd_main,myUrl);//通过ajax加载一级分类下的内容
-					} else {
-						$(".stockInfo_main").addClass("myDisplay");
-						$(".history_model").removeClass("myDisplay");
-						var dd_main = $(".history_model li dd");
-						dd_main.html("");
-					
-						$.ajax({
-							url:"/snug/queryAllGoodsMes",
-							data:{key_word:"123"},
-							
-							success:function(data){
-								var data = JSON.parse(data);
-								console.log(data)
-
-								var data_goods = data.goods_array;
-								var data_equ = data.equ_array;
-								var data_wine = data.wines_array;
-								var data_othersgoods = data.othersgoodss_array;
-								
-								var dd_main1 = $(".history_model li:nth-child(1) dd");
-								var dd_main2 = $(".history_model li:nth-child(2) dd");
-								var dd_main3 = $(".history_model li:nth-child(3) dd");
-								var dd_main4 = $(".history_model li:nth-child(4) dd");
-								
-
-
-								// goods_dataTable 是商品的  其他三个没有写
-								stockInfo_dataSelect(data_goods,dd_main1,goods_dataTbody,goods_dataThead);//商品的内容处理
-								stockInfo_dataSelect(data_equ,dd_main2,devices_dataTbody,devices_dataThead);//设备的内容处理
-								stockInfo_dataSelect(data_wine,dd_main3,drinks_dataTbody,drinks_dataThead);//酒水的内容处理
-								stockInfo_dataSelect(data_othersgoods,dd_main4,others_dataTbody,others_dataThead);//其他的内容处理
-							}
-						})
-					}
-
-				});
-
-			})
+			stockLoad();
 		})
 
 	// 库存信息一级分类的 ajax
@@ -709,8 +785,6 @@
 			return str;
 		}
 		
-
-
 
 	// 点击 入库管理
 		$("#enter_storage").click(function(){
@@ -913,10 +987,52 @@
 		$("#out_storage").click(function(){
 			$("#member_content").load("stock/outStorage.html",function(){
 				setConHeight();//设置右下内容模板高度
-				setConHeight1();//设置右下内容模板 中间  高度
 				
-				setInnerHeight(".my_inner1",fix_thead);// 设置右下角内容区  li下 my_inner 的高度
-								
+			// 设置右下角内容区 my_inner 的高度
+				var good_mo_hei = $(".manage_main").height();
+				var ratio = window.innerWidth *100/1920;//计算比例
+				var tem_hei = good_mo_hei - 0.9*ratio;
+				$(".my_inner").css("height",tem_hei+"px");//设置miy_inner的高度			
+				
+				var tabHei = $(".my_innerbox").height();
+				var divHei = $(".my_inner").height();
+				
+				if (tabHei > divHei) {
+					$(".my_inner").css("overflow-y","auto");
+					fix_thead(".my_inner")
+				}
+
+			// 时间选择器
+				$("#time_select").flatpickr({
+					mode: "range",
+					maxDate: "today",
+					dateFormat: "Y-m-d",
+					defaultDate: ["today", "today"],
+				});
+
+
+
+			// 获取数据
+				var my_key_name = $("#outStock_select").val();
+				var $key_time = $("#time_select").val()+"";
+				var $key_time1 = $key_time.substring(0,10);
+				var $key_time2 = $key_time.substring(14,24);
+				my_key_time = $key_time1 +","+$key_time2
+
+				$.ajax({
+					url:"/snug/queryByTimeAndName",
+					data:{
+						key_name:my_key_name,
+						key_time:my_key_time,
+						manage_type:"1",
+						status_type:"4"
+					},
+					success:function(data){
+						var data =JSON.parse(data);
+						console.log(data);
+					}
+				})
+
 			})
 		})
 

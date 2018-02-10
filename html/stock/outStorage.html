@@ -6,14 +6,91 @@
 	<div class="manage_title">
 		<div class="manage_title_item">
 		  	<span class="title_name">出库管理</span>
+		  	<div class="select_parent">
+		  		<img src="../imgs/manage/select.svg" alt="">
+		  		<input type="text" placeholder="输入商品名或简写" id="outStock_select"></input>
+		  	</div>
+		  	<div class="data_parent">
+		  		<input type="text" id="time_select"></input>
+		  	</div>
 		</div>
+
 		<div class="manage_title_item">
-			<button class="button" type="button" id="os_operation">操作记录</button>
-			<button class="button btn_blue" type="button" id="os_outStorage">出库</button>
+			<button class="button" type="button">下载清单</button>
 		</div>
 	</div>
 
 	<div  class="manage_main">
-		
+		<div class="outStorage_main">
+			<div class="om_title">
+				<li class="hover">待审核</li>
+				<li>通过</li>
+				<li>不通过</li>
+				<li>全部</li>
+			</div>
+
+			<div class="om_con my_inner">
+				<hr>
+				<table class="myTable  my_innerbox">
+					<thead>
+						<tr>
+							<td>名称</td>
+							<td>所属分类</td>
+							<td>动作</td>
+							<td>数量</td>
+							<td>时间</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>青岛啤酒</td>
+							<td>
+								<span>商品</span>
+								&nbsp;-&nbsp;
+								<span>商品A</span>
+							</td>
+							<td>部门A到B</td>
+							<td>48瓶</td>
+							<td>2018-2-9</td>
+							<td>
+								<button class="button">通过</button>
+								<button class="button">不通过</button>
+							</td>
+						</tr>
+						<tr>
+							<td>青岛啤酒</td>
+							<td>
+								<span>商品</span>
+								&nbsp;-&nbsp;
+								<span>商品A</span>
+							</td>
+							<td>部门A到B</td>
+							<td>48瓶</td>
+							<td>2018-2-9</td>
+							<td>
+								<button class="button">通过</button>
+								<button class="button">不通过</button>
+							</td>
+						</tr>
+						<tr>
+							<td>青岛啤酒</td>
+							<td>
+								<span>商品</span>
+								&nbsp;-&nbsp;
+								<span>商品A</span>
+							</td>
+							<td>部门A到B</td>
+							<td>48瓶</td>
+							<td>2018-2-9</td>
+							<td>
+								<button class="button">通过</button>
+								<button class="button">不通过</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>

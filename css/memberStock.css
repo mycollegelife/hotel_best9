@@ -2,6 +2,14 @@
 	li{
 		list-style: none;
 	}
+	input,textarea,select{
+		outline: none;
+	}
+/*清除公共样式 时间选择框*/
+	.active{
+		border-top: 1px solid #333 !important;
+		color: #000 !important;
+	}
 /*字体透明*/
 	.my_opacity{
 		opacity: 0;
@@ -109,8 +117,7 @@
 	}
 	/*  右边title 的搜索框*/
 	.my_title .select_parent{
-		width: auto;
-		margin-left: 0.2rem;
+		margin-left: 0.1rem;
 	}
 	.my_title .select_parent img{
 		width: 0.15rem;
@@ -121,16 +128,31 @@
 		top: 0.05rem;
 	}
 	.my_title .select_parent input{
-		padding: 0px;
+		box-sizing: border-box;
 		padding-left: 0.3rem;
-		width: 1.6rem;
+		width: 1.8rem;
 		height: 0.3rem;
 		outline: none;
-		border: 0px;
 		border:1px solid #333333;
 		border-radius: 0.3rem;
 		background-color: transparent;
 		font-size: 0.12rem;
+	}
+	.my_title .data_parent{
+		display: inline-block;
+		margin-left: 0.3rem;
+	}
+	.my_title .data_parent input{
+		box-sizing: border-box;
+		outline: none;
+		height: 0.4rem;
+		width: 2.2rem;
+		border:1px solid #333333;
+		background-color: transparent;
+		font-size: 0.12rem;
+
+		border-radius: 0.05rem;
+		padding-left: 0.1rem;
 	}
 	.tem_title span{
 		font-size: 0.24rem;
@@ -232,6 +254,43 @@
 		.apliPurchase_main .myTable tbody tr  td:first-child,.outStorage_main .myTable tbody tr  td:first-child{
 			padding-left: 0.15rem;
 		}
+/*出库管理 顶部状态切换  和 会员结账弹出框 顶部支付方式*/
+	.om_title{
+			width: 5.2rem;
+			height: 0.4rem;
+			font-size: 0.16rem;
+			background-color: #fff;
+			box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
+			display: flex;
+			align-items: center;
+			margin: 0 auto 0.1rem;
+		}{
+		width: 5.2rem;
+		height: 0.4rem;
+		font-size: 0.16rem;
+		background-color: #fff;
+		box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
+		display: flex;
+		align-items: center;
+		margin: 0 auto 0.1rem;
+	}
+	.om_title li{
+		width: 1.3rem;
+		height: 0.4rem;
+		line-height: 0.4rem;
+		text-align: center;
+		cursor: pointer;
+	}
+	.om_title li:hover{
+		background-color: #FF761A;
+		box-shadow: 2px 1px  1px rgba(0,0,0,.16);
+		color: #fff;
+	}
+	.om_title li.hover{
+		background-color: #FF761A;
+		box-shadow: 1px 1px  1px rgba(0,0,0,.16);
+		color: #fff;
+	}
 
 /*弹出框公共样式 需要自定义  label 和 input 的长度 */
 	/*弹出框的背景  使得用户不能执行其他动作*/
@@ -244,7 +303,7 @@
 		left: 0px;
 		z-index: 100;
 		user-select: none;
-		/*background-color: rgba(0,0,0,.5);*/
+		background-color: rgba(0,0,0,.5);
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
@@ -258,51 +317,68 @@
 	}
 	/*头*/
 	.alert_model_title{
-		text-align: center;
 		background-color: #ff761a;
 		height: 0.4rem;
 		border-top-right-radius: 0.05rem;
 		border-top-left-radius: 0.05rem;
 		font-size: 0.2rem;
 		color: white;
-
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 	/*body*/
 	.alert_model_content{
 		padding: 0.2rem 0.3rem 0rem;
 	}
+	.alert_model_content div{
+		width: 100%;
+		margin-top: 0.2rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 0.2rem;
+	}
+
 	.alert_model_content label{
 		font-size: 0.16rem;
 		margin-right: 0.1rem;
-		color: #fff;
-	}
-	.alert_model_content .input{
-		height: 0.3rem;
-		background-color: #FFF;
 	}
 	/*底部按钮*/
 	.alert_model_item{
 		text-align: center;
-		padding: 0.3rem 0rem;
+		margin-top: 0.4rem;
 	}
-
-
-/*添加分类 弹出框  的单独样式*/
-	.my_al_content div:nth-child(1){
-		padding-bottom: 0.2rem;
+	.alert_model_item button:first-child{
+		margin-right: 1.2rem;
 	}
-	.my_al_content label{
-		width: 0.6rem;
-	}
-	.my_al_content .input{
-		width: 2rem;
-	}
+	/*挂账结账 弹出框  的单独样式*/
+		.mb_alert_model{
+			width: 9.4rem;
+			height: 6.5rem;
+			background-color: #F2F2F2;
+		}
+		.mb_alert_model .alert_model_title{
+			height: 0.8rem;
+			padding: 0 0.3rem 0 0.2rem;
+		}
+		.mb_alert_model .alert_model_title span{
+			font-size: 0.32rem;
+		}
+		.mb_alert_model .om_title{
+			width: 3.9rem;
+		}
+		.mb_alert_model .alert_model_content div:nth-child(2){
+			margin-top: 0.4rem;
+		}
 
 
 
 /*会员   列表样式*/
 	.mem_main{
-		padding: 0.3rem 0.2rem 0rem 0.2rem;
+		box-sizing: border-box;
+		padding: 0.3rem 0.2rem 0.2rem 0.2rem;
 	}
 
 /*会员管理的新建等级 and 分组  和  采购管理的 添加分类and 添加物品 公共样式*/
