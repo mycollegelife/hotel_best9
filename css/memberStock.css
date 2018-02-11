@@ -102,11 +102,11 @@
 		border-color: #1AA3FF;
 	}
 	/*上传图片的按钮*/
-	.btn_img{
+	.btn_yellow{
 		background: #FF761A;
 		box-shadow:none;
 	}
-	.btn_img:hover{
+	.btn_yellow:hover{
 		box-shadow:none;
 	}
 
@@ -473,5 +473,24 @@
 	.group_main div:nth-child(3),.group_main div:nth-child(5){
 		padding-bottom : 0.1rem;
 	}
+/*会员列表编辑的专有样式  沿用 物品管理 添加物品的样式*/
+		.addGoodsMo_main{
+			box-sizing: border-box;
+			padding: 0.3rem 1.68rem 0rem 1.68rem; 
+		}
+		.addGoodsMo_main input{
+			background-color: #fff;
+		}
+		.addGoodsMo_main .tem_main:nth-child(1) div:nth-child(6) .input,.addGoodsMo_main .tem_main:nth-child(1) div:nth-child(7) .input{
+			width: 1.4rem;
+			margin-right: 0.1rem;
+		}
+		.addGoodsMo_main .tem_main:nth-child(2) div:nth-child(3) .input{
+			width: 2.4rem
+		}
+		.addGoodsMo_main .tem_main:nth-child(2) div:nth-child(3) p{
+			width: 0.2rem;
+			padding-left: 0.1rem;
+		}
 
 

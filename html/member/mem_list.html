@@ -1,4 +1,5 @@
 <!-- 会员列表显示 -->
+<meta charset="UTF-8">
 <div id="rank_content" class="my_title" >
 	<div class="manage_title">
 		<div class="manage_title_item">
@@ -20,6 +21,7 @@
 					<tr>
 						<td><input type="checkbox" name=""></td>
 						<td>序号</td>
+						<td>姓名</td>
 						<td>联系信息</td>
 						<td>
 							分组
@@ -44,7 +46,7 @@
 					</tr>
 				</thead >
 
-				<tbody>
+				<tbody><!-- 
 				  	<tr>
 						<td><input type="checkbox" name=""></td>
 						<td>1</td>
@@ -56,12 +58,11 @@
 						<td>32笔</td>
 						<td>￥15203</td>
 						<td>
-							
 							<input type="checkbox" class="mui-switch mui-switch-animbg checkbox_shin size" checked >
 							
 						</td>
 						<td>
-							<img class="svg_style" src="../imgs/manage/change.svg" alt="">
+							<img class="svg_style edit" src="../imgs/manage/change.svg" alt="" >
 							<img class="svg_style" src="../imgs/manage/delect.svg" alt="">
 						</td>
 				  	</tr>
@@ -298,7 +299,7 @@
 							<img class="svg_style" src="../imgs/manage/change.svg" alt="">
 							<img class="svg_style" src="../imgs/manage/delect.svg" alt="">
 						</td>
-				  	</tr>
+				  	</tr> -->
 				</tbody>
 			</table>	
 		</div>
@@ -351,14 +352,64 @@
 	</div>
 
 	<div class="manage_main ">
-		<div class="tm_main">
-			<div class="tem_main rank_main">
-				
+		<div class="tm_main addGoodsMo_main">
+			<div class="tem_main">
+				<div><b>基础设置</b></div>
+				<div>
+					<label>姓名<i class="my_opacity">姓名</i></label>
+					<input type="text" name="name" class="input input_lg"/>
+				</div>
+				<div>
+					<label>联系信息</label>
+					<input type="text" name="name" class="input input_lg"/>
+				</div>
+				<div>
+					<label>会员分组</label>
+					<select name="group" class="select select_lg">
+						<option value=""></option>
+					</select>
+				</div>
+				<div>
+					<label>会员等级</label>
+					<select name="group" class="select select_lg">
+						<option value=""></option>
+					</select>
+				</div>
+				<div>
+					<label>积分<i class="my_opacity">积分</i></label>
+					<input type="text" name="name" class="input input_lg"/>
+					<button class="button btn_yellow">充值</button>
+				</div>
+				<div>
+					<label>余额<i class="my_opacity">余额</i></label>
+					<input type="text" name="name" class="input input_lg"/>
+					<button class="button btn_yellow">充值</button>
+				</div>
+				<div>
+					<label>状态<i class="my_opacity">状态</i></label>
+					<select class="select select_lg">
+						<option>开</option>
+						<option>关</option>
+					</select>
+					<img src="../imgs/select_logo.svg" alt="">
+				</div>
+			</div>
+			<div class="tem_main">
+				<div><b>交易信息</b></div>
+				<div>
+					<label>成交单数</label>
+					<input type="text" name="name" class="input input_lg"/>
+				</div>
+				<div>
+					<label>成交金额</label>
+					<input type="text" name="name" class="input input_lg"/>
+					<p>元</p>
+				</div>
 			</div>
 		</div>
 		<hr class="tem_line" />
 		<div class="tem_btn">
-			<button id="add" class="button">确认添加</button>
+			<button id="add" class="button">确认修改</button>
 			<button id="return" class="button">返回</button>
 		</div>
 	</div>

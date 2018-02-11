@@ -342,14 +342,11 @@
 		    }
 		}
 
-
 	// 设置表格的表头固定
 		function fix_thead(target){
 			// 滚动固定表格的头  $(this) == my_inner
 			$(target).scroll(function () {
-
 			    var scrollH = $(this).scrollTop() -1;	
-				
 			    $(this).find("thead").css({
 			    	transform: "translateY("+scrollH+"px)",
 			    });
@@ -520,10 +517,6 @@
 					
 				}
 			}
-
-
-	//申购清单的历史数据和入库管理的  顶部 点击切换  审核状态
-		
 
 
 /*-----------------------------------点击库存管理-----------------------------*/
@@ -836,27 +829,27 @@
 
 			// 获取数据
 				// time = "2018-02-09 00:00:00,2018-02-09 23:59:59";
-				outStock_data("","","1","4");
+				outStock_data("","","2","1");
 			
 
 			// 通过名称搜索
 				$("#outStock_select").bind("input propertychange",function(){
 					var name = $(this).val()
-					var status = outStock_status($(".om_title li"));//判断 出库的状态
+					var status = enterStock_status($(".om_title li"));//判断 出库的状态
 					var time = outStock_time($("#time_select"));// 获取时间
 
-					outStock_data(name,time,"1",status);
+					outStock_data(name,time,"2",status);
 				})
 
 			// 通过时间搜索
 				$("#time_select").bind("input propertychange",function(){
 					
 					var name = $("#outStock_select").val();
-					var status = outStock_status($(".om_title li"));//判断 出库的状态
+					var status = enterStock_status($(".om_title li"));//判断 出库的状态
 					var time = outStock_time($(this));// 获取时间
 					console.log(time);
 					
-					outStock_data(name,time,"1",status);
+					outStock_data(name,time,"2",status);
 				})
 
 			// 通过状态搜索
@@ -866,10 +859,10 @@
 					
 					var name = $("#outStock_select").val();
 					var time = outStock_time($("#time_select"));
-					var status = outStock_status($(this));
+					var status = enterStock_status($(this));
 					
 					// console.log(name+time+status)
-					outStock_data(name,time,"1",status);
+					outStock_data(name,time,"2",status);
 				})
 
 			})
@@ -961,18 +954,37 @@
 					if (myData.length>0) {
 						var btn= "";
 						var str="";
+						console.log(myData)
 						for (var i = 0; i < myData.length; i++) {//tbody塞内容
-							var thisStatus = myData[i].food_material_out_flag;
-							if (thisStatus == "4") {// 判断 button按钮
-								btn = ' <button class="button">通过</button> <button class="button">不通过</button>';
-							}else if(thisStatus == "5"){
-								btn = ' <button class="button btn_red">反通过</button>'
-							}else if(thisStatus == "6"){
-								btn = ' <button class="button btn_red">重申入库</button>'
+							// 根据不同的状态设置不同的按钮
+							if (type == "1") {//出库
+								var thisStatus = myData[i].food_material_out_flag;
+								if (thisStatus == "4" ) {// 判断 button按钮
+									btn = ' <button class="button">通过</button> <button class="button">不通过</button>';
+								}else if(thisStatus == "6"){
+									btn = ' <button class="button btn_red">反通过</button>'
+								}else if(thisStatus == "5"){
+									btn = ' <button class="button btn_red">重申入库</button>'
+								}
+								str+='<tr> <td>'+myData[i].food_material_out_name+'</td><td class="myDisplay">'+myData[i].food_material_out_token+'</td><td> <span>'+myData[i].food_material_out_type+'</span></td> <td>'+myData[i].food_material_out_to_department+'</td> <td>'+myData[i].food_material_out_quantity+'</td> <td>'+myData[i].food_material_out_time+'</td> <td>'+btn+'</td> </tr>';
+							} else {//入库
+								var thisStatus = myData[i].food_material_flag;
+								if (thisStatus == "1" ) {// 判断 button按钮
+									btn = ' <button class="button">通过</button> <button class="button">不通过</button>';
+								}else if(thisStatus == "4"){
+									btn = ' <button class="button btn_red">反通过</button>'
+								}else if(thisStatus == "5"){
+									btn = ' <button class="button btn_red">重申入库</button>'
+								}
+								str+='<tr> <td>'+myData[i].food_material_name+'</td><td class="myDisplay">'+myData[i].food_material_token+'</td><td> <span>'+myData[i].food_material_type+'</span></td> <td>'+myData[i].food_material_from+'</td> <td>'+myData[i].food_material_number+'</td> <td>'+myData[i].food_material_time+'</td> <td>'+btn+'</td> </tr>'
 							}
-							str+='<tr> <td>'+myData[i].food_material_out_name+'</td> <td> <span>'+myData[i].food_material_out_type+'</span></td> <td>'+myData[i].food_material_out_to_department+'</td> <td>'+myData[i].food_material_out_quantity+'</td> <td>'+myData[i].food_material_out_time+'</td> <td>'+btn+'</td> </tr>'
 						}
 						$(".om_con tbody").html(str);
+
+						if ($(".my_innerbox").height() > $(".my_inner").height()) {
+							$(".my_inner").css("overflow-y","auto");
+							fix_thead(".my_inner");
+						}//固定表格表头
 
 						if (status == "") {//全部时  添加td
 							var theadOperate =  $(".om_con thead td:last-child");
@@ -983,16 +995,30 @@
 							}
 							var tag,tag_color;
 							for (var i = 0; i < myData.length; i++) {
-								var thisStatus = myData[i].food_material_out_flag;
-								if (thisStatus == "4") {// 判断 状态
-									tag= "待审核";
-									tag_color = "tag_blue";
-								}else if(thisStatus == "5"){
-									tag= "已通过";
-									tag_color = "tag_green";
-								}else if(thisStatus == "6"){
-									tag= "不通过";
-									tag_color = "tag_red";
+								if (type == "1") {//出库
+									var thisStatus = myData[i].food_material_out_flag;
+									if (thisStatus == "4") {// 判断 状态
+										tag= "待审核";
+										tag_color = "tag_blue";
+									}else if(thisStatus == "6"){
+										tag= "已通过";
+										tag_color = "tag_green";
+									}else if(thisStatus == "5"){
+										tag= "不通过";
+										tag_color = "tag_red";
+									}
+								}else{//入库
+									var thisStatus = myData[i].food_material_flag;
+									if (thisStatus == "1") {// 判断 状态
+										tag= "待审核";
+										tag_color = "tag_blue";
+									}else if(thisStatus == "4"){
+										tag= "已通过";
+										tag_color = "tag_green";
+									}else if(thisStatus == "5"){
+										tag= "不通过";
+										tag_color = "tag_red";
+									}
 								}
 
 								tbodyOperate.eq(i).find("td:last-child").before('<td><a class="tag '+tag_color+'">'+tag+'</a></td>');
@@ -1003,7 +1029,8 @@
 							}
 						}
 					}else{
-						console.log("改情况下没有数据")
+						console.log("改情况下没有数据");
+						$(".om_con tbody").html("");
 					}
 				}else{
 					console.log("返回状态为2！info为空")
@@ -1021,9 +1048,28 @@
 					if (statusVal == "待审核") {
 						status = "4";
 					}else if(statusVal == "通过"){
-						status = "5";
-					}else if(statusVal == "不通过"){
 						status = "6";
+					}else if(statusVal == "不通过"){
+						status = "5";
+					}else if(statusVal == "全部"){
+						status = "";
+					}
+				}
+			}
+			return status;
+		}
+	//获取入库的状态 
+		function enterStock_status(statusEv){
+			var status = "";
+			for (var i = 0; i < statusEv.length; i++) {
+				if (statusEv.eq(i).hasClass("hover")) {
+					var statusVal = statusEv.eq(i).html();
+					if (statusVal == "待审核") {
+						status = "1";
+					}else if(statusVal == "通过"){
+						status = "4";
+					}else if(statusVal == "不通过"){
+						status = "5";
 					}else if(statusVal == "全部"){
 						status = "";
 					}
