@@ -1,4 +1,5 @@
 (function(){
+
 //-------------------------------会员部分----------------------------------------------
 	
 	// 会员设置    固定表头
@@ -48,7 +49,9 @@
 		function memList_getData(data,myData){
 			var str="";
 			var status = "";
+				console.log(myData);
 			for (var i = 0; i < myData .length; i++) {
+				
 				if(data.info[i].user_info_flag == 1){
 					status="checked";
 				}
@@ -188,28 +191,42 @@
 
 	// 会员等级 编辑时 --处理--数据函数
 		function memRank_editData(myData,j){
-			// 设置等级
+			// ----设置等级   默认12级----
 				var my_option = "";
 				var this_token = myData[j].member_degree_token;
-				$.ajax({
-					async: false,
-					url:"/snug/queryMemberDegrees",
-					success:function(data){
-						var data = JSON.parse(data);
-						console.log(data)
-						var myData = data.info;
-						for (var i = 0; i < myData.length; i++) {
-							if (myData[i].member_degree_token == this_token) {
-								my_option +='<option selected>'+myData[i].member_degree_real+'</option> '
-							}else{
-								my_option +='<option>'+myData[i].member_degree_real+'</option> '
-							}
-						}
-					},
-					error:function(){
-					    console.log("添加失败！")
+				console.log(this_token );
+				
+				for (var i = 1; i < 12; i++) {
+					if (i == myData[j].member_degree_real) {
+						my_option +='<option selected>'+myData[j].member_degree_real+'</option> '
+					}else{
+						my_option +='<option>'+i+'</option> '
 					}
-				})
+				}
+				
+
+				// $.ajax({
+				// 	async: false,
+				// 	url:"/snug/queryMemberDegrees",
+				// 	success:function(data){
+				// 		var data = JSON.parse(data);
+				// 		console.log(data)
+				// 		var myData = data.info;
+				// 		for (var i = 0; i < myData.length; i++) {
+				// 			if (myData[i].member_degree_token == this_token) {
+				// 				my_option +='<option selected>'+myData[i].member_degree_real+'</option> '
+				// 			}else{
+				// 				my_option +='<option>'+myData[i].member_degree_real+'</option> '
+				// 			}
+				// 		}
+				// 	},
+				// 	error:function(){
+				// 	    console.log("添加失败！")
+				// 	}
+				// })
+
+			// ----设置等级   默认12级----
+
 			// 状态设置
 				var status = "";
 				console.log(myData[j].member_degree_flag)
@@ -565,7 +582,7 @@
 								search_condition:$selectVal,
 							},
 							success:function(data){
-								List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData,memList_editSubmit);//会员列表 获取内容 
+								List_getCon(data,memList_getData,"myData[j].user_info_token","/snug/deleteMember",add_con,memList_editData,loadMemList,memList_editSubmit);//会员列表 获取内容 
 							},
 							error:function(){
 
@@ -574,11 +591,6 @@
 						});
 
 					}
-
-
-
-					
-
 				});
 			})
 		};//添加内容
@@ -655,7 +667,7 @@
 			$.ajax({
 				url:"/snug/queryMemberGroups",
 				success:function(data){
-				    List_getCon(data,memGroup_getData,"myData[j].member_group_token","/snug/deleteMemberGroup",add_con1,memGroup_editData,test_con,memGroup_editSubmit);//会员分组获取内容 
+				    List_getCon(data,memGroup_getData,"myData[j].member_group_token","/snug/deleteMemberGroup",add_con1,memGroup_editData,test_con1,memGroup_editSubmit);//会员分组获取内容 
 				},
 				error:function(){
 					console.log("添加失败！")

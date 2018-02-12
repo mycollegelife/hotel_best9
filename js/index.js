@@ -4,7 +4,7 @@ $(function () {
 	function setWindowFull(target) {
 		var htmlHeight=window.innerHeight,
 	    navHeight=$('#nav').height(),
-	    indexHeight=parseInt(htmlHeight)-parseInt(navHeight);
+	    indexHeight=parseInt(htmlHeight)-parseInt(navHeight)-20;
  	    $(target).css("height",indexHeight) //除了导航条外整个页面的高度
 	}
 	
