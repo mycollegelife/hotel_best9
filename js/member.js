@@ -349,15 +349,15 @@
 	
 	// 会员等级 编辑时 --提交--数据函数
 		function memRank_editSubmit(token){
-			var $real = $(".tem_main select").val();
-			var $name = $("input[name='name']").val();
-			var $lower = $("input[name='lower']").val();
-			var $discount = $("input[name='discount']").val();
-			var $unit1 = $("input[name='unit1']").val();
-			var $unit2 = $("input[name='unit2']").val();
+			var $real = $("#rank_model_edit .tem_main select").val();
+			var $name = $("#rank_model_edit input[name='name']").val();
+			var $lower = $("#rank_model_edit input[name='lower']").val();
+			var $discount = $("#rank_model_edit input[name='discount']").val();
+			var $unit1 = $("#rank_model_edit input[name='unit1']").val();
+			var $unit2 = $("#rank_model_edit input[name='unit2']").val();
 			var $unit = $unit1+":"+$unit2;
-			var $credit = $("input[name='credit']").val();
-			var $settle = $("input[name='settle']").val();
+			var $credit = $("#rank_model_edit input[name='credit']").val();
+			var $settle = $("#rank_model_edit input[name='settle']").val();
 			var $flag_val = $("#Edit_status").val();
 			var $flag = "";
 			if ($flag_val == "开") {
@@ -405,9 +405,9 @@
 
 	// 会员分组 编辑时 --提交--数据函数
 		function memGroup_editSubmit(token){
-			var $name = $("input[name='name']").val();
-			var $person = $("input[name='person']").val();
-			var $telNum = $("input[name='telNum']").val();
+			var $name = $("#rank_model_edit input[name='name']").val();
+			var $person = $("#rank_model_edit input[name='person']").val();
+			var $telNum = $("#rank_model_edit input[name='telNum']").val();
 
 			console.log($name+','+$person+','+$telNum);
 			
@@ -440,7 +440,6 @@
 		}
 
 	
-
 	// 会员 获取 -----------------所有列表内容 ------------------- 的函数封装
 		function List_getCon(data,getDataFun,myToken,deleteUrl,addFun,editFun,reloadFun,editSubmitFun){
 			var data = JSON.parse(data);
@@ -478,10 +477,6 @@
 							}
 						}
 						$(".tm_main").html(str);
-
-						$("input[name='name']").bind("input propertychange change",function(event){
-							console.log($(this).val());
-						})
 						// 返回按钮
 							$return.click(function(){
 								$rank_content.removeClass("myDisplay");
@@ -491,9 +486,7 @@
 						// 确认添加按钮
 							$add.click(function(){
 								console.log($("input[name='name']").val());
-
-
-								// editSubmitFun($myToken)
+								editSubmitFun($myToken)
 								// memGroup_editSubmit($myToken);
 								// memRank_editSubmit();
 								// memList_editSubmit($myToken);
@@ -612,15 +605,15 @@
 	
 	//获取 会员等级 要添加的内容，发送到后台
 		function add_con(){
-			var $real = $(".tem_main select").val();
-			var $name = $("input[name='name']").val();
-			var $lower = $("input[name='lower']").val();
-			var $discount = $("input[name='discount']").val();
-			var $unit1 = $("input[name='unit1']").val();
-			var $unit2 = $("input[name='unit2']").val();
+			var $real = $("#rank_model .tem_main select").val();
+			var $name = $("#rank_model input[name='name']").val();
+			var $lower = $("#rank_model input[name='lower']").val();
+			var $discount = $("#rank_model input[name='discount']").val();
+			var $unit1 = $("#rank_model input[name='unit1']").val();
+			var $unit2 = $("#rank_model input[name='unit2']").val();
 			var $unit = $unit1+":"+$unit2;
-			var $credit = $("input[name='credit']").val();
-			var $settle = $("input[name='settle']").val();
+			var $credit = $("#rank_model input[name='credit']").val();
+			var $settle = $("#rank_model input[name='settle']").val();
 
 			// alert("会员等级："+$real +",等级名称："+$name +
 			// 	"，等级条件："+$lower+"，折扣："+$discount+
@@ -672,9 +665,9 @@
 	
 	//获取 会员分组 要添加的内容，发送到后台
 		function add_con1(){
-			var $name = $("input[name='name']").val();
-			var $person = $("input[name='person']").val();
-			var $telNum = $("input[name='telNum']").val();
+			var $name = $("#rank_model input[name='name']").val();
+			var $person = $("#rank_model input[name='person']").val();
+			var $telNum = $("#rank_model input[name='telNum']").val();
 
 			$.ajax({
 				url:"/snug/addMemberGroup",
@@ -682,7 +675,8 @@
 					member_group_name:$name,
 					member_group_master:$person,
 					member_group_phone:$telNum,
-					department_id:1
+					department_id:1,
+					member_group_token:330236184
 				},
 				success:function(data){
 					var data = JSON.parse(data);
@@ -796,9 +790,6 @@
 			})
 		}
 
-
-
-
 	// 新建等级  和  新建分组的函数封装
 		function newRankGroup(event1,loadUrl,listFUN,addFun){
 			$(event1).click(function () {
@@ -836,4 +827,5 @@
 				})
 			})
 		}
+
 })();
